@@ -11,7 +11,7 @@ public class Student {
 
 	@Id
 	@Column(name = "id")
-	private long id;
+	private Integer id;
 	
 	@Column(name = "name")
 	private String name;

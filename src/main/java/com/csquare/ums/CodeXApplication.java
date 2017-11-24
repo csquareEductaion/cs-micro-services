@@ -9,7 +9,7 @@ import com.csquare.ums.config.AppInitializer;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger2
+
 @SpringBootApplication
 public class CodeXApplication extends SpringBootServletInitializer {
 
