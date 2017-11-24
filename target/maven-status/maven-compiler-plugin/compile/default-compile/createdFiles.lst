@@ -1,0 +1,12 @@
+com\csquare\ums\config\ContextProvider.class
+com\csquare\ums\dao\ProjectDao.class
+com\csquare\ums\service\ProjectService.class
+com\csquare\ums\config\AppInitializer.class
+com\csquare\ums\config\SwaggerConfig.class
+com\csquare\ums\config\DataBaseConfig.class
+com\csquare\ums\config\WebAppConfig.class
+com\csquare\ums\controller\ProjectController.class
+com\csquare\ums\dao\ProjectDaoImpl.class
+com\csquare\ums\CodeXApplication.class
+com\csquare\ums\entity\Student.class
+com\csquare\ums\service\ProjectServiceImpl.class
