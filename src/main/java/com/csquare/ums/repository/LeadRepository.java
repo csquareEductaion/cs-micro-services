@@ -1,4 +1,4 @@
-package com.csquare.ums.dao;
+package com.csquare.ums.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -3,8 +3,8 @@ package com.csquare.ums.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.csquare.ums.dao.LeadRepository;
 import com.csquare.ums.entity.Lead;
+import com.csquare.ums.repository.LeadRepository;
 import com.csquare.ums.service.ILeadService;
 
 @Service
