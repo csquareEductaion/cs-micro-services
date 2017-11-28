@@ -16,18 +16,24 @@ public class Lead {
 	@Column(name = "id")
 	private long id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "firstName")
+	private String firstName;
+	
+	@Column(name = "lastName")
+	private String lastName;
 	
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "phoneNo")
-	private String phoneNo;
+	@Column(name = "phone")
+	private String phone;
 	
 	
-	@Column(name = "gender")
-	private String gender;
+	@Column(name = "grade")
+	private String grade;
+	
+	@Column(name = "comment")
+	private String comment;
 
 
 	public long getId() {
@@ -40,13 +46,22 @@ public class Lead {
 	}
 
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 
@@ -60,23 +75,23 @@ public class Lead {
 	}
 
 
-	public String getPhoneNo() {
-		return phoneNo;
+	public String getPhone() {
+		return phone;
 	}
 
 
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 
-	public String getGender() {
-		return gender;
+	public String getGrade() {
+		return grade;
 	}
 
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGender(String grade) {
+		this.grade = grade;
 	}
 	
 	

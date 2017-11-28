@@ -17,10 +17,10 @@ spring:
         url: jdbc:postgresql://localhost:5432/csquare
         driverClassName: org.postgresql.Driver
         username: postgres
-        password: password
+        password: postgres
     jpa:
        hibernate:
-         ddl-auto: create
+         ddl-auto: create-drop
          c3p0: 
             min_size: 5
             max_size: 100

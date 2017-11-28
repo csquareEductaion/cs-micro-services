@@ -2,6 +2,7 @@ package com.csquare.ums.config;
 
 import java.io.IOException;
 
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CorsFilter {
+public class CorsFilter implements Filter {
 	private static final Logger logger = Logger.getLogger(CorsFilter.class);
 	
 	
