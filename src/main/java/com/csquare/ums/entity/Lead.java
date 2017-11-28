@@ -90,9 +90,21 @@ public class Lead {
 	}
 
 
-	public void setGender(String grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	
 	
 	
 	
