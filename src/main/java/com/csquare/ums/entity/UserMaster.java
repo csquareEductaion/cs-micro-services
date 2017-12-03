@@ -1,5 +1,7 @@
 package com.csquare.ums.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user", schema = "public")
 
-public class UserMaster {
+public class UserMaster implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,8 +48,5 @@ public class UserMaster {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
 
 }
