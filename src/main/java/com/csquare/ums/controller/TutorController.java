@@ -1,52 +1,37 @@
 package com.csquare.ums.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import com.csquare.ums.entity.Tutor;
+import com.csquare.ums.model.Tutor;
 import com.csquare.ums.service.ITutorService;
 
-@RestController
 
+@RestController
 public class TutorController {
 
-	@Autowired
+    @Autowired
+    ITutorService iTutorService;
 
-	ITutorService iTutorService;
+    @RequestMapping(value = "/addTutor", method = RequestMethod.POST, headers = "Accept=application/json")
+    public Tutor addTutor(@RequestBody Tutor tutor) {
 
-	@RequestMapping(value = "/addTutor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> addTutor(@RequestBody Tutor tutor) {
-		ResponseEntity<?> responseEntity = null;
-		Tutor Tutor = null;
+        tutor = iTutorService.addUpdateTutor(tutor);
 
-		Tutor = iTutorService.addUpdateTutor(tutor);
-		responseEntity = new ResponseEntity<Tutor>(Tutor, HttpStatus.OK);
+        return tutor;
+    }
 
-		return responseEntity;
-	}
+    @RequestMapping(value = "/getTutorById/{tutorid}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public Tutor getTutorById(@PathVariable Long tutorid) {
 
-	@RequestMapping(value = "/getTutorById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getTutorById(@PathVariable Long tutorid) {
-		ResponseEntity<?> responseEntity = null;
-		Tutor Tutor = null;
-		
-			Tutor = iTutorService.getTutorById(tutorid);
-			responseEntity = new ResponseEntity<Tutor>(Tutor, HttpStatus.OK);
-		
-			
-		
-		return responseEntity;
-	
-	}	
+        Tutor tutor = iTutorService.getTutorById(tutorid);
+
+        return tutor;
+
+    }
 
 }

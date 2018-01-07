@@ -34,7 +34,7 @@
 
     <root>
         <priority value="INFO"/>
-        <appender-ref ref="ASYNC_FileAppender" />
+        <appender-ref ref="ASYNC_ConsoleAppender" />
     </root>
 
 </log4j:configuration>
