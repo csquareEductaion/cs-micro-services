@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.csquare.ums.framework.exception.handler.RestExceptionHandler;
 import com.csquare.ums.model.Lead;
 import com.csquare.ums.service.ILeadService;
 
 
 @RestController
-public class LeadController {
+public class LeadController extends RestExceptionHandler {
 
     @Autowired
     ILeadService iLeadService;

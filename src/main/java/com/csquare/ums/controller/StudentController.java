@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.csquare.ums.framework.exception.handler.RestExceptionHandler;
 import com.csquare.ums.model.Student;
 import com.csquare.ums.service.IStudentService;
 
 
 @RestController
-public class StudentController {
+public class StudentController extends RestExceptionHandler {
 
     @Autowired
     IStudentService iStudentService;
