@@ -1,4 +1,4 @@
-package com.csquare.ums.framework.exception;
+package com.csquare.framework.exception;
 
 public class BaseException extends Exception {
 

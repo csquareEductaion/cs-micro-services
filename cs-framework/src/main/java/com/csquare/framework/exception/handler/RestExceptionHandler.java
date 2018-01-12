@@ -1,4 +1,4 @@
-package com.csquare.ums.framework.exception.handler;
+package com.csquare.framework.exception.handler;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.csquare.ums.framework.exception.BaseException;
-import com.csquare.ums.framework.util.StringUtil;
+import com.csquare.framework.exception.BaseException;
+import com.csquare.framework.util.StringUtil;
 
 
 public class RestExceptionHandler {

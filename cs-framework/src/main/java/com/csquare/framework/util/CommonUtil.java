@@ -1,4 +1,4 @@
-package com.csquare.ums.framework.util;
+package com.csquare.framework.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import com.csquare.ums.framework.exception.BaseException;
+import com.csquare.framework.exception.BaseException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;

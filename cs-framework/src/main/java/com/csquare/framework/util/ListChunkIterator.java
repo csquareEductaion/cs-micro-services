@@ -1,4 +1,4 @@
-package com.csquare.ums.framework.util;
+package com.csquare.framework.util;
 
 import java.util.List;
 

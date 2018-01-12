@@ -1,4 +1,4 @@
-package com.csquare.ums.framework.exception.handler;
+package com.csquare.framework.exception.handler;
 
 public class ErrorInfo {
 
