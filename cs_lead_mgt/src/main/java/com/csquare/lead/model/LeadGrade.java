@@ -2,8 +2,6 @@ package com.csquare.lead.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,17 +12,16 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "lead_syllabus", schema = "lead_mgt")
+@Table(name = "lead_grade", schema = "lead_mgt")
 
-public class LeadSyllabus {
+public class LeadGrade {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pk")
     private String pk;
 
-    @Column(name = "syllabus_id")
-    private String syllabusId;
+    @Column(name = "grade_id")
+    private String gradeId;
 
     @Column(name = "lead_id")
     private String leadId;
@@ -39,14 +36,14 @@ public class LeadSyllabus {
         this.pk = pk;
     }
 
-    public String getSyllabusId() {
+    public String getGradeId() {
 
-        return syllabusId;
+        return gradeId;
     }
 
-    public void setSyllabusId(String syllabusId) {
+    public void setGradeId(String gradeId) {
 
-        this.syllabusId = syllabusId;
+        this.gradeId = gradeId;
     }
 
     public String getLeadId() {

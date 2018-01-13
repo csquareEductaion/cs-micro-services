@@ -1,14 +1,24 @@
 package com.csquare.lead.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "lead", schema = "lead_mgt")
 public class Lead {
 
@@ -27,10 +37,9 @@ public class Lead {
 
     @Column(name = "phone")
     private Integer phone;
-    
+
     @Column(name = "city")
     private String city;
-
 
     @Column(name = "comment")
     private String comment;
@@ -38,69 +47,140 @@ public class Lead {
     @Column(name = "lead_status")
     private String leasStatus;
 
-	public String getpK() {
-		return pK;
-	}
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    private Set<LeadGrade> leadGradeList = new HashSet<LeadGrade>();
 
-	public void setpK(String pK) {
-		this.pK = pK;
-	}
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    private Set<LeadLocation> leadLocationList = new HashSet<LeadLocation>();
 
-	public String getFirstName() {
-		return firstName;
-	}
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    private Set<LeadSubject> leadSubjectList = new HashSet<LeadSubject>();
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    private Set<LeadSyllabus> leadSyllabusList = new HashSet<LeadSyllabus>();
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getpK() {
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+        return pK;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setpK(String pK) {
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+        this.pK = pK;
+    }
 
-	public Integer getPhone() {
-		return phone;
-	}
+    public String getFirstName() {
 
-	public void setPhone(Integer phone) {
-		this.phone = phone;
-	}
+        return firstName;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setFirstName(String firstName) {
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+        this.firstName = firstName;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getLastName() {
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+        return lastName;
+    }
 
-	public String getLeasStatus() {
-		return leasStatus;
-	}
+    public void setLastName(String lastName) {
 
-	public void setLeasStatus(String leasStatus) {
-		this.leasStatus = leasStatus;
-	}
+        this.lastName = lastName;
+    }
 
- 
+    public String getEmail() {
+
+        return email;
+    }
+
+    public void setEmail(String email) {
+
+        this.email = email;
+    }
+
+    public Integer getPhone() {
+
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+
+        this.phone = phone;
+    }
+
+    public String getCity() {
+
+        return city;
+    }
+
+    public void setCity(String city) {
+
+        this.city = city;
+    }
+
+    public String getComment() {
+
+        return comment;
+    }
+
+    public void setComment(String comment) {
+
+        this.comment = comment;
+    }
+
+    public String getLeasStatus() {
+
+        return leasStatus;
+    }
+
+    public void setLeasStatus(String leasStatus) {
+
+        this.leasStatus = leasStatus;
+    }
+
+    public Set<LeadGrade> getLeadGradeList() {
+
+        return leadGradeList;
+    }
+
+    public void setLeadGradeList(Set<LeadGrade> leadGradeList) {
+
+        this.leadGradeList = leadGradeList;
+    }
+
+    public Set<LeadLocation> getLeadLocationList() {
+
+        return leadLocationList;
+    }
+
+    public void setLeadLocationList(Set<LeadLocation> leadLocationList) {
+
+        this.leadLocationList = leadLocationList;
+    }
+
+    public Set<LeadSubject> getLeadSubjectList() {
+
+        return leadSubjectList;
+    }
+
+    public void setLeadSubjectList(Set<LeadSubject> leadSubjectList) {
+
+        this.leadSubjectList = leadSubjectList;
+    }
+
+    public Set<LeadSyllabus> getLeadSyllabusList() {
+
+        return leadSyllabusList;
+    }
+
+    public void setLeadSyllabusList(Set<LeadSyllabus> leadSyllabusList) {
+
+        this.leadSyllabusList = leadSyllabusList;
+    }
+
 }

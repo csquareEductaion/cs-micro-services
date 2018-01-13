@@ -14,17 +14,17 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "lead_syllabus", schema = "lead_mgt")
+@Table(name = "lead_subject", schema = "lead_mgt")
 
-public class LeadSyllabus {
+public class LeadSubject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pk")
     private String pk;
 
-    @Column(name = "syllabus_id")
-    private String syllabusId;
+    @Column(name = "subject_id")
+    private String subjectId;
 
     @Column(name = "lead_id")
     private String leadId;
@@ -39,14 +39,14 @@ public class LeadSyllabus {
         this.pk = pk;
     }
 
-    public String getSyllabusId() {
+    public String getSubjectId() {
 
-        return syllabusId;
+        return subjectId;
     }
 
-    public void setSyllabusId(String syllabusId) {
+    public void setSubjectId(String subjectId) {
 
-        this.syllabusId = syllabusId;
+        this.subjectId = subjectId;
     }
 
     public String getLeadId() {
