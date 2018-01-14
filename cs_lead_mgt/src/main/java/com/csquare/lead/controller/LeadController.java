@@ -69,7 +69,7 @@ public class LeadController extends RestExceptionHandler {
         return lead;
     }
     
-    @RequestMapping(value = "/getAllLeads/{startnum}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/getAllLeads", method = RequestMethod.GET, headers = "Accept=application/json")
     public ArrayList<Lead> getAllLeads() {
 
     	ArrayList<Lead> leads = iLeadService.getAllLeads();
