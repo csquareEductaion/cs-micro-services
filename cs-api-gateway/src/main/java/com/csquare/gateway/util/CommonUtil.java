@@ -1,12 +1,9 @@
-package com.csquare.gateway.framework.util;
+package com.csquare.gateway.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.net.HttpURLConnection;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -16,23 +13,29 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import com.csquare.gateway.framework.exception.BaseException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 /**
- * Custom class to hold error information
+ * Custom class for CommonUtil
  *
  * @copyright Copyright (c) CodeX. All Right Reserved.
  * @author CodeX
  */
 public class CommonUtil {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    /**
+     * Method to check whether given String is empty or not
+     *
+     * @param value - The String
+     * @return true/false - The boolean
+     */
+    public static boolean isEmpty(String value) {
+
+        if (null == value) {
+            return true;
+        }
+
+        return value.isEmpty();
+    }
 
     /**
      * Method to check whether given List is empty or not
@@ -40,13 +43,88 @@ public class CommonUtil {
      * @param value - The List<Object>
      * @return true/false - The boolean
      */
-    public static boolean isEmpty(List<?> value) {
+    public static boolean isEmpty(List<Object> value) {
 
         if (null == value) {
             return true;
         }
 
         return value.isEmpty();
+    }
+
+    /**
+     * Method to trim String value
+     *
+     * @param value - The List<Object>
+     * @return trimmed value - The String
+     */
+    public static String trim(String value) {
+
+        if (null == value) {
+            return value;
+        }
+        return value.trim();
+    }
+
+    /**
+     * Method to check if two string values are equal
+     *
+     * @param value1 - The String
+     * @param value2 - The String
+     * @return true/false - THe boolean
+     */
+    public static boolean equals(String value1, String value2) {
+
+        boolean doesMatch = false;
+
+        if (isEmpty(value1)) {
+            doesMatch = isEmpty(value2);
+            return doesMatch;
+        }
+
+        if (!isEmpty(value2)) {
+            doesMatch = value1.equals(value2);
+        }
+
+        return doesMatch;
+    }
+
+    /**
+     * Method to convert String value to boolean
+     *
+     * @param value - The String
+     * @return true/false - THe boolean
+     */
+    public static boolean toBoolean(String value) {
+
+        if (null == value) {
+            return false;
+        }
+
+        if ("true".equalsIgnoreCase(value)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method to convert String value to boolean
+     *
+     * @param value - The String
+     * @return true/false - THe boolean
+     */
+    public static Double toDouble(String value) {
+
+        double doubleValue = 0.0;
+        if (null == value) {
+            return doubleValue;
+        }
+        try {
+            doubleValue = Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            doubleValue = 0.0;
+        }
+        return doubleValue;
     }
 
     /**
@@ -62,20 +140,45 @@ public class CommonUtil {
     }
 
     /**
-     * Method to get Current Date
+     * Method to convert String value to float
      *
-     * @return currentDate - The String
+     * @param value - The String
+     * @return floatValue - The float
      */
-    public static String getCurrentDate1() {
+    public static Float toFloat(String value) {
 
-        String datePattern = "dd-MM-yyyy";
-        String utc = "UTC";
-        Date date = new Date();
+        Float floatValue = 0.0f;
+        if (null == value) {
+            return floatValue;
+        }
 
-        DateFormat sdf = new SimpleDateFormat(datePattern);
-        sdf.setTimeZone(TimeZone.getTimeZone(utc));
-        sdf.setLenient(false);
-        return sdf.format(date);
+        try {
+            floatValue = Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            floatValue = 0.0f;
+        }
+        return floatValue;
+    }
+
+    /**
+     * Method to convert String value to long
+     *
+     * @param value - The String
+     * @return longValue - The long
+     */
+    public static Long toLong(String value) {
+
+        Long longValue = 0l;
+        if (null == value) {
+            return longValue;
+        }
+
+        try {
+            longValue = Long.parseLong(value);
+        } catch (NumberFormatException e) {
+            longValue = 0l;
+        }
+        return longValue;
     }
 
     /**
@@ -194,6 +297,22 @@ public class CommonUtil {
     }
 
     /**
+     * @param connection - the HttpURLConnection
+     */
+    public static void disconnect(HttpURLConnection connection) {
+
+        if (null == connection) {
+            return;
+        }
+
+        try {
+            connection.disconnect();
+        } catch (Exception e) {
+            // DO Nothing
+        }
+    }
+
+    /**
      * @param exc Exception
      * @return String
      */
@@ -212,127 +331,6 @@ public class CommonUtil {
         }
 
         return sb.toString();
-    }
-
-    public static String toJson(Object value) {
-
-        if (null == value) {
-            return null;
-        }
-
-        String json = null;
-        if (value instanceof String) {
-            json = (String) value;
-            return json;
-        }
-
-        try {
-            json = mapper.writeValueAsString(value);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        return json;
-    }
-
-    /**
-     * @param valueType
-     * @param json
-     * @return
-     * @throws IOException
-     * @throws JsonParseException
-     * @throws JsonMappingException
-     */
-    public static <T> T toPojo(Class<T> valueType, String json) {
-
-        T value = null;
-        if (null == json || json.isEmpty()) {
-            return value;
-        }
-
-        if (String.class.isAssignableFrom(valueType)) {
-            value = (T) json;
-            return value;
-        }
-
-        try {
-            value = mapper.readValue(json, valueType);
-        } catch (JsonParseException e) {
-            throw new RuntimeException(e);
-        } catch (JsonMappingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return value;
-    }
-
-    /**
-     * @param valueType
-     * @param json
-     * @return
-     * @throws IOException
-     * @throws JsonParseException
-     * @throws JsonMappingException
-     */
-    public static <T> T toPojo(Class<?> mainClass, Class<?> elementClass, String json) {
-
-        T value = null;
-        if (null == json || json.isEmpty()) {
-            return value;
-        }
-
-        try {
-            JavaType type = mapper.getTypeFactory().constructParametricType(mainClass, elementClass);
-            value = mapper.readValue(json, type);
-        } catch (JsonParseException e) {
-            throw new RuntimeException(e);
-        } catch (JsonMappingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return value;
-    }
-
-    /**
-     * Copy an object
-     *
-     * @param obj Object
-     * @return newObj
-     * @throws BaseException
-     */
-    public static Object deepCopy(Object obj) throws BaseException {
-
-        if (null == obj) {
-            return null;
-        }
-
-        Object newObj = null;
-        ByteArrayOutputStream bos = null;
-        ObjectOutputStream out = null;
-        ObjectInputStream in = null;
-
-        try {
-            // Write the object out to a byte array
-            bos = new ByteArrayOutputStream();
-            out = new ObjectOutputStream(bos);
-            out.writeObject(obj);
-            out.flush();
-
-            in = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
-            newObj = in.readObject();
-            in.close();
-        } catch (IOException e) {
-            throw new BaseException(e);
-        } catch (ClassNotFoundException e) {
-            throw new BaseException(e);
-        } finally {
-            close(out);
-            close(bos);
-            close(in);
-        }
-
-        return newObj;
     }
 
 }

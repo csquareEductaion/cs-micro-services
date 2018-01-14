@@ -1,4 +1,4 @@
-package com.csquare.gateway.framework.util;
+package com.csquare.gateway.util;
 
 /**
  * Custom class to hold error information

@@ -1,5 +1,6 @@
 package com.csquare.gateway.servlet;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,12 +8,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
+import org.xml.sax.SAXException;
 
-import com.csquare.gateway.framework.util.StringUtil;
-import com.csquare.gateway.framework.util.sdk.RestServiceClient;
+import com.csquare.gateway.parser.ConfigParser;
+import com.csquare.gateway.util.HttpUtil;
+import com.csquare.gateway.util.StringUtil;
 
 
 /**
@@ -48,38 +52,13 @@ public class ApiGateWayServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest sourceReq, HttpServletResponse sourceResp) {
 
-        sourceResp.addHeader("Access-Control-Allow-Origin", "*");
-        String contextPath = sourceReq.getContextPath();
-        String forwardURI = sourceReq.getRequestURI().replace(contextPath, "");
-        String forwardURL = getForwardURL(forwardURI);
-        if (StringUtil.isEmpty(forwardURL)) {
-            LOGGER.error(StringUtil.append("Unable to find Forward URL in mappings: ", forwardURI));
-            sourceResp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-
-        forwardURL = StringUtil.append(forwardURL, forwardURI);
-        RestServiceClient.INSTANCE.getForObject(forwardURL, String.class);
-        // forwardRequest(sourceReq, sourceResp);
+        forwardRequest(sourceReq, sourceResp);
     }
 
     @Override
     public void doPost(HttpServletRequest sourceReq, HttpServletResponse sourceResp) {
 
-        sourceResp.addHeader("Access-Control-Allow-Origin", "*");
-        String contextPath = sourceReq.getContextPath();
-        String forwardURI = sourceReq.getRequestURI().replace(contextPath, "");
-        String forwardURL = getForwardURL(forwardURI);
-        if (StringUtil.isEmpty(forwardURL)) {
-            LOGGER.error(StringUtil.append("Unable to find Forward URL in mappings: ", forwardURI));
-            sourceResp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-
-        forwardURL = StringUtil.append(forwardURL, forwardURI);
-        // RestServiceClient.INSTANCE.postForObject(forwardURL, String.class);
-
-        // forwardRequest(sourceReq, sourceResp);
+        forwardRequest(sourceReq, sourceResp);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -100,8 +79,8 @@ public class ApiGateWayServlet extends HttpServlet {
         }
 
         forwardURL = StringUtil.append(forwardURL, forwardURI);
-        // HttpUtil httpUtil = new HttpUtil();
-        // httpUtil.forward(sourceReq, sourceResp, forwardURL);
+        HttpUtil httpUtil = new HttpUtil();
+        httpUtil.forward(sourceReq, sourceResp, forwardURL);
     }
 
     /**
@@ -109,26 +88,26 @@ public class ApiGateWayServlet extends HttpServlet {
      */
     private void initController() {
 
-        // ConfigParser configParser = new ConfigParser();
-        // try {
-        // configParser.parse();
-        // } catch (SAXException e) {
-        // LOGGER.error(e);
-        // } catch (ParserConfigurationException e) {
-        // LOGGER.error(e);
-        // } catch (IOException e) {
-        // LOGGER.error(e);
-        // } catch (Exception e) {
-        // LOGGER.error(e);
-        // }
-        //
-        // Map<String, String> urlPatternProxyMap = configParser.getUrlPatternMap();
-        // this.urlPatternProxyMap.clear();
-        // if (null == urlPatternProxyMap) {
-        // return;
-        // }
-        //
-        // this.urlPatternProxyMap.putAll(urlPatternProxyMap);
+        ConfigParser configParser = new ConfigParser();
+        try {
+            configParser.parse();
+        } catch (SAXException e) {
+            LOGGER.error(e);
+        } catch (ParserConfigurationException e) {
+            LOGGER.error(e);
+        } catch (IOException e) {
+            LOGGER.error(e);
+        } catch (Exception e) {
+            LOGGER.error(e);
+        }
+
+        Map<String, String> urlPatternProxyMap = configParser.getUrlPatternMap();
+        this.urlPatternProxyMap.clear();
+        if (null == urlPatternProxyMap) {
+            return;
+        }
+
+        this.urlPatternProxyMap.putAll(urlPatternProxyMap);
     }
 
     /**
