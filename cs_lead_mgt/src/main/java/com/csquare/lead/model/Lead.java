@@ -1,5 +1,6 @@
 package com.csquare.lead.model;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class Lead {
     private String email;
 
     @Column(name = "phone")
-    private Integer phone;
+    private BigDecimal phone;
 
     @Column(name = "city")
     private String city;
@@ -45,7 +46,7 @@ public class Lead {
     private String comment;
 
     @Column(name = "lead_status")
-    private String leasStatus;
+    private String leadStatus;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
@@ -103,12 +104,12 @@ public class Lead {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public BigDecimal getPhone() {
 
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(BigDecimal phone) {
 
         this.phone = phone;
     }
@@ -133,14 +134,14 @@ public class Lead {
         this.comment = comment;
     }
 
-    public String getLeasStatus() {
+    public String getLeadStatus() {
 
-        return leasStatus;
+        return leadStatus;
     }
 
-    public void setLeasStatus(String leasStatus) {
+    public void setLeadStatus(String leadStatus) {
 
-        this.leasStatus = leasStatus;
+        this.leadStatus = leadStatus;
     }
 
     public Set<LeadGrade> getLeadGradeList() {

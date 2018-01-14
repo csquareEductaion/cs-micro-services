@@ -26,7 +26,7 @@ public class Student {
     private String email;
 
     @Column(name = "phone")
-    private Integer phone;
+    private Float phone;
     
     @Column(name = "city")
     private String city;
@@ -70,11 +70,11 @@ public class Student {
 		this.email = email;
 	}
 
-	public Integer getPhone() {
+	public Float getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(Float phone) {
 		this.phone = phone;
 	}
 

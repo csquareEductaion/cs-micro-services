@@ -1,8 +1,10 @@
 package com.csquare.lead.service.impl;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.csquare.lead.dao.LeadRepository;
@@ -43,9 +45,13 @@ public class LeadServiceImpl implements ILeadService {
 
     @Override
     public Lead getLeadById(String id) {
-
-        // TODO Auto-generated method stub
         return ileadRepository.findOne(id);
     }
+
+	@Override
+	public ArrayList<Lead> getAllLeads() {
+		
+		return (ArrayList<Lead>) ileadRepository.findAll();
+	}
 
 }
