@@ -2,15 +2,6 @@ package com.csquare.framework.util;
 
 public class SystemUtil {
 
-    public static String getDeploymentEnv() {
-
-        String value = getEnv(SystemKey.CODEX_DEPLOYMENT_ENV);
-        if (StringUtil.isEmpty(value)) {
-            value = "LOCAL_DEV";
-        }
-        return value;
-    }
-
     public static String getEnv(SystemKey key) {
 
         String keyString = key.name();
@@ -21,8 +12,18 @@ public class SystemUtil {
         return value;
     }
 
+    public static void setProperty(String key, String value) {
+
+        System.setProperty(key, value);
+    }
+
+    public static String getProperty(String key) {
+
+        return System.getProperty(key);
+    }
+
     public enum SystemKey {
-        CODEX_DEPLOYMENT_ENV, CODEX_STORAGE_BLOB_CONNECTION_STRING, CODEX_APPCONFIG_CONTAINER;
+        CS_STORAGE_CONNECTION_STRING, CS_DB_CONNECTION_STRING, CS_APPCONFIG_PATH;
 
     }
 
