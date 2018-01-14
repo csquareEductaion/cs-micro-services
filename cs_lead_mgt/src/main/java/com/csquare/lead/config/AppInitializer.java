@@ -10,7 +10,7 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-
+import com.csquare.framework.filter.SecureHeaderFilter;
 
 
 /**
@@ -33,14 +33,14 @@ public class AppInitializer implements ServletContextInitializer {
         ContextProvider.setApplicationContext(ctx);
 
         addListener(servletContext);
-       // addFilter(servletContext, SecureHeaderFilter.class, "SecureHeaderFilter", "/*");
+        addFilter(servletContext, SecureHeaderFilter.class, "SecureHeaderFilter", "/*");
         addServlet(servletContext, ctx, "/csquare/*");
 
     }
 
     private void addListener(ServletContext servletContext) {
 
-       // servletContext.addListener(new ContextListener());
+        // servletContext.addListener(new ContextListener());
     }
 
     private void addServlet(ServletContext servletContext, AnnotationConfigWebApplicationContext ctx, String urlPattern) {
