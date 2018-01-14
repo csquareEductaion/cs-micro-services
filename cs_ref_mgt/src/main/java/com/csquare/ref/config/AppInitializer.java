@@ -10,6 +10,9 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import com.csquare.framework.util.StringUtil;
+import com.csquare.framework.util.SystemUtil;
+
 
 
 
@@ -34,7 +37,7 @@ public class AppInitializer implements ServletContextInitializer {
 
         addListener(servletContext);
        // addFilter(servletContext, SecureHeaderFilter.class, "SecureHeaderFilter", "/*");
-        addServlet(servletContext, ctx, "/csquare/*");
+        addServlet(servletContext, ctx, "/cs_ref_mgt/*");
 
     }
 
@@ -46,7 +49,12 @@ public class AppInitializer implements ServletContextInitializer {
     private void addServlet(ServletContext servletContext, AnnotationConfigWebApplicationContext ctx, String urlPattern) {
 
         ServletRegistration.Dynamic dynamic0 = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(ctx));
-        dynamic0.addMapping(urlPattern);
+        String container = SystemUtil.getProperty("CONTAINER");
+        if (StringUtil.equals("SELF", container)) {
+            dynamic0.addMapping(urlPattern);
+        } else {
+            dynamic0.addMapping("/");
+        }
         dynamic0.setLoadOnStartup(1);
     }
 
