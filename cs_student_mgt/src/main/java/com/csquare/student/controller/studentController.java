@@ -18,27 +18,27 @@ public class studentController extends RestExceptionHandler {
     @Autowired
     IStudentService istudentService;
 
-    @RequestMapping(value = "/addstudent", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Student addstudent(@RequestBody Student student) {
+    @RequestMapping(value = "/addStudent", method = RequestMethod.POST, headers = "Accept=application/json")
+    public Student addStudent(@RequestBody Student student) {
 
         student = istudentService.addStudent(student);
         return student;
     }
 
-    @RequestMapping(value = "/updatestudent", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Student updatestudent(@RequestBody Student student) {
+    @RequestMapping(value = "/updateStudent", method = RequestMethod.POST, headers = "Accept=application/json")
+    public Student updateStudent(@RequestBody Student student) {
 
         student = istudentService.updateStudent(student);
         return student;
     }
     
-    @RequestMapping(value = "/deletestudent", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void updatestudent(@RequestBody String studentId) {
+    @RequestMapping(value = "/deleteStudent", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void updateStudent(@RequestBody String studentId) {
 
         istudentService.deleteStudent(studentId);
     }
     
-    @RequestMapping(value = "/getstudentById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/getStudentById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     public Student getStudentById(@PathVariable String id) {
 
     	Student student = istudentService.getStudentById(id);
