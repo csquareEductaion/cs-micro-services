@@ -3,6 +3,8 @@ package com.csquare.lead.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.csquare.lead.model.Lead;
 
 public interface ILeadService {
@@ -16,5 +18,7 @@ public interface ILeadService {
     public Lead getLeadById(String id);
     
     public ArrayList<Lead> getAllLeads();
+    
+   // public ArrayList<Lead> getAllLeads(Pageable pageable);
 
 }

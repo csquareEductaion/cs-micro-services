@@ -53,5 +53,11 @@ public class LeadServiceImpl implements ILeadService {
 		
 		return (ArrayList<Lead>) ileadRepository.findAll();
 	}
+	
+/*	@Override
+	public ArrayList<Lead> getAllLeads(Pageable pageable) {
+		
+		return (ArrayList<Lead>) ileadRepository.findAll(pageable);
+	}*/
 
 }

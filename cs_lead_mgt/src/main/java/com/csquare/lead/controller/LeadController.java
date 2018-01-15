@@ -3,6 +3,8 @@ package com.csquare.lead.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +56,7 @@ public class LeadController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/deleteLead", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void updateLead(@RequestBody String leadId) {
+    public void deleteLead(@RequestBody String leadId) {
     	
     	if(leadId !=null)
     		iLeadService.deleteLead(leadId);
@@ -71,9 +73,21 @@ public class LeadController extends RestExceptionHandler {
     
     @RequestMapping(value = "/getAllLeads", method = RequestMethod.GET, headers = "Accept=application/json")
     public ArrayList<Lead> getAllLeads() {
-
+    	    	
     	ArrayList<Lead> leads = iLeadService.getAllLeads();
         return leads;
     }
+    
+  /*  @RequestMapping(value = "/getAllLeads/{startpoint}/pagesize/{pagesize}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public ArrayList<Lead> getAllLeads(@PathVariable(value = "startpoint") String startpoint, @PathVariable(value = "pagesize") String pagesize) {
+    	
+    	//Pageable pageable = new PageRequest(Integer.valueOf(startpoint), Integer.valueOf(pagesize));
+    	Pageable pageable = new PageRequest(0, 2);
+    	
+    	System.out.println("Integer.valueOf(startpoint)--" + Integer.valueOf(startpoint));
+    	System.out.println("Integer.valueOf(pagesize)--" + Integer.valueOf(pagesize));
+    	ArrayList<Lead> leads = iLeadService.getAllLeads(pageable);
+        return leads;
+    }*/
 
 }
