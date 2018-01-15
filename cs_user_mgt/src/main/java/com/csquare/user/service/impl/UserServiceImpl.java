@@ -1,0 +1,49 @@
+package com.csquare.user.service.impl;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.csquare.user.dao.UserRepository;
+import com.csquare.user.model.User;
+import com.csquare.user.service.IUserService;
+
+
+@Service
+public class UserServiceImpl implements IUserService {
+
+    @Autowired
+    UserRepository iUserRepository;
+
+    @Override
+    public User addUser(User User) {
+
+    	String pk=UUID.randomUUID().toString();
+    	User.setpK(pk);
+        // TODO Auto-generated method stub
+        iUserRepository.save(User); 
+        return User;
+    }
+    
+    @Override
+    public User updateUser(User User) {
+	
+        iUserRepository.save(User);
+        return User;
+    }
+    
+    @Override
+    public void deleteUser(String UserId) {
+	
+        iUserRepository.delete(UserId);;
+    }
+
+    @Override
+    public User getUserById(String id) {
+
+        // TODO Auto-generated method stub
+        return iUserRepository.findOne(id);
+    }
+
+}

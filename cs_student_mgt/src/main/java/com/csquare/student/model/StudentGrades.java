@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "lead_grades", schema = "lead_mgt")
+@Table(name = "student_grades", schema = "student_mgt")
 
 
 public class StudentGrades {
