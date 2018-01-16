@@ -1,5 +1,6 @@
 package com.csquare.ref.service.impl;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,10 @@ public class RefCityServiceImpl implements IRefCityService {
 		
 	}
 
+	@Override
+	public ArrayList<RefCity> getAllRefCity() {
+		
+		return (ArrayList<RefCity>) iRefCityRepository.findAll();
+	}
 	
 }

@@ -1,5 +1,7 @@
 package com.csquare.ref.service;
 
+import java.util.ArrayList;
+
 import com.csquare.ref.model.RefCity;
 
 public interface IRefCityService {
@@ -11,5 +13,7 @@ public interface IRefCityService {
     public void deleteRefCity(String studentId);
     
     public RefCity getRefCityById(String id);
+    
+    public ArrayList<RefCity> getAllRefCity();
 
 }

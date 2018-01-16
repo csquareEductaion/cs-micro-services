@@ -1,5 +1,7 @@
 package com.csquare.ref.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,13 @@ public class RefCityController extends RestExceptionHandler {
     @Autowired
     IRefCityService irefcityService;
 
+    @RequestMapping(value = "/getAllRefCity", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ArrayList<RefCity> getAllRefCity() {
+    	
+    	ArrayList<RefCity> city = irefcityService.getAllRefCity();
+        return city;
+	}
+    
     @RequestMapping(value = "/addRefCity", method = RequestMethod.POST, headers = "Accept=application/json")
     public RefCity addRefCity(@RequestBody RefCity refcity) {
 
