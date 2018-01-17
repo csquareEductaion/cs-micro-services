@@ -3,6 +3,7 @@ package com.csquare.ref.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.csquare.ref.service.IRefCityService;
 import com.csquare.ref.service.IRefLocationService;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class RefLocationController extends RestExceptionHandler {
 
     @Autowired
