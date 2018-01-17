@@ -51,9 +51,10 @@ public class RefCityServiceImpl implements IRefCityService {
 	}
 
 	@Override
-	public ArrayList<RefCity> getAllRefCity() {
-		
+	public ArrayList<RefCity> getAllRefCites() {
+		// TODO Auto-generated method stub
 		return (ArrayList<RefCity>) iRefCityRepository.findAll();
 	}
+
 	
 }

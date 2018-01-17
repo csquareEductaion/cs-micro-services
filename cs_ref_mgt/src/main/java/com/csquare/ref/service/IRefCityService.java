@@ -14,6 +14,6 @@ public interface IRefCityService {
     
     public RefCity getRefCityById(String id);
     
-    public ArrayList<RefCity> getAllRefCity();
+    public ArrayList<RefCity> getAllRefCites();
 
 }

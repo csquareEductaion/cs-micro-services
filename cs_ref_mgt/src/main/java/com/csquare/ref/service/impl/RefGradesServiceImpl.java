@@ -1,5 +1,6 @@
 package com.csquare.ref.service.impl;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,12 @@ public class RefGradesServiceImpl implements IRefGradesService {
 	public void deleteRefGrades(String cityId) {
 		iRefGradeRepository.delete(cityId);
 		
+	}
+
+	@Override
+	public ArrayList<RefGrades> getAllRefGrades() {
+		// TODO Auto-generated method stub
+		return (ArrayList<RefGrades>) iRefGradeRepository.findAll();
 	}
 
 	

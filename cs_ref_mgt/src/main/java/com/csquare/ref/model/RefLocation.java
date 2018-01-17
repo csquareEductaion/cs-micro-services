@@ -19,13 +19,9 @@ public class RefLocation {
     @Column(name = "pk")
     private String pk;
 	
-	@Column(name = "location_id")
-    private String location_id;
+	@Column(name = "location_name")
+    private String location_name;
 
-    @Column(name = "location_code")
-    private String location_code;
-	
-	
 	public String getPk() {
 		return pk;
 	}
@@ -34,26 +30,15 @@ public class RefLocation {
 		this.pk = pk;
 	}
 
-	public String getLocation_id() {
-		return location_id;
+	public String getLocation_name() {
+		return location_name;
 	}
 
-	public void setLocation_id(String location_id) {
-		this.location_id = location_id;
-	}
-
-	public String getLocation_code() {
-		return location_code;
-	}
-
-	public void setLocation_code(String location_code) {
-		this.location_code = location_code;
+	public void setLocation_name(String location_name) {
+		this.location_name = location_name;
 	}
 
 	
-	
 
 	
-    
-    
 }

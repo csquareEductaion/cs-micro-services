@@ -19,13 +19,13 @@ public class RefCityController extends RestExceptionHandler {
     @Autowired
     IRefCityService irefcityService;
 
-    @RequestMapping(value = "/getAllRefCity", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ArrayList<RefCity> getAllRefCity() {
-    	
-    	ArrayList<RefCity> city = irefcityService.getAllRefCity();
-        return city;
-	}
-    
+    @RequestMapping(value = "/getAllRefCites", method = RequestMethod.GET, headers = "Accept=application/json")
+    public ArrayList<RefCity> getRefAllCites() {
+
+    	ArrayList<RefCity> cities = irefcityService.getAllRefCites();
+        return cities;
+    }   
+
     @RequestMapping(value = "/addRefCity", method = RequestMethod.POST, headers = "Accept=application/json")
     public RefCity addRefCity(@RequestBody RefCity refcity) {
 

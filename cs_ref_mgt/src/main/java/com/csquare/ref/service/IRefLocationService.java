@@ -1,6 +1,7 @@
 package com.csquare.ref.service;
 
-import com.csquare.ref.model.RefGrades;
+import java.util.ArrayList;
+
 import com.csquare.ref.model.RefLocation;
 
 
@@ -13,4 +14,6 @@ public interface IRefLocationService {
     public void deleteRefLocation(String studentId);
     
     public RefLocation getRefLocationById(String id);
+    
+    public ArrayList<RefLocation> getAllRefLocations();
 }

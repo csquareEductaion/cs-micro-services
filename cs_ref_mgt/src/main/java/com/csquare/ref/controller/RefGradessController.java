@@ -1,5 +1,7 @@
 package com.csquare.ref.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +44,13 @@ public class RefGradessController extends RestExceptionHandler {
     public RefGrades getRefGradesById(@PathVariable String id) {
 
     	RefGrades grade = iRefGradesService.getRefGradesById(id);
+        return grade;
+    }
+    
+    @RequestMapping(value = "/getAllRefGrades", method = RequestMethod.GET, headers = "Accept=application/json")
+    public ArrayList<RefGrades> getAllRefGrades() {
+
+    	ArrayList<RefGrades> grade = iRefGradesService.getAllRefGrades();
         return grade;
     }
 

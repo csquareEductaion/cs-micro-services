@@ -1,5 +1,6 @@
 package com.csquare.ref.service.impl;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,12 @@ public class RefSyllabusServiceImpl implements IRefSyllabusService {
 	public void deleteRefSyllabus(String refsubId) {
 		iRefLocationRepository.delete(refsubId);
 		
+	}
+
+	@Override
+	public ArrayList<RefSyllabus> getAllRefSyllabus() {
+		// TODO Auto-generated method stub
+		return (ArrayList<RefSyllabus>)iRefLocationRepository.findAll();
 	}
 
 	
