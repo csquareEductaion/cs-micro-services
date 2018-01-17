@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.csquare.tutor.dao.TutorHigherEduRepository;
 import com.csquare.tutor.dao.TutorRepository;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.model.TutorHigherEdu;
@@ -20,7 +21,7 @@ import com.csquare.tutor.service.ITutorService;
 public class TutorHigherEduServiceImpl implements ITutorHigherEduService {
 
     @Autowired
-    TutorRepository itutorRepository;
+    TutorHigherEduRepository itutorRepository;
 
     @Override
     public TutorHigherEdu addTutorEdu(TutorHigherEdu tutor) {
@@ -28,7 +29,7 @@ public class TutorHigherEduServiceImpl implements ITutorHigherEduService {
     	String pk=UUID.randomUUID().toString();
     	tutor.setPk(pk);
         // TODO Auto-generated method stub
-    	itutorRepository.save(tutor); 
+    	itutorRepository.save(tutor);  
         return tutor;
     }
     
