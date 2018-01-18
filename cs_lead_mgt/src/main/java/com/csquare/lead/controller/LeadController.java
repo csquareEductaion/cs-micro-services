@@ -29,14 +29,11 @@ public class LeadController extends RestExceptionHandler {
     	
     	if(lead !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
-    			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())
-    			&& lead.getFirstName() !=null 
-    			&& (lead.getLeadGradeList() !=null && !lead.getLeadGradeList().isEmpty())
-    			&& lead.getCity() !=null ){
+    			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())){
     		lead = iLeadService.addLead(lead);
             
     	}
-        
+    	//lead = iLeadService.addLead(lead);
     	return lead;
     }
 
@@ -45,10 +42,7 @@ public class LeadController extends RestExceptionHandler {
     	
     	if(lead !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
-    			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())
-    			&& lead.getFirstName() !=null 
-    			&& (lead.getLeadGradeList() !=null && !lead.getLeadGradeList().isEmpty())
-    			&& lead.getCity() !=null ){
+    			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())){
     		lead = iLeadService.updateLead(lead);
             
     	}

@@ -19,7 +19,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class LeadSyllabus {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pk")
     private String pk;
 
