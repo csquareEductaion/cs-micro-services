@@ -44,6 +44,12 @@ public class Lead {
 
     @Column(name = "comment")
     private String comment;
+    
+    @Column(name = "istutor")
+    private Boolean istutor;
+    
+    @Column(name = "isstudent")
+    private Boolean isstudent;
 
     @Column(name = "lead_status")
     private String leadStatus;
@@ -183,5 +189,25 @@ public class Lead {
 
         this.leadSyllabusList = leadSyllabusList;
     }
+
+	public Boolean getIstutor() {
+		return istutor;
+	}
+
+	public void setIstutor(Boolean istutor) {
+		this.istutor = istutor;
+	}
+
+	public Boolean getIsstudent() {
+		return isstudent;
+	}
+
+	public void setIsstudent(Boolean isstudent) {
+		this.isstudent = isstudent;
+	}
+
+	
+    
+    
 
 }

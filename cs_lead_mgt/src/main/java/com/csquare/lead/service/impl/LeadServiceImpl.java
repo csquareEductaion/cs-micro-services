@@ -52,6 +52,8 @@ public class LeadServiceImpl implements ILeadService {
     		lg.setLeadId(pk);
     	}
     	
+    	lead.setIsstudent(Boolean.valueOf(lead.getIsstudent()));
+    	lead.setIstutor(Boolean.valueOf(lead.getIstutor()));
     	
         // TODO Auto-generated method stub
         ileadRepository.save(lead); 
@@ -88,6 +90,10 @@ public class LeadServiceImpl implements ILeadService {
         		lg.setLeadId(pk);
     		}
     	}
+    	
+    	lead.setIsstudent(Boolean.valueOf(lead.getIsstudent()));
+    	lead.setIstutor(Boolean.valueOf(lead.getIstutor()));
+    	
         ileadRepository.save(lead);
         return lead;
     }
