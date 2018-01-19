@@ -2,6 +2,8 @@ package com.csquare.lead.controller;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.validation.CSquareInputDataValidator;
 import com.csquare.lead.model.Lead;
 import com.csquare.lead.service.ILeadService;
-import com.csquare.lead.validation.CSquareInputDataValidator;
 
 
 
@@ -25,22 +27,20 @@ public class LeadController extends RestExceptionHandler {
     ILeadService iLeadService;
 
     @RequestMapping(value = "/addLead", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Lead addLead(@RequestBody Lead lead) {
+    public Lead addLead(@RequestBody Lead lead) throws ValidationException {
+    	
     	
     	if(lead !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
     			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())){
     		lead = iLeadService.addLead(lead);
-    		Lead lead1= iLeadService.getLeadById(lead.getpK());
-    		return lead1;
             
     	}
-    	//lead = iLeadService.addLead(lead);
     	return lead;
     }
 
     @RequestMapping(value = "/updateLead", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Lead updateLead(@RequestBody Lead lead) {
+    public Lead updateLead(@RequestBody Lead lead) throws ValidationException {
     	
     	if(lead !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))

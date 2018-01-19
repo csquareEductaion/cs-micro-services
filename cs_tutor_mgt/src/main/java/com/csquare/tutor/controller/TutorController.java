@@ -2,6 +2,8 @@ package com.csquare.tutor.controller;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.tutor.validation.CSquareInputDataValidator;
+import com.csquare.framework.validation.CSquareInputDataValidator;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
 
@@ -25,7 +27,7 @@ public class TutorController extends RestExceptionHandler {
     ITutorService iTutorService;
 
     @RequestMapping(value = "/addTutor", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Tutor addTutor(@RequestBody Tutor tutor) {
+    public Tutor addTutor(@RequestBody Tutor tutor) throws ValidationException {
     	
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))
@@ -40,7 +42,7 @@ public class TutorController extends RestExceptionHandler {
     }
 
     @RequestMapping(value = "/updateTutor", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Tutor updateTutor(@RequestBody Tutor tutor) {
+    public Tutor updateTutor(@RequestBody Tutor tutor) throws ValidationException {
     	
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))

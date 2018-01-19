@@ -11,12 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.tutor.validation.CSquareInputDataValidator;
-import com.csquare.tutor.dao.TutorHigherEduRepository;
-import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.model.TutorHigherEdu;
 import com.csquare.tutor.service.ITutorHigherEduService;
-import com.csquare.tutor.service.ITutorService;
 
 
 

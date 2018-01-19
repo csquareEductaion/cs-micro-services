@@ -8,6 +8,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.csquare.framework.util.CommonUtil;
+import com.csquare.framework.util.StringUtil;
 import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.model.Lead;
 import com.csquare.lead.model.LeadGrade;
@@ -28,32 +30,8 @@ public class LeadServiceImpl implements ILeadService {
 
     @Override
     public Lead addLead(Lead lead) {
-
-//    	String pk=UUID.randomUUID().toString();
-//    	lead.setpK(pk);
-//    	
-//    	for(LeadGrade lg:lead.getLeadGradeList()){
-//    		lg.setPk(UUID.randomUUID().toString());
-//    		lg.setLeadId(pk);
-//    	}
-//    	
-//    	for(LeadLocation lg:lead.getLeadLocationList()){
-//    		lg.setPk(UUID.randomUUID().toString());
-//    		lg.setLeadId(pk);
-//    	}
-//    	
-//    	for(LeadSubject lg:lead.getLeadSubjectList()){
-//    		lg.setPk(UUID.randomUUID().toString());
-//    		lg.setLeadId(pk);
-//    	}
-//    	
-//    	for(LeadSyllabus lg:lead.getLeadSyllabusList()){
-//    		lg.setPk(UUID.randomUUID().toString());
-//    		lg.setLeadId(pk);
-//    	}
+  	
     	
-    	lead.setIsstudent(Boolean.valueOf(lead.getIsstudent()));
-    	lead.setIstutor(Boolean.valueOf(lead.getIstutor()));
     	
         // TODO Auto-generated method stub
         ileadRepository.save(lead); 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.csquare.framework.exception.BaseException;
+import com.csquare.framework.exception.ValidationException;
 import com.csquare.framework.util.StringUtil;
 
 
@@ -31,6 +32,28 @@ public class RestExceptionHandler {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorInfo handleIOException(HttpServletRequest req, IOException ex) {
+
+        logError(req, ex);
+
+        String errorMessage = ex.getMessage();
+        String errorURL = req.getRequestURL().toString();
+        return new ErrorInfo(errorURL, errorMessage);
+    }
+    
+
+    /**
+     * Method to handle Exception
+     *
+     * @param req
+     *            - The HttpServletRequest
+     * @param ex
+     *            - The Exception
+     * @return errorInfo - The ErrorInfo
+     */
+    @ExceptionHandler(ValidationException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseBody
+    public ErrorInfo handleValidationException(HttpServletRequest req, ValidationException ex) {
 
         logError(req, ex);
 
