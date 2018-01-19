@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,6 +16,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
+
+import com.csquare.framework.entity.PKGenerator;
 
 
 @Entity
@@ -25,6 +29,8 @@ public class Lead {
 
     @Id
     @Column(name = "pk")
+    @GeneratedValue(generator = PKGenerator.NAME)
+    @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pK;
 
     @Column(name = "first_name")
@@ -46,7 +52,7 @@ public class Lead {
     private String comment;
     
     @Column(name = "istutor")
-    private Boolean istutor;
+    private Boolean istutor;	
     
     @Column(name = "isstudent")
     private Boolean isstudent;

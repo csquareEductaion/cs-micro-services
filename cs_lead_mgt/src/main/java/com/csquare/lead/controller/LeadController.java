@@ -31,6 +31,8 @@ public class LeadController extends RestExceptionHandler {
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
     			&& CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())){
     		lead = iLeadService.addLead(lead);
+    		Lead lead1= iLeadService.getLeadById(lead.getpK());
+    		return lead1;
             
     	}
     	//lead = iLeadService.addLead(lead);

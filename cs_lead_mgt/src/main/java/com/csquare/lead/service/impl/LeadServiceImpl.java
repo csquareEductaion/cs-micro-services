@@ -29,28 +29,28 @@ public class LeadServiceImpl implements ILeadService {
     @Override
     public Lead addLead(Lead lead) {
 
-    	String pk=UUID.randomUUID().toString();
-    	lead.setpK(pk);
-    	
-    	for(LeadGrade lg:lead.getLeadGradeList()){
-    		lg.setPk(UUID.randomUUID().toString());
-    		lg.setLeadId(pk);
-    	}
-    	
-    	for(LeadLocation lg:lead.getLeadLocationList()){
-    		lg.setPk(UUID.randomUUID().toString());
-    		lg.setLeadId(pk);
-    	}
-    	
-    	for(LeadSubject lg:lead.getLeadSubjectList()){
-    		lg.setPk(UUID.randomUUID().toString());
-    		lg.setLeadId(pk);
-    	}
-    	
-    	for(LeadSyllabus lg:lead.getLeadSyllabusList()){
-    		lg.setPk(UUID.randomUUID().toString());
-    		lg.setLeadId(pk);
-    	}
+//    	String pk=UUID.randomUUID().toString();
+//    	lead.setpK(pk);
+//    	
+//    	for(LeadGrade lg:lead.getLeadGradeList()){
+//    		lg.setPk(UUID.randomUUID().toString());
+//    		lg.setLeadId(pk);
+//    	}
+//    	
+//    	for(LeadLocation lg:lead.getLeadLocationList()){
+//    		lg.setPk(UUID.randomUUID().toString());
+//    		lg.setLeadId(pk);
+//    	}
+//    	
+//    	for(LeadSubject lg:lead.getLeadSubjectList()){
+//    		lg.setPk(UUID.randomUUID().toString());
+//    		lg.setLeadId(pk);
+//    	}
+//    	
+//    	for(LeadSyllabus lg:lead.getLeadSyllabusList()){
+//    		lg.setPk(UUID.randomUUID().toString());
+//    		lg.setLeadId(pk);
+//    	}
     	
     	lead.setIsstudent(Boolean.valueOf(lead.getIsstudent()));
     	lead.setIstutor(Boolean.valueOf(lead.getIstutor()));
