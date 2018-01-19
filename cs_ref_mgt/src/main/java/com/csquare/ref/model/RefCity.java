@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.csquare.framework.entity.PKGenerator;
+
 
 @Entity
 @Table(name = "ref_city", schema = "ref_mgt")
@@ -14,6 +18,8 @@ public class RefCity {
 
     @Id
     @Column(name = "pk")
+    @GeneratedValue(generator = PKGenerator.NAME)
+    @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pK;
 
     @Column(name = "city_name")

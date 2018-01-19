@@ -2,11 +2,15 @@ package com.csquare.tutor.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
+
+import com.csquare.framework.entity.PKGenerator;
 
 
 @Entity
@@ -18,6 +22,8 @@ public class TutorLocation {
 
     @Id
     @Column(name = "pk")
+    @GeneratedValue(generator = PKGenerator.NAME)
+    @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pk;
 
     @Column(name = "location_id")

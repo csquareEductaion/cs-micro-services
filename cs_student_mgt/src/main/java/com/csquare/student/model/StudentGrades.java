@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.csquare.framework.entity.PKGenerator;
+
 
 @Entity
 @Table(name = "student_grades", schema = "student_mgt")
@@ -15,8 +19,9 @@ import javax.persistence.Table;
 public class StudentGrades {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pk")
+	@GeneratedValue(generator = PKGenerator.NAME)
+    @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pk;
 	
 	@Column(name = "grade_id")
