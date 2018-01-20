@@ -17,6 +17,8 @@ import javax.transaction.Transactional;
 import com.csquare.framework.util.StringUtil;
 
 
+//Hibernate comes with n+1 problems by default, which causes multiple queries to be fired for its children.
+//Solution: 1. Use HQL fetch join 2. Criteria query
 public abstract class BaseJpaRepository<T, ID extends Serializable> {
 
     @PersistenceContext
@@ -176,9 +178,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
     }
 
     @Transactional
-    public void deleteAll() {
+    public void deleteAll(String namedQuery) {
 
-        List<T> entities = findAll();
+        List<T> entities = findAll(namedQuery);
         for (T element : entities) {
             delete(element);
         }
@@ -210,9 +212,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll() {
+    public List<T> findAll(String namedQuery) {
 
-        return findByHQL(searchAllQuery, null, true, -1, -1);
+        return findByHQLNamedQuery(namedQuery, null, true, -1, -1);
 
     }
 
@@ -223,9 +225,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll(int offset, int limit) {
+    public List<T> findAll(String namedQuery, int offset, int limit) {
 
-        return findByHQL(searchAllQuery, null, true, offset, limit);
+        return findByHQLNamedQuery(namedQuery, null, true, offset, limit);
 
     }
 
@@ -238,10 +240,6 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     @Transactional
     public int cudByHQL(String hql, HashMap<String, ?> paramsMap) {
-
-        if (null == paramsMap || paramsMap.isEmpty()) {
-            return 0;
-        }
 
         // entityManager.joinTransaction();
         Query query = entityManager.createQuery(hql);
@@ -260,10 +258,6 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     @Transactional
     public int cudByHQLNamedQuery(String namedQuery, HashMap<String, ?> paramsMap) {
-
-        if (null == paramsMap || paramsMap.isEmpty()) {
-            return 0;
-        }
 
         // entityManager.joinTransaction();
         Query query = entityManager.createNamedQuery(namedQuery);
@@ -284,10 +278,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     public List<T> findByHQL(String hql, HashMap<String, ?> paramsMap, boolean readOnly, int offset, int limit) {
 
-        List<T> resultList = null;
         Query query = entityManager.createQuery(hql);
 
-        resultList = find(query, paramsMap, readOnly, offset, limit);
+        List<T> resultList = find(query, paramsMap, readOnly, offset, limit);
         return resultList;
     }
 
@@ -303,14 +296,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     public List<T> findByHQLNamedQuery(String namedQuery, HashMap<String, ?> paramsMap, boolean readOnly, int offset, int limit) {
 
-        List<T> resultList = null;
-        if (null == paramsMap || paramsMap.isEmpty()) {
-            return resultList;
-        }
-
         Query query = entityManager.createNamedQuery(namedQuery);
 
-        resultList = find(query, paramsMap, readOnly, offset, limit);
+        List<T> resultList = find(query, paramsMap, readOnly, offset, limit);
         return resultList;
     }
 
@@ -325,11 +313,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     public List<T> findByNativeQuery(String searchQuery, HashMap<String, ?> paramsMap, boolean readOnly, int offset, int limit) {
 
-        List<T> resultList = null;
-
         Query query = entityManager.createNativeQuery(searchQuery);
 
-        resultList = find(query, paramsMap, readOnly, offset, limit);
+        List<T> resultList = find(query, paramsMap, readOnly, offset, limit);
         return resultList;
     }
 
@@ -377,6 +363,7 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         }
 
         setQueryArgument(paramsMap, query);
+
         query.setHint("org.hibernate.cacheable", true);
         query.setHint("org.hibernate.readOnly", readOnly);
 

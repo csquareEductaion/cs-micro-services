@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +26,7 @@ import com.csquare.framework.entity.PKGenerator;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "lead", schema = "lead_mgt")
+@NamedQuery(name = "getAllLead", query = NamedQueryConstants.getAllLead)
 public class Lead {
 
     @Id
@@ -50,29 +52,29 @@ public class Lead {
 
     @Column(name = "comment")
     private String comment;
-    
+
     @Column(name = "istutor")
-    private Boolean istutor;	
-    
+    private Boolean istutor;
+
     @Column(name = "isstudent")
     private Boolean isstudent;
 
     @Column(name = "lead_status")
     private String leadStatus;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     private Set<LeadGrade> leadGradeList = new HashSet<LeadGrade>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     private Set<LeadLocation> leadLocationList = new HashSet<LeadLocation>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     private Set<LeadSubject> leadSubjectList = new HashSet<LeadSubject>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     private Set<LeadSyllabus> leadSyllabusList = new HashSet<LeadSyllabus>();
 
@@ -196,24 +198,24 @@ public class Lead {
         this.leadSyllabusList = leadSyllabusList;
     }
 
-	public Boolean getIstutor() {
-		return istutor;
-	}
+    public Boolean getIstutor() {
 
-	public void setIstutor(Boolean istutor) {
-		this.istutor = istutor;
-	}
+        return istutor;
+    }
 
-	public Boolean getIsstudent() {
-		return isstudent;
-	}
+    public void setIstutor(Boolean istutor) {
 
-	public void setIsstudent(Boolean isstudent) {
-		this.isstudent = isstudent;
-	}
+        this.istutor = istutor;
+    }
 
-	
-    
-    
+    public Boolean getIsstudent() {
+
+        return isstudent;
+    }
+
+    public void setIsstudent(Boolean isstudent) {
+
+        this.isstudent = isstudent;
+    }
 
 }
