@@ -14,8 +14,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import com.csquare.framework.util.StringUtil;
-
 
 //Hibernate comes with n+1 problems by default, which causes multiple queries to be fired for its children.
 //Solution: 1. Use HQL fetch join 2. Criteria query
@@ -28,8 +26,6 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
 
     private final Class<T> clazz;
 
-    private final String searchAllQuery;
-
     @SuppressWarnings("unchecked")
     public BaseJpaRepository() {
         try {
@@ -40,7 +36,6 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
             this.clazzName = clazzType.toString().split(" ")[1];
             this.clazz = (Class<T>) Class.forName(clazzName);
 
-            this.searchAllQuery = StringUtil.append("select result from ", this.clazzName, " result");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
