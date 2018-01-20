@@ -1,17 +1,12 @@
 package com.csquare.lead.dao;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
+import com.csquare.framework.entity.BaseJpaRepository;
 import com.csquare.lead.model.Lead;
 
 
-
-public interface LeadRepository extends JpaRepository<Lead, String> {
-	
-	// @Query("SELECT lead FROM Lead p ")
-	// public List<Lead> getAll(int offset, int size);
+@Repository
+public class LeadRepository extends BaseJpaRepository<Lead, String> {
 
 }
