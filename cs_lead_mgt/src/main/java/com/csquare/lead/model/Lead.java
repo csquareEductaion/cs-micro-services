@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.csquare.framework.entity.PKGenerator;
@@ -64,18 +66,22 @@ public class Lead {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<LeadGrade> leadGradeList = new HashSet<LeadGrade>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<LeadLocation> leadLocationList = new HashSet<LeadLocation>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<LeadSubject> leadSubjectList = new HashSet<LeadSubject>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<LeadSyllabus> leadSyllabusList = new HashSet<LeadSyllabus>();
 
     public String getpK() {
