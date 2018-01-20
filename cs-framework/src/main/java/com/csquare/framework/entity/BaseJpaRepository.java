@@ -51,9 +51,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         }
 
         if (entityManager.contains(entity)) {
-            return create(entity);
-        } else {
             return update(entity);
+        } else {
+            return create(entity);
         }
     }
 

@@ -20,14 +20,14 @@ public class LeadServiceImpl implements ILeadService {
     public Lead addLead(Lead lead) {
 
         // TODO Auto-generated method stub
-        ileadRepository.save(lead);
+        lead = ileadRepository.save(lead);
         return lead;
     }
 
     @Override
     public Lead updateLead(Lead lead) {
 
-        ileadRepository.save(lead);
+        lead = ileadRepository.save(lead);
         return lead;
     }
 
@@ -35,7 +35,6 @@ public class LeadServiceImpl implements ILeadService {
     public void deleteLead(String leadId) {
 
         ileadRepository.delete(leadId);
-        ;
     }
 
     @Override
