@@ -3,8 +3,8 @@ package com.csquare.ref.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -14,7 +14,7 @@ import com.csquare.framework.entity.PKGenerator;
 
 @Entity
 @Table(name = "ref_grades", schema = "ref_mgt")
-
+@NamedQuery(name = "getAllRefGread", query = NamedQueryConstants.getAllRefGread)
 public class RefGrades {
 	
 	@Id
@@ -25,6 +25,9 @@ public class RefGrades {
 	
 	@Column(name = "grade")
     private String grade;
+	
+	@Column(name = "sortorder")
+    private String sortorder;
 	
 	public String getPk() {
 		return pk;
@@ -42,8 +45,19 @@ public class RefGrades {
 		this.grade = grade;
 	}
 
+	public String getSortorder() {
+		return sortorder;
+	}
+
+	public void setSortorder(String sortorder) {
+		this.sortorder = sortorder;
+	}
+
 	
 
+
+	
+		
      
 	
 }

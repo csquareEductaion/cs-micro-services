@@ -43,6 +43,9 @@ public class Student {
 
     @Column(name = "lead_status")
     private String leasStatus;
+    
+    @Column(name = "gender")
+    private String gender;
 
 	public String getpK() {
 		return pK;
@@ -108,5 +111,14 @@ public class Student {
 		this.leasStatus = leasStatus;
 	}
 
- 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	
+	
 }

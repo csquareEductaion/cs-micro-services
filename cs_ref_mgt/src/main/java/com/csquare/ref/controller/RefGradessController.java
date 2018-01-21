@@ -1,6 +1,7 @@
 package com.csquare.ref.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,9 +51,9 @@ public class RefGradessController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/getAllRefGrades", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<RefGrades> getAllRefGrades() {
+    public List<RefGrades> getAllRefGrades() {
 
-    	ArrayList<RefGrades> grade = iRefGradesService.getAllRefGrades();
+    	List<RefGrades> grade = iRefGradesService.getAllRefGrades();
         return grade;
     }
 

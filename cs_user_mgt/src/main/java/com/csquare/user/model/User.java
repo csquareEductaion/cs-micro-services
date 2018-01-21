@@ -43,6 +43,9 @@ public class User {
     
     @Column(name = "alternate_phone")
     private String alternate_phone;
+    
+    @Column(name = "gender")
+    private String gender;
 
 	public String getpK() {
 		return pK;
@@ -122,6 +125,14 @@ public class User {
 
 	public void setAlternate_phone(String alternate_phone) {
 		this.alternate_phone = alternate_phone;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
     
 	

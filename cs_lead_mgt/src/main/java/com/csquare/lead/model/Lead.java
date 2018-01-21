@@ -63,6 +63,12 @@ public class Lead {
 
     @Column(name = "lead_status")
     private String leadStatus;
+    
+    @Column(name = "gender")
+    private String gender;
+    
+    @Column(name = "address")
+    private String address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
@@ -223,5 +229,23 @@ public class Lead {
 
         this.isstudent = isstudent;
     }
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+    
+    
 
 }

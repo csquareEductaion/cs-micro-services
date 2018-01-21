@@ -1,6 +1,7 @@
 package com.csquare.ref.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.csquare.ref.model.RefCity;
 import com.csquare.ref.model.RefGrades;
@@ -16,5 +17,5 @@ public interface IRefGradesService {
     
     public RefGrades getRefGradesById(String id);
     
-    public ArrayList<RefGrades> getAllRefGrades();
+    public List<RefGrades> getAllRefGrades();
 }

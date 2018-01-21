@@ -1,10 +1,11 @@
 package com.csquare.ref.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.csquare.framework.entity.BaseJpaRepository;
 import com.csquare.ref.model.RefGrades;
 
-
-public interface RefGradesRepository extends JpaRepository<RefGrades, String> {
+@Repository
+public class RefGradesRepository extends BaseJpaRepository<RefGrades, String> {
 
 }

@@ -1,10 +1,11 @@
 package com.csquare.ref.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.csquare.framework.entity.BaseJpaRepository;
 import com.csquare.ref.model.RefSyllabus;
 
-
-public interface RefSyllabusRepository extends JpaRepository<RefSyllabus, String> {
+@Repository
+public class RefSyllabusRepository extends BaseJpaRepository<RefSyllabus, String> {
 
 }

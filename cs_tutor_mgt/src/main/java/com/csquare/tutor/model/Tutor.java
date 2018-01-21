@@ -75,6 +75,8 @@ public class Tutor {
     @Column(name = "address")
     private String address;
     
+    @Column(name = "gender")
+    private String gender;
     
 
      @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
@@ -212,9 +214,17 @@ public class Tutor {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-    
-    
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+    
+    
+    
 
     
 }
