@@ -78,6 +78,18 @@ public class Tutor {
     @Column(name = "gender")
     private String gender;
     
+    @Column(name = "is_phone_dnd")
+    private String is_phone_dnd;
+    
+    @Column(name = "is_trusted_tutor")
+    private String is_trusted_tutor;
+    
+    @Column(name = "is_interested_for_home_tuition")
+    private String is_interested_for_home_tuition;
+    
+    @Column(name = "qualification")
+    private String qualification;
+    
 
      @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
      @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
@@ -222,9 +234,38 @@ public class Tutor {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-    
-    
-    
 
+	public String getIs_phone_dnd() {
+		return is_phone_dnd;
+	}
+
+	public void setIs_phone_dnd(String is_phone_dnd) {
+		this.is_phone_dnd = is_phone_dnd;
+	}
+
+	public String getIs_trusted_tutor() {
+		return is_trusted_tutor;
+	}
+
+	public void setIs_trusted_tutor(String is_trusted_tutor) {
+		this.is_trusted_tutor = is_trusted_tutor;
+	}
+
+	public String getIs_interested_for_home_tuition() {
+		return is_interested_for_home_tuition;
+	}
+
+	public void setIs_interested_for_home_tuition(String is_interested_for_home_tuition) {
+		this.is_interested_for_home_tuition = is_interested_for_home_tuition;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+    
     
 }
