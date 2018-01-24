@@ -1,11 +1,10 @@
 package com.csquare.tutor.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.stereotype.Repository;
 import com.csquare.tutor.model.TutorHigherEdu;
+import com.csquare.framework.entity.BaseJpaRepository;
 
-
-
-public interface TutorHigherEduRepository extends JpaRepository<TutorHigherEdu, String> {
+@Repository
+public class TutorHigherEduRepository extends BaseJpaRepository<TutorHigherEdu, String> {
 
 }

@@ -1,6 +1,6 @@
 package com.csquare.tutor.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -55,22 +55,14 @@ public class TutorHigherEduController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/getAllTutorsEdu", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<TutorHigherEdu> getAllTutorsEdu() {
+    public List<TutorHigherEdu> getAllTutorsEdu() {
     	    	
-    	ArrayList<TutorHigherEdu> Tutors = iTutorService.getAllTutorsEdu();
-        return Tutors;
+        return iTutorService.getAllTutorsEdu();
     }
     
-  /*  @RequestMapping(value = "/getAllTutors/{startpoint}/pagesize/{pagesize}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<Tutor> getAllTutors(@PathVariable(value = "startpoint") String startpoint, @PathVariable(value = "pagesize") String pagesize) {
-    	
-    	//Pageable pageable = new PageRequest(Integer.valueOf(startpoint), Integer.valueOf(pagesize));
-    	Pageable pageable = new PageRequest(0, 2);
-    	
-    	System.out.println("Integer.valueOf(startpoint)--" + Integer.valueOf(startpoint));
-    	System.out.println("Integer.valueOf(pagesize)--" + Integer.valueOf(pagesize));
-    	ArrayList<Tutor> Tutors = iTutorService.getAllTutors(pageable);
-        return leads;
-    }*/
+    @RequestMapping(value = "/getAllTutorsEdu/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<TutorHigherEdu> getAllTutorsEdu(@PathVariable Integer offset, @PathVariable Integer limit) {
 
+        return iTutorService.getAllTutorsEdu(offset, limit);
+    }
 }

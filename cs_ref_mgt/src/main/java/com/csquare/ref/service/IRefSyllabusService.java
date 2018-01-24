@@ -1,6 +1,6 @@
 package com.csquare.ref.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.csquare.ref.model.RefSyllabus;
 
@@ -15,5 +15,5 @@ public interface IRefSyllabusService {
     
     public RefSyllabus getRefSyllabusById(String id);
     
-    public ArrayList<RefSyllabus> getAllRefSyllabus();
+    public List<RefSyllabus> getAllRefSyllabus();
 }

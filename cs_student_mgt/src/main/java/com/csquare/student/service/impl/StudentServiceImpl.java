@@ -1,5 +1,6 @@
 package com.csquare.student.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,17 @@ public class StudentServiceImpl implements IStudentService {
         // TODO Auto-generated method stub
         return istudentRepository.findOne(id);
     }
+
+	@Override
+	public List<Student> getAllStudents() {
+		// TODO Auto-generated method stub
+		return istudentRepository.findAll("getAllStudents");
+	}
+
+	@Override
+	public List<Student> getAllStudents(int offset, int limit) {
+		// TODO Auto-generated method stub
+		return istudentRepository.findAll("getAllStudents",offset,limit);
+	}
 
 }

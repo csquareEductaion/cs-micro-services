@@ -1,19 +1,13 @@
 package com.csquare.ref.service.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.csquare.ref.dao.RefCityRepository;
-import com.csquare.ref.dao.RefGradesRepository;
 import com.csquare.ref.dao.RefLocationRepository;
-import com.csquare.ref.model.RefCity;
-import com.csquare.ref.model.RefGrades;
 import com.csquare.ref.model.RefLocation;
-import com.csquare.ref.service.IRefCityService;
-import com.csquare.ref.service.IRefGradesService;
 import com.csquare.ref.service.IRefLocationService;
 
 
@@ -57,9 +51,9 @@ public class RefLocationServiceImpl implements IRefLocationService {
 	}
 
 	@Override
-	public ArrayList<RefLocation> getAllRefLocations() {
+	public List<RefLocation> getAllRefLocations() {
 		// TODO Auto-generated method stub
-		return (ArrayList<RefLocation>) iRefLocationRepository.findAll();
+		return iRefLocationRepository.findAll("getAllRefLocation");
 	}
 
 	

@@ -58,15 +58,6 @@ public class RefGradesServiceImpl implements IRefGradesService {
 	public List<RefGrades> getAllRefGrades() {
 		// TODO Auto-generated method stub
 		return iRefGradeRepository.findAll("getAllRefGread");
-//		ArrayList<RefGrades> lstGardeTemp = new ArrayList<RefGrades>(15);
-//		RefGrades [] lstGarde = new RefGrades[15];
-//		for(RefGrades grade :){
-//			lstGarde[Integer.valueOf(grade.getPk())] = grade;
-//			lstGardeTemp.add(Integer.valueOf(grade.getPk()), grade);
-//		}
-//		
-//		
-//		return lstGardeTemp;
 	}
 
 		

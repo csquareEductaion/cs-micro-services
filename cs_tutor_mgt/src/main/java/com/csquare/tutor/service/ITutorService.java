@@ -1,6 +1,5 @@
 package com.csquare.tutor.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -18,8 +17,8 @@ public interface ITutorService {
     
     public Tutor getTutorById(String id);
     
-    public ArrayList<Tutor> getAllTutors();
+    public List<Tutor> getAllTutors();
     
-   // public ArrayList<Lead> getAllLeads(Pageable pageable);
+    public List<Tutor> getAllLeads(int offset, int limit);
 
 }

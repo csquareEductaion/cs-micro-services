@@ -1,20 +1,14 @@
 package com.csquare.tutor.service.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.csquare.tutor.dao.TutorHigherEduRepository;
-import com.csquare.tutor.dao.TutorRepository;
-import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.model.TutorHigherEdu;
 import com.csquare.tutor.service.ITutorHigherEduService;
-import com.csquare.tutor.service.ITutorService;
-
-
 
 
 @Service
@@ -52,15 +46,16 @@ public class TutorHigherEduServiceImpl implements ITutorHigherEduService {
     }
 
 	@Override
-	public ArrayList<TutorHigherEdu> getAllTutorsEdu() {
+	public List<TutorHigherEdu> getAllTutorsEdu() {
 		
-		return (ArrayList<TutorHigherEdu>) itutorRepository.findAll();
+		return itutorRepository.findAll("getAllTutorsEdu");
+	}
+
+	@Override
+	public List<TutorHigherEdu> getAllTutorsEdu(int offset, int limit) {
+		// TODO Auto-generated method stub
+		return itutorRepository.findAll("getAllTutorsEdu",offset,limit);
 	}
 	
-/*	@Override
-	public ArrayList<Tutor> getAllTutors(Pageable pageable) {
-		
-		return (ArrayList<Tutor>) iTutorRepository.findAll(pageable);
-	}*/
 
 }

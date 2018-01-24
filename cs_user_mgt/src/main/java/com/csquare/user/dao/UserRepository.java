@@ -1,10 +1,12 @@
 package com.csquare.user.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.csquare.user.model.User;
+import com.csquare.framework.entity.BaseJpaRepository;
 
 
-public interface UserRepository extends JpaRepository<User, String> {
+@Repository
+public class UserRepository extends BaseJpaRepository<User, String> {
 
 }

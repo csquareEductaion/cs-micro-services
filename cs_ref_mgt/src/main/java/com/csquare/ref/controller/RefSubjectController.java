@@ -1,6 +1,6 @@
 package com.csquare.ref.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,10 +49,9 @@ public class RefSubjectController extends RestExceptionHandler {
     }
 
     @RequestMapping(value = "/getAllRefSubjects", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<RefSubject> getAllRefSubjects() {
+    public List<RefSubject> getAllRefSubjects() {
 
-    	ArrayList<RefSubject> refsubject = irefsubjectService.getAllRefSubjects();
-        return refsubject;
+        return irefsubjectService.getAllRefSubjects();
     }
 
 }

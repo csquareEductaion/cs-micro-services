@@ -1,6 +1,6 @@
 package com.csquare.tutor.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.ValidationException;
 
@@ -31,9 +31,7 @@ public class TutorController extends RestExceptionHandler {
     	
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))
-    			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())
-    			&& tutor.getFirstName() !=null 
-    			&& tutor.getCity() !=null ){
+    			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())){
     		tutor = iTutorService.addTutor(tutor);
             
     	}
@@ -46,9 +44,7 @@ public class TutorController extends RestExceptionHandler {
     	
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))
-    			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())
-    			&& tutor.getFirstName() !=null 
-    			&& tutor.getCity() !=null ){
+    			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())){
     		tutor = iTutorService.updateTutor(tutor);
             
     	}
@@ -72,22 +68,14 @@ public class TutorController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/getAllTutors", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<Tutor> getAllTutors() {
+    public List<Tutor> getAllTutors() {
     	    	
-    	ArrayList<Tutor> Tutors = iTutorService.getAllTutors();
-        return Tutors;
+        return iTutorService.getAllTutors();
     }
     
-  /*  @RequestMapping(value = "/getAllTutors/{startpoint}/pagesize/{pagesize}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<Tutor> getAllTutors(@PathVariable(value = "startpoint") String startpoint, @PathVariable(value = "pagesize") String pagesize) {
-    	
-    	//Pageable pageable = new PageRequest(Integer.valueOf(startpoint), Integer.valueOf(pagesize));
-    	Pageable pageable = new PageRequest(0, 2);
-    	
-    	System.out.println("Integer.valueOf(startpoint)--" + Integer.valueOf(startpoint));
-    	System.out.println("Integer.valueOf(pagesize)--" + Integer.valueOf(pagesize));
-    	ArrayList<Tutor> Tutors = iTutorService.getAllTutors(pageable);
-        return leads;
-    }*/
+    @RequestMapping(value = "/getAllTutors/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<Tutor> getAllTutors(@PathVariable Integer offset, @PathVariable Integer limit) {
 
+        return iTutorService.getAllLeads(offset, limit);
+    }
 }

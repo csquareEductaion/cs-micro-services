@@ -1,6 +1,7 @@
 package com.csquare.ref.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.csquare.ref.model.RefGrades;
 import com.csquare.ref.model.RefLocation;
@@ -17,5 +18,5 @@ public interface IRefSubjectService {
     
     public RefSubject getRefSubjectById(String id);
     
-    public ArrayList<RefSubject> getAllRefSubjects();
+    public List<RefSubject> getAllRefSubjects();
 }

@@ -1,12 +1,12 @@
 package com.csquare.student.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.csquare.student.model.Student;
+import com.csquare.framework.entity.BaseJpaRepository;
 
 
-
-
-public interface StudentRepository extends JpaRepository<Student, String> {
+@Repository
+public class StudentRepository extends BaseJpaRepository<Student, String> {
 
 }

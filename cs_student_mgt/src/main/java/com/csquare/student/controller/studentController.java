@@ -1,5 +1,7 @@
 package com.csquare.student.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,4 +49,16 @@ public class studentController extends RestExceptionHandler {
         return student;
     }
 
+    @RequestMapping(value = "/getAllStudents", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<Student> getAllStudents() {
+
+        return istudentService.getAllStudents();
+    }
+
+    @RequestMapping(value = "/getAllStudents/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<Student> getAllStudents(@PathVariable Integer offset, @PathVariable Integer limit) {
+
+        return istudentService.getAllStudents(offset, limit);
+    }
+    
 }

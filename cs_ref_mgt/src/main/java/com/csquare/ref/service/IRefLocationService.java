@@ -1,6 +1,6 @@
 package com.csquare.ref.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.csquare.ref.model.RefLocation;
 
@@ -15,5 +15,5 @@ public interface IRefLocationService {
     
     public RefLocation getRefLocationById(String id);
     
-    public ArrayList<RefLocation> getAllRefLocations();
+    public List<RefLocation> getAllRefLocations();
 }

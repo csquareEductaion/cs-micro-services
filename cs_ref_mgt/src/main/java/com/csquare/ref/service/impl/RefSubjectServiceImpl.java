@@ -1,6 +1,6 @@
 package com.csquare.ref.service.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +51,9 @@ public class RefSubjectServiceImpl implements IRefSubjectService {
 	}
 
 	@Override
-	public ArrayList<RefSubject> getAllRefSubjects() {
+	public List<RefSubject> getAllRefSubjects() {
 		// TODO Auto-generated method stub
-		return (ArrayList<RefSubject>) iRefLocationRepository.findAll();
+		return iRefLocationRepository.findAll("getAllRefSubject");
 	}
 
 	

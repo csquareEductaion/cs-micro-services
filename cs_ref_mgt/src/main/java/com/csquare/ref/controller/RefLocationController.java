@@ -1,6 +1,6 @@
 package com.csquare.ref.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.ref.model.RefCity;
 import com.csquare.ref.model.RefLocation;
-import com.csquare.ref.service.IRefCityService;
 import com.csquare.ref.service.IRefLocationService;
+
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -51,10 +50,9 @@ public class RefLocationController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/getAllRefLocations", method = RequestMethod.GET, headers = "Accept=application/json")
-    public ArrayList<RefLocation> getAllRefLocations() {
+    public List<RefLocation> getAllRefLocations() {
 
-    	ArrayList<RefLocation> reflocation = ireflocationService.getAllRefLocations();
-        return reflocation;
+        return ireflocationService.getAllRefLocations();
     }
 
 }

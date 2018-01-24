@@ -1,6 +1,6 @@
 package com.csquare.ref.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.csquare.ref.model.RefCity;
 
@@ -14,6 +14,6 @@ public interface IRefCityService {
     
     public RefCity getRefCityById(String id);
     
-    public ArrayList<RefCity> getAllRefCites();
+    public List<RefCity> getAllRefCites();
 
 }
