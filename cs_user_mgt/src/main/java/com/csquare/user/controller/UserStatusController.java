@@ -1,5 +1,7 @@
 package com.csquare.user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +46,18 @@ public class UserStatusController extends RestExceptionHandler {
 
     	UserStatus userStatus = iuserStatusService.getUserStatusById(id);
         return userStatus;
+    }
+    
+    @RequestMapping(value = "/getAllUserStatus", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<UserStatus> getAllUserStatus() {
+    	    	
+        return iuserStatusService.getAllUserStatus();
+    }
+    
+    @RequestMapping(value = "/getAllUserStatus/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<UserStatus> getAllUserStatus(@PathVariable Integer offset, @PathVariable Integer limit) {
+
+        return iuserStatusService.getAllUserStatus(offset, limit);
     }
 
 }

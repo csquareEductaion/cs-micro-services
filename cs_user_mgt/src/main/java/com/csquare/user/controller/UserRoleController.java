@@ -1,5 +1,7 @@
 package com.csquare.user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,4 +48,16 @@ public class UserRoleController extends RestExceptionHandler {
         return userRole;
     }
 
+    @RequestMapping(value = "/getAllUserRoles", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<UserRole> getAllUserRoles() {
+    	    	
+        return iuserRoleService.getAllUserRoles();
+    }
+    
+    @RequestMapping(value = "/getAllUserRoles/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<UserRole> getAllUserRoles(@PathVariable Integer offset, @PathVariable Integer limit) {
+
+        return iuserRoleService.getAllUserRoles(offset, limit);
+    }
+    
 }

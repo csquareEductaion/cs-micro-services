@@ -1,5 +1,6 @@
 package com.csquare.user.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,17 @@ public class UserServiceImpl implements IUserService {
         // TODO Auto-generated method stub
         return iUserRepository.findOne(id);
     }
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return iUserRepository.findAll("getAllUsers");
+	}
+
+	@Override
+	public List<User> getAllUsers(int Offset, int limit) {
+		// TODO Auto-generated method stub
+		return iUserRepository.findAll("getAllUsers",Offset,limit);
+	}
 
 }
