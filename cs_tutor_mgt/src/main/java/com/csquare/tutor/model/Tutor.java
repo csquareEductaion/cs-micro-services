@@ -1,7 +1,7 @@
 package com.csquare.tutor.model;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,219 +53,257 @@ public class Tutor {
 
     @Column(name = "have_vechile")
     private String have_vechile;
-    
+
     @Column(name = "experience_in_years")
     private String experience_in_years;
-    
+
     @Column(name = "alternate_phone")
     private Float alternate_phone;
-    
+
     @Column(name = "verified")
     private Boolean verified;
-    
+
     @Column(name = "aadhar_verified")
     private Boolean aadhar_verified;
-    
+
     @Column(name = "verify_without_aadhar")
     private Boolean verify_without_aadhar;
-    
+
     @Column(name = "subm_higher_edu_doc")
     private Boolean subm_higher_edu_doc;
-    
+
     @Column(name = "address")
     private String address;
-    
+
     @Column(name = "gender")
     private String gender;
-    
+
     @Column(name = "is_phone_dnd")
     private String is_phone_dnd;
-    
+
     @Column(name = "is_trusted_tutor")
     private String is_trusted_tutor;
-    
+
     @Column(name = "is_interested_for_home_tuition")
     private String is_interested_for_home_tuition;
-    
+
     @Column(name = "qualification")
     private String qualification;
-    
 
-     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-     private Set<TutorGrade> leadGradeList = new HashSet<TutorGrade>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    private Set<TutorGrade> leadGradeList = new LinkedHashSet<TutorGrade>();
 
-     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-     private Set<TutorLocation> leadLocationList = new HashSet<TutorLocation>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    private Set<TutorLocation> leadLocationList = new LinkedHashSet<TutorLocation>();
 
-     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-     private Set<TutorSubject> leadSubjectList = new HashSet<TutorSubject>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    private Set<TutorSubject> leadSubjectList = new LinkedHashSet<TutorSubject>();
 
-     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-     private Set<TutorSyllabus> leadSyllabusList = new HashSet<TutorSyllabus>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    private Set<TutorSyllabus> leadSyllabusList = new LinkedHashSet<TutorSyllabus>();
 
-	public String getpK() {
-		return pK;
-	}
+    public String getpK() {
 
-	public void setpK(String pK) {
-		this.pK = pK;
-	}
+        return pK;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setpK(String pK) {
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+        this.pK = pK;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getFirstName() {
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+        return firstName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setFirstName(String firstName) {
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+        this.firstName = firstName;
+    }
 
-	public BigDecimal getPhone() {
-		return phone;
-	}
+    public String getLastName() {
 
-	public void setPhone(BigDecimal phone) {
-		this.phone = phone;
-	}
+        return lastName;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setLastName(String lastName) {
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+        this.lastName = lastName;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getEmail() {
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+        return email;
+    }
 
-	public String getHave_vechile() {
-		return have_vechile;
-	}
+    public void setEmail(String email) {
 
-	public void setHave_vechile(String have_vechile) {
-		this.have_vechile = have_vechile;
-	}
+        this.email = email;
+    }
 
-	public String getExperience_in_years() {
-		return experience_in_years;
-	}
+    public BigDecimal getPhone() {
 
-	public void setExperience_in_years(String experience_in_years) {
-		this.experience_in_years = experience_in_years;
-	}
+        return phone;
+    }
 
-	public Float getAlternate_phone() {
-		return alternate_phone;
-	}
+    public void setPhone(BigDecimal phone) {
 
-	public void setAlternate_phone(Float alternate_phone) {
-		this.alternate_phone = alternate_phone;
-	}
+        this.phone = phone;
+    }
 
-	public Boolean getVerified() {
-		return verified;
-	}
+    public String getCity() {
 
-	public void setVerified(Boolean verified) {
-		this.verified = verified;
-	}
+        return city;
+    }
 
-	public Boolean getAadhar_verified() {
-		return aadhar_verified;
-	}
+    public void setCity(String city) {
 
-	public void setAadhar_verified(Boolean aadhar_verified) {
-		this.aadhar_verified = aadhar_verified;
-	}
+        this.city = city;
+    }
 
-	public Boolean getVerify_without_aadhar() {
-		return verify_without_aadhar;
-	}
+    public String getComment() {
 
-	public void setVerify_without_aadhar(Boolean verify_without_aadhar) {
-		this.verify_without_aadhar = verify_without_aadhar;
-	}
+        return comment;
+    }
 
-	public Boolean getSubm_higher_edu_doc() {
-		return subm_higher_edu_doc;
-	}
+    public void setComment(String comment) {
 
-	public void setSubm_higher_edu_doc(Boolean subm_higher_edu_doc) {
-		this.subm_higher_edu_doc = subm_higher_edu_doc;
-	}
+        this.comment = comment;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getHave_vechile() {
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+        return have_vechile;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public void setHave_vechile(String have_vechile) {
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+        this.have_vechile = have_vechile;
+    }
 
-	public String getIs_phone_dnd() {
-		return is_phone_dnd;
-	}
+    public String getExperience_in_years() {
 
-	public void setIs_phone_dnd(String is_phone_dnd) {
-		this.is_phone_dnd = is_phone_dnd;
-	}
+        return experience_in_years;
+    }
 
-	public String getIs_trusted_tutor() {
-		return is_trusted_tutor;
-	}
+    public void setExperience_in_years(String experience_in_years) {
 
-	public void setIs_trusted_tutor(String is_trusted_tutor) {
-		this.is_trusted_tutor = is_trusted_tutor;
-	}
+        this.experience_in_years = experience_in_years;
+    }
 
-	public String getIs_interested_for_home_tuition() {
-		return is_interested_for_home_tuition;
-	}
+    public Float getAlternate_phone() {
 
-	public void setIs_interested_for_home_tuition(String is_interested_for_home_tuition) {
-		this.is_interested_for_home_tuition = is_interested_for_home_tuition;
-	}
+        return alternate_phone;
+    }
 
-	public String getQualification() {
-		return qualification;
-	}
+    public void setAlternate_phone(Float alternate_phone) {
 
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
-	}
-    
-    
+        this.alternate_phone = alternate_phone;
+    }
+
+    public Boolean getVerified() {
+
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+
+        this.verified = verified;
+    }
+
+    public Boolean getAadhar_verified() {
+
+        return aadhar_verified;
+    }
+
+    public void setAadhar_verified(Boolean aadhar_verified) {
+
+        this.aadhar_verified = aadhar_verified;
+    }
+
+    public Boolean getVerify_without_aadhar() {
+
+        return verify_without_aadhar;
+    }
+
+    public void setVerify_without_aadhar(Boolean verify_without_aadhar) {
+
+        this.verify_without_aadhar = verify_without_aadhar;
+    }
+
+    public Boolean getSubm_higher_edu_doc() {
+
+        return subm_higher_edu_doc;
+    }
+
+    public void setSubm_higher_edu_doc(Boolean subm_higher_edu_doc) {
+
+        this.subm_higher_edu_doc = subm_higher_edu_doc;
+    }
+
+    public String getAddress() {
+
+        return address;
+    }
+
+    public void setAddress(String address) {
+
+        this.address = address;
+    }
+
+    public String getGender() {
+
+        return gender;
+    }
+
+    public void setGender(String gender) {
+
+        this.gender = gender;
+    }
+
+    public String getIs_phone_dnd() {
+
+        return is_phone_dnd;
+    }
+
+    public void setIs_phone_dnd(String is_phone_dnd) {
+
+        this.is_phone_dnd = is_phone_dnd;
+    }
+
+    public String getIs_trusted_tutor() {
+
+        return is_trusted_tutor;
+    }
+
+    public void setIs_trusted_tutor(String is_trusted_tutor) {
+
+        this.is_trusted_tutor = is_trusted_tutor;
+    }
+
+    public String getIs_interested_for_home_tuition() {
+
+        return is_interested_for_home_tuition;
+    }
+
+    public void setIs_interested_for_home_tuition(String is_interested_for_home_tuition) {
+
+        this.is_interested_for_home_tuition = is_interested_for_home_tuition;
+    }
+
+    public String getQualification() {
+
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+
+        this.qualification = qualification;
+    }
+
 }
