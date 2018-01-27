@@ -25,17 +25,15 @@ public class RefGradesServiceImpl implements IRefGradesService {
     @Override
     public RefGrades addRefGrades(RefGrades grade) {
 
-    	String pk=UUID.randomUUID().toString();
-    	grade.setPk(pk);
-        // TODO Auto-generated method stub
-    	iRefGradeRepository.save(grade);
+    	// TODO Auto-generated method stub
+    	iRefGradeRepository.create(grade);
         return grade;
     }
     
     @Override
     public RefGrades updateRefGrades(RefGrades grade) {
 	
-    	iRefGradeRepository.save(grade);
+    	iRefGradeRepository.update(grade);
         return grade;
     }
     

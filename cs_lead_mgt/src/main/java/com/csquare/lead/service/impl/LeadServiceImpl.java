@@ -20,14 +20,14 @@ public class LeadServiceImpl implements ILeadService {
     public Lead addLead(Lead lead) {
 
         // TODO Auto-generated method stub
-        lead = ileadRepository.save(lead);
+        lead = ileadRepository.create(lead);
         return lead;
     }
 
     @Override
     public Lead updateLead(Lead lead) {
 
-        lead = ileadRepository.save(lead);
+        lead = ileadRepository.update(lead);
         return lead;
     }
 

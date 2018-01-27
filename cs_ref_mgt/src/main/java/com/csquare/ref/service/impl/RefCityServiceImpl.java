@@ -22,17 +22,17 @@ public class RefCityServiceImpl implements IRefCityService {
     @Override
     public RefCity addRefCity(RefCity refcity) {
 
-    	String pk=UUID.randomUUID().toString();
-    	refcity.setpK(pk);
+//    	String pk=UUID.randomUUID().toString();
+//    	refcity.setpK(pk);
         // TODO Auto-generated method stub
-    	iRefCityRepository.save(refcity); 
+    	iRefCityRepository.create(refcity); 
         return refcity;
     }
     
     @Override
     public RefCity updateRefCity(RefCity refcity) {
 	
-    	iRefCityRepository.save(refcity);
+    	iRefCityRepository.update(refcity);
         return refcity;
     }
     

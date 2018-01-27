@@ -1,12 +1,22 @@
 package com.csquare.student.model;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.csquare.framework.entity.PKGenerator;
@@ -15,7 +25,35 @@ import com.csquare.framework.entity.PKGenerator;
 @Entity
 @Table(name = "student", schema = "student_mgt")
 public class Student {
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentTutorMapping> studentTutorList = new HashSet<StudentTutorMapping>();
 
+  /*  @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentGrades> studentGradeList = new HashSet<StudentGrades>();
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<studentLocations> studentLocationList = new HashSet<studentLocations>();
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentSyllabus> studentSyllabusList = new HashSet<StudentSyllabus>(); 
+    
+    */
+    
+   /* @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentSubjects> studentSubjectList = new HashSet<StudentSubjects>();
+   */ 
+	
     @Id
     @Column(name = "pk")
     @GeneratedValue(generator = PKGenerator.NAME)
@@ -41,9 +79,6 @@ public class Student {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "lead_status")
-    private String leasStatus;
-    
     @Column(name = "Gender")
     private String gender;
     
@@ -64,9 +99,6 @@ public class Student {
     
     @Column(name = "is_parent_doc_submitted")
     private String parentsDocStatus;
-    
-    @Column(name = "is_tutor_doc_submitted")
-    private String tutorDocStatus;
     
     @Column(name = "is_intrested")
     private String interested;
@@ -187,14 +219,6 @@ public class Student {
 		this.comment = comment;
 	}
 
-	public String getLeasStatus() {
-		return leasStatus;
-	}
-
-	public void setLeasStatus(String leasStatus) {
-		this.leasStatus = leasStatus;
-	}
-
 	public String getGender() {
 		return gender;
 	}
@@ -251,13 +275,6 @@ public class Student {
 		this.parentsDocStatus = parentsDocStatus;
 	}
 
-	public String getTutorDocStatus() {
-		return tutorDocStatus;
-	}
-
-	public void setTutorDocStatus(String tutorDocStatus) {
-		this.tutorDocStatus = tutorDocStatus;
-	}
 
 	public String getInterested() {
 		return interested;

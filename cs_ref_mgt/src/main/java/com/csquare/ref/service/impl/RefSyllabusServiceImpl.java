@@ -21,17 +21,15 @@ public class RefSyllabusServiceImpl implements IRefSyllabusService {
     @Override
     public RefSyllabus addRefSyllabus(RefSyllabus refsyllabus) {
 
-    	String pk=UUID.randomUUID().toString();
-    	refsyllabus.setPk(pk);
         // TODO Auto-generated method stub
-    	iRefLocationRepository.save(refsyllabus);
+    	iRefLocationRepository.create(refsyllabus);
         return refsyllabus;
     }
     
     @Override
     public RefSyllabus updateRefSyllabus(RefSyllabus refsyllabus) {
 	
-    	iRefLocationRepository.save(refsyllabus);
+    	iRefLocationRepository.update(refsyllabus);
         return refsyllabus;
     }
     

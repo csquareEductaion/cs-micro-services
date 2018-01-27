@@ -21,17 +21,15 @@ public class RefSubjectServiceImpl implements IRefSubjectService {
     @Override
     public RefSubject addRefSubject(RefSubject refsub) {
 
-    	String pk=UUID.randomUUID().toString();
-    	refsub.setPk(pk);
         // TODO Auto-generated method stub
-    	iRefLocationRepository.save(refsub);
+    	iRefLocationRepository.create(refsub);
         return refsub;
     }
     
     @Override
     public RefSubject updateRefSubject(RefSubject refsub) {
 	
-    	iRefLocationRepository.save(refsub);
+    	iRefLocationRepository.update(refsub);
         return refsub;
     }
     

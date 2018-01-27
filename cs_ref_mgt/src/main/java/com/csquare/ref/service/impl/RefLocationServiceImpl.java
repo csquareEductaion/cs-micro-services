@@ -21,17 +21,15 @@ public class RefLocationServiceImpl implements IRefLocationService {
     @Override
     public RefLocation addRefLocation(RefLocation location) {
 
-    	String pk=UUID.randomUUID().toString();
-    	location.setPk(pk);
-        // TODO Auto-generated method stub
-    	iRefLocationRepository.save(location);
+    	// TODO Auto-generated method stub
+    	iRefLocationRepository.create(location);
         return location;
     }
     
     @Override
     public RefLocation updateRefLocation(RefLocation location) {
 	
-    	iRefLocationRepository.save(location);
+    	iRefLocationRepository.update(location);
         return location;
     }
     
