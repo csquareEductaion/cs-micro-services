@@ -40,13 +40,13 @@ public class LeadServiceImpl implements ILeadService {
     @Override
     public Lead getLeadById(String id) {
 
-        return ileadRepository.findOne(id); 
+        return ileadRepository.findOne(id);
     }
 
     @Override
     public List<Lead> getAllLeads() {
 
-        return ileadRepository.findAll();
+        return ileadRepository.findAll("leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
     }
 
     @Override

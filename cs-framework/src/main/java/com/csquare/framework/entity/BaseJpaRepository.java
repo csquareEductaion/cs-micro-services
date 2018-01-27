@@ -15,7 +15,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 
 
@@ -211,20 +213,17 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll() {
-    	
+    public List<T> findAll(String... subs) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(this.clazz);
         Root<T> rootEntry = cq.from(this.clazz);
+        buildFetchCriteria(rootEntry, subs);
         CriteriaQuery<T> all = cq.select(rootEntry);
+        all.distinct(true);
         TypedQuery<T> allQuery = entityManager.createQuery(all);
-        
-        //allQuery.setFirstResult(-1); // offset
-        //allQuery.setMaxResults(-1); // limit
-        return allQuery.getResultList();
-       
-        //return findByHQLNamedQuery(namedQuery, null, true, -1, -1);
 
+        return find(allQuery, null, true, -1, -1);
     }
 
     /**
@@ -398,4 +397,13 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         }
     }
 
+    private void buildFetchCriteria(Root<T> rootEntry, String... subs) {
+
+        EntityType<T> entity = entityManager.getMetamodel().entity(this.clazz);
+        entity.getSingularAttributes();
+
+        for (String sub : subs) {
+            rootEntry.fetch(sub, JoinType.LEFT);
+        }
+    }
 }

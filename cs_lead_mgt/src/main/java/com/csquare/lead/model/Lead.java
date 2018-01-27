@@ -1,7 +1,7 @@
 package com.csquare.lead.model;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -63,32 +63,32 @@ public class Lead {
 
     @Column(name = "lead_status")
     private String leadStatus;
-    
+
     @Column(name = "gender")
     private String gender;
-    
+
     @Column(name = "address")
     private String address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     @Fetch(FetchMode.JOIN)
-    private Set<LeadGrade> leadGradeList = new HashSet<LeadGrade>();
+    private Set<LeadGrade> leadGradeList = new LinkedHashSet<LeadGrade>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     @Fetch(FetchMode.JOIN)
-    private Set<LeadLocation> leadLocationList = new HashSet<LeadLocation>();
+    private Set<LeadLocation> leadLocationList = new LinkedHashSet<LeadLocation>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     @Fetch(FetchMode.JOIN)
-    private Set<LeadSubject> leadSubjectList = new HashSet<LeadSubject>();
+    private Set<LeadSubject> leadSubjectList = new LinkedHashSet<LeadSubject>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
     @Fetch(FetchMode.JOIN)
-    private Set<LeadSyllabus> leadSyllabusList = new HashSet<LeadSyllabus>();
+    private Set<LeadSyllabus> leadSyllabusList = new LinkedHashSet<LeadSyllabus>();
 
     public String getpK() {
 
@@ -230,22 +230,24 @@ public class Lead {
         this.isstudent = isstudent;
     }
 
-	public String getGender() {
-		return gender;
-	}
+    public String getGender() {
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+        return gender;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setGender(String gender) {
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-    
-    
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+
+        return address;
+    }
+
+    public void setAddress(String address) {
+
+        this.address = address;
+    }
 
 }
