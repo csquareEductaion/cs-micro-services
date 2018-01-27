@@ -49,7 +49,7 @@ public class LeadStatusServiceImpl implements ILeadStatusService {
     @Override
     public List<RefLeadStatus> getAllLeadStatus() {
 
-        return ileadStatusRepository.findAll("getAllLeadStatus");
+        return ileadStatusRepository.findAll();
     }
 
     @Override

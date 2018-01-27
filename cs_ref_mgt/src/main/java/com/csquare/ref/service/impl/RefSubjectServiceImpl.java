@@ -51,7 +51,7 @@ public class RefSubjectServiceImpl implements IRefSubjectService {
 	@Override
 	public List<RefSubject> getAllRefSubjects() {
 		// TODO Auto-generated method stub
-		return iRefLocationRepository.findAll("getAllRefSubject");
+		return iRefLocationRepository.findAll();
 	}
 
 	

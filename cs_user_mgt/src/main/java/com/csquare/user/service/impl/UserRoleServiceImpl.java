@@ -50,7 +50,7 @@ public class UserRoleServiceImpl implements IUserRoleService {
 	@Override
 	public List<UserRole> getAllUserRoles() {
 		// TODO Auto-generated method stub
-		return iUserRepository.findAll("getAllUserRoles");
+		return iUserRepository.findAll();
 	}
 
 	@Override

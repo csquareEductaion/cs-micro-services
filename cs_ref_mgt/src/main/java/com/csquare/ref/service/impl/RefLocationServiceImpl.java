@@ -51,7 +51,7 @@ public class RefLocationServiceImpl implements IRefLocationService {
 	@Override
 	public List<RefLocation> getAllRefLocations() {
 		// TODO Auto-generated method stub
-		return iRefLocationRepository.findAll("getAllRefLocation");
+		return iRefLocationRepository.findAll();
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.csquare.student.model;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,6 +26,7 @@ import com.csquare.framework.entity.PKGenerator;
 
 @Entity
 @Table(name = "student", schema = "student_mgt")
+@NamedQuery(name = "getAllStudents", query = NamedQueryConstants.getAllStudents)
 public class Student {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
@@ -86,365 +89,372 @@ public class Student {
     private String parentName;
     
     @Column(name = "existing_client")
-    private String existingClient;
+    private Boolean existingClient;
     
     @Column(name = "source_of_lead")
     private String sourceOfLead;
     
     @Column(name = "is_hold")
-    private String isHold;
+    private Boolean isHold;
     
     @Column(name = "student_record_owner")
     private String studentRecordOwner;
     
     @Column(name = "is_parent_doc_submitted")
-    private String parentsDocStatus;
+    private Boolean parentsDocStatus;
     
     @Column(name = "is_intrested")
-    private String interested;
+    private Boolean interested;
     
     @Column(name = "is_not_interested")
-    private String notInterested;
+    private Boolean notInterested;
     
     @Column(name = "is_demo_required")
-    private String demoRequired;
+    private Boolean demoRequired;
     
     @Column(name = "demo_date")
-    private String demoDate;
+    private Date demoDate;
     
     @Column(name = "is_converted")
-    private String converted;
+    private Boolean converted;
     
     @Column(name = "enrollment_date")
-    private String enrollmentDate;
+    private Date enrollmentDate;
     
     @Column(name = "is_followup_required")
-    private String requiredFollowUp;
+    private Boolean requiredFollowUp;
     
     @Column(name = "next_followup_date")
-    private String followUpDate;
+    private Date followUpDate;
     
     @Column(name = "preffered_call_time")
     private String callPreferredTime;
     
     @Column(name = "is_conversion_pending")
-    private String pendingForConversion;
+    private Boolean pendingForConversion;
     
     @Column(name = "is_home_tuition_stop")
-    private String isStopped;
+    private Boolean isStopped;
     
     @Column(name = "class_stop_date")
-    private String stoppedDate;
+    private Date stoppedDate;
         
     @Column(name = "is_agreement_sent_to_parent")
-    private String parentAgreementStatus;
+    private Boolean parentAgreementStatus;
     
     @Column(name = "is_agreemenet_sent_to_tutor")
-    private String tutorAgreementStatus;
+    private Boolean tutorAgreementStatus;
     
     @Column(name = "package_in_hrs")
-    private String packageInHrs;
+    private Float packageInHrs;
     
     @Column(name = "hourly_rate")
-    private String hourlyRate;
+    private Float hourlyRate;
     
     @Column(name = "registration_fee_amount")
-    private String registrationFee;
+    private Float registrationFee;
     
     @Column(name = "is_registration_paid")
-    private String isRegistrationPaid;
+    private Boolean isRegistrationPaid;
     
     @Column(name = "total_tuition_fee")
-    private String studentTotalFee;
+    private Float studentTotalFee;
     
     @Column(name = "csquare_income")
-    private String csquareIncome;
+    private Float csquareIncome;
     
    @Column(name = "tuition_required_for_months")
-   private String tutionRequiredForMonths;
-
-	public String getpK() {
-		return pK;
-	}
-
-	public void setpK(String pK) {
-		this.pK = pK;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+   private Float tutionRequiredForMonths;
+
+public Set<StudentTutorMapping> getStudentTutorList() {
+	return studentTutorList;
+}
+
+public void setStudentTutorList(Set<StudentTutorMapping> studentTutorList) {
+	this.studentTutorList = studentTutorList;
+}
+
+public String getpK() {
+	return pK;
+}
+
+public void setpK(String pK) {
+	this.pK = pK;
+}
+
+public String getFirstName() {
+	return firstName;
+}
+
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+
+public String getLastName() {
+	return lastName;
+}
+
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+public String getEmail() {
+	return email;
+}
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
+public Float getPhone() {
+	return phone;
+}
+
+public void setPhone(Float phone) {
+	this.phone = phone;
+}
+
+public String getCity() {
+	return city;
+}
+
+public void setCity(String city) {
+	this.city = city;
+}
+
+public String getComment() {
+	return comment;
+}
+
+public void setComment(String comment) {
+	this.comment = comment;
+}
+
+public String getGender() {
+	return gender;
+}
+
+public void setGender(String gender) {
+	this.gender = gender;
+}
+
+public String getParentName() {
+	return parentName;
+}
+
+public void setParentName(String parentName) {
+	this.parentName = parentName;
+}
+
+public String getSourceOfLead() {
+	return sourceOfLead;
+}
+
+public void setSourceOfLead(String sourceOfLead) {
+	this.sourceOfLead = sourceOfLead;
+}
+
+public Boolean getIsHold() {
+	return isHold;
+}
+
+public void setIsHold(Boolean isHold) {
+	this.isHold = isHold;
+}
+
+public String getStudentRecordOwner() {
+	return studentRecordOwner;
+}
+
+public void setStudentRecordOwner(String studentRecordOwner) {
+	this.studentRecordOwner = studentRecordOwner;
+}
+
+public Boolean getParentsDocStatus() {
+	return parentsDocStatus;
+}
+
+public void setParentsDocStatus(Boolean parentsDocStatus) {
+	this.parentsDocStatus = parentsDocStatus;
+}
+
+public Boolean getInterested() {
+	return interested;
+}
+
+public void setInterested(Boolean interested) {
+	this.interested = interested;
+}
+
+public Boolean getNotInterested() {
+	return notInterested;
+}
+
+public void setNotInterested(Boolean notInterested) {
+	this.notInterested = notInterested;
+}
+
+public Boolean getDemoRequired() {
+	return demoRequired;
+}
+
+public void setDemoRequired(Boolean demoRequired) {
+	this.demoRequired = demoRequired;
+}
+
+public Boolean getConverted() {
+	return converted;
+}
+
+public void setConverted(Boolean converted) {
+	this.converted = converted;
+}
+
+public Boolean getRequiredFollowUp() {
+	return requiredFollowUp;
+}
+
+public void setRequiredFollowUp(Boolean requiredFollowUp) {
+	this.requiredFollowUp = requiredFollowUp;
+}
+
+public String getCallPreferredTime() {
+	return callPreferredTime;
+}
+
+public void setCallPreferredTime(String callPreferredTime) {
+	this.callPreferredTime = callPreferredTime;
+}
+
+public Boolean getPendingForConversion() {
+	return pendingForConversion;
+}
+
+public void setPendingForConversion(Boolean pendingForConversion) {
+	this.pendingForConversion = pendingForConversion;
+}
+
+public Boolean getIsStopped() {
+	return isStopped;
+}
+
+public void setIsStopped(Boolean isStopped) {
+	this.isStopped = isStopped;
+}
+
+public Boolean getParentAgreementStatus() {
+	return parentAgreementStatus;
+}
+
+public void setParentAgreementStatus(Boolean parentAgreementStatus) {
+	this.parentAgreementStatus = parentAgreementStatus;
+}
+
+public Boolean getTutorAgreementStatus() {
+	return tutorAgreementStatus;
+}
+
+public void setTutorAgreementStatus(Boolean tutorAgreementStatus) {
+	this.tutorAgreementStatus = tutorAgreementStatus;
+}
 
-	public String getLastName() {
-		return lastName;
-	}
+public Boolean getIsRegistrationPaid() {
+	return isRegistrationPaid;
+}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
+	this.isRegistrationPaid = isRegistrationPaid;
+}
 
-	public String getEmail() {
-		return email;
-	}
+public Boolean getExistingClient() {
+	return existingClient;
+}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+public void setExistingClient(Boolean existingClient) {
+	this.existingClient = existingClient;
+}
 
-	public Float getPhone() {
-		return phone;
-	}
+public Date getDemoDate() {
+	return demoDate;
+}
 
-	public void setPhone(Float phone) {
-		this.phone = phone;
-	}
+public void setDemoDate(Date demoDate) {
+	this.demoDate = demoDate;
+}
 
-	public String getCity() {
-		return city;
-	}
+public Date getEnrollmentDate() {
+	return enrollmentDate;
+}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+public void setEnrollmentDate(Date enrollmentDate) {
+	this.enrollmentDate = enrollmentDate;
+}
 
-	public String getComment() {
-		return comment;
-	}
+public Date getFollowUpDate() {
+	return followUpDate;
+}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+public void setFollowUpDate(Date followUpDate) {
+	this.followUpDate = followUpDate;
+}
 
-	public String getGender() {
-		return gender;
-	}
+public Date getStoppedDate() {
+	return stoppedDate;
+}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+public void setStoppedDate(Date stoppedDate) {
+	this.stoppedDate = stoppedDate;
+}
 
-	public String getParentName() {
-		return parentName;
-	}
+public Float getPackageInHrs() {
+	return packageInHrs;
+}
 
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
-	}
+public void setPackageInHrs(Float packageInHrs) {
+	this.packageInHrs = packageInHrs;
+}
 
-	public String getExistingClient() {
-		return existingClient;
-	}
+public Float getHourlyRate() {
+	return hourlyRate;
+}
 
-	public void setExistingClient(String existingClient) {
-		this.existingClient = existingClient;
-	}
+public void setHourlyRate(Float hourlyRate) {
+	this.hourlyRate = hourlyRate;
+}
 
-	public String getSourceOfLead() {
-		return sourceOfLead;
-	}
+public Float getRegistrationFee() {
+	return registrationFee;
+}
 
-	public void setSourceOfLead(String sourceOfLead) {
-		this.sourceOfLead = sourceOfLead;
-	}
+public void setRegistrationFee(Float registrationFee) {
+	this.registrationFee = registrationFee;
+}
 
-	public String getIsHold() {
-		return isHold;
-	}
+public Float getStudentTotalFee() {
+	return studentTotalFee;
+}
 
-	public void setIsHold(String isHold) {
-		this.isHold = isHold;
-	}
+public void setStudentTotalFee(Float studentTotalFee) {
+	this.studentTotalFee = studentTotalFee;
+}
 
-	public String getStudentRecordOwner() {
-		return studentRecordOwner;
-	}
+public Float getCsquareIncome() {
+	return csquareIncome;
+}
 
-	public void setStudentRecordOwner(String studentRecordOwner) {
-		this.studentRecordOwner = studentRecordOwner;
-	}
+public void setCsquareIncome(Float csquareIncome) {
+	this.csquareIncome = csquareIncome;
+}
 
-	public String getParentsDocStatus() {
-		return parentsDocStatus;
-	}
+public Float getTutionRequiredForMonths() {
+	return tutionRequiredForMonths;
+}
 
-	public void setParentsDocStatus(String parentsDocStatus) {
-		this.parentsDocStatus = parentsDocStatus;
-	}
+public void setTutionRequiredForMonths(Float tutionRequiredForMonths) {
+	this.tutionRequiredForMonths = tutionRequiredForMonths;
+}
 
 
-	public String getInterested() {
-		return interested;
-	}
-
-	public void setInterested(String interested) {
-		this.interested = interested;
-	}
-
-	public String getNotInterested() {
-		return notInterested;
-	}
-
-	public void setNotInterested(String notInterested) {
-		this.notInterested = notInterested;
-	}
-
-	public String getDemoRequired() {
-		return demoRequired;
-	}
-
-	public void setDemoRequired(String demoRequired) {
-		this.demoRequired = demoRequired;
-	}
-
-	public String getDemoDate() {
-		return demoDate;
-	}
-
-	public void setDemoDate(String demoDate) {
-		this.demoDate = demoDate;
-	}
-
-	public String getConverted() {
-		return converted;
-	}
-
-	public void setConverted(String converted) {
-		this.converted = converted;
-	}
-
-	public String getEnrollmentDate() {
-		return enrollmentDate;
-	}
-
-	public void setEnrollmentDate(String enrollmentDate) {
-		this.enrollmentDate = enrollmentDate;
-	}
-
-	public String getRequiredFollowUp() {
-		return requiredFollowUp;
-	}
-
-	public void setRequiredFollowUp(String requiredFollowUp) {
-		this.requiredFollowUp = requiredFollowUp;
-	}
-
-	public String getFollowUpDate() {
-		return followUpDate;
-	}
-
-	public void setFollowUpDate(String followUpDate) {
-		this.followUpDate = followUpDate;
-	}
-
-	public String getCallPreferredTime() {
-		return callPreferredTime;
-	}
-
-	public void setCallPreferredTime(String callPreferredTime) {
-		this.callPreferredTime = callPreferredTime;
-	}
-
-	public String getPendingForConversion() {
-		return pendingForConversion;
-	}
-
-	public void setPendingForConversion(String pendingForConversion) {
-		this.pendingForConversion = pendingForConversion;
-	}
-
-	public String getIsStopped() {
-		return isStopped;
-	}
-
-	public void setIsStopped(String isStopped) {
-		this.isStopped = isStopped;
-	}
-
-	public String getStoppedDate() {
-		return stoppedDate;
-	}
-
-	public void setStoppedDate(String stoppedDate) {
-		this.stoppedDate = stoppedDate;
-	}
-
-	public String getParentAgreementStatus() {
-		return parentAgreementStatus;
-	}
-
-	public void setParentAgreementStatus(String parentAgreementStatus) {
-		this.parentAgreementStatus = parentAgreementStatus;
-	}
-
-	public String getTutorAgreementStatus() {
-		return tutorAgreementStatus;
-	}
-
-	public void setTutorAgreementStatus(String tutorAgreementStatus) {
-		this.tutorAgreementStatus = tutorAgreementStatus;
-	}
-
-	public String getPackageInHrs() {
-		return packageInHrs;
-	}
-
-	public void setPackageInHrs(String packageInHrs) {
-		this.packageInHrs = packageInHrs;
-	}
-
-	public String getHourlyRate() {
-		return hourlyRate;
-	}
-
-	public void setHourlyRate(String hourlyRate) {
-		this.hourlyRate = hourlyRate;
-	}
-
-	public String getRegistrationFee() {
-		return registrationFee;
-	}
-
-	public void setRegistrationFee(String registrationFee) {
-		this.registrationFee = registrationFee;
-	}
-
-	public String getIsRegistrationPaid() {
-		return isRegistrationPaid;
-	}
-
-	public void setIsRegistrationPaid(String isRegistrationPaid) {
-		this.isRegistrationPaid = isRegistrationPaid;
-	}
-
-	public String getStudentTotalFee() {
-		return studentTotalFee;
-	}
-
-	public void setStudentTotalFee(String studentTotalFee) {
-		this.studentTotalFee = studentTotalFee;
-	}
-
-	public String getCsquareIncome() {
-		return csquareIncome;
-	}
-
-	public void setCsquareIncome(String csquareIncome) {
-		this.csquareIncome = csquareIncome;
-	}
-
-	public String getTutionRequiredForMonths() {
-		return tutionRequiredForMonths;
-	}
-
-	public void setTutionRequiredForMonths(String tutionRequiredForMonths) {
-		this.tutionRequiredForMonths = tutionRequiredForMonths;
-	}
-
-	
 	
 	
 }

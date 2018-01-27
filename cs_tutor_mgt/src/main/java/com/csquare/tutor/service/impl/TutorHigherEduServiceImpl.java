@@ -48,7 +48,7 @@ public class TutorHigherEduServiceImpl implements ITutorHigherEduService {
 	@Override
 	public List<TutorHigherEdu> getAllTutorsEdu() {
 		
-		return itutorRepository.findAll("getAllTutorsEdu");
+		return itutorRepository.findAll();
 	}
 
 	@Override

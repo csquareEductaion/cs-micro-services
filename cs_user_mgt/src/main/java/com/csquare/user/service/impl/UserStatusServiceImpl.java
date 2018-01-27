@@ -50,7 +50,7 @@ public class UserStatusServiceImpl implements IUserStatusService {
 	@Override
 	public List<UserStatus> getAllUserStatus() {
 		// TODO Auto-generated method stub 
-		return iUserStatusRepository.findAll("getAllUserStatus");
+		return iUserStatusRepository.findAll();
 	}
 
 	@Override

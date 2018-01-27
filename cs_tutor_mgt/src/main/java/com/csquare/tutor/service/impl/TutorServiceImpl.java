@@ -50,7 +50,7 @@ public class TutorServiceImpl implements ITutorService {
 	@Override
 	public List<Tutor> getAllTutors() {
 		
-		return  itutorRepository.findAll("getAllTutors");
+		return  itutorRepository.findAll();
 	}
 
 	@Override

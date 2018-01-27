@@ -12,6 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 
@@ -173,9 +177,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
     }
 
     @Transactional
-    public void deleteAll(String namedQuery) {
+    public void deleteAll() {
 
-        List<T> entities = findAll(namedQuery);
+        List<T> entities = findAll();
         for (T element : entities) {
             delete(element);
         }
@@ -207,9 +211,19 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll(String namedQuery) {
-
-        return findByHQLNamedQuery(namedQuery, null, true, -1, -1);
+    public List<T> findAll() {
+    	
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(this.clazz);
+        Root<T> rootEntry = cq.from(this.clazz);
+        CriteriaQuery<T> all = cq.select(rootEntry);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        
+        //allQuery.setFirstResult(-1); // offset
+        //allQuery.setMaxResults(-1); // limit
+        return allQuery.getResultList();
+       
+        //return findByHQLNamedQuery(namedQuery, null, true, -1, -1);
 
     }
 

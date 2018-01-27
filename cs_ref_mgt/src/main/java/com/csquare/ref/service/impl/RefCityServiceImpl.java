@@ -54,7 +54,7 @@ public class RefCityServiceImpl implements IRefCityService {
 	@Override
 	public List<RefCity> getAllRefCites() {
 		// TODO Auto-generated method stub
-		return iRefCityRepository.findAll("getAllRefCity");
+		return iRefCityRepository.findAll();
 	}
 
 	

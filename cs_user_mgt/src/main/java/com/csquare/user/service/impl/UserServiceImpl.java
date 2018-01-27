@@ -50,7 +50,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
-		return iUserRepository.findAll("getAllUsers");
+		return iUserRepository.findAll();
 	}
 
 	@Override

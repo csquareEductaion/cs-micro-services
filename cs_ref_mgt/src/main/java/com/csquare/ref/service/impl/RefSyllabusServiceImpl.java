@@ -51,7 +51,7 @@ public class RefSyllabusServiceImpl implements IRefSyllabusService {
 	@Override
 	public List<RefSyllabus> getAllRefSyllabus() {
 		// TODO Auto-generated method stub
-		return iRefLocationRepository.findAll("getAllRefSyllabus");
+		return iRefLocationRepository.findAll();
 	}
 
 	

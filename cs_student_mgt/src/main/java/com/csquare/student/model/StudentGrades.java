@@ -15,7 +15,6 @@ import com.csquare.framework.entity.PKGenerator;
 @Entity
 @Table(name = "student_grades", schema = "student_mgt")
 
-
 public class StudentGrades {
 
 	@Id

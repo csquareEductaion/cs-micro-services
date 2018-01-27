@@ -22,17 +22,15 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public Student addStudent(Student student) {
 
-    	String pk=UUID.randomUUID().toString();
-    	student.setpK(pk);
         // TODO Auto-generated method stub
-        istudentRepository.save(student); 
+        istudentRepository.create(student); 
         return student;
     }
     
     @Override
     public Student updateStudent(Student student) {
 	
-        istudentRepository.save(student);
+        istudentRepository.update(student);
         return student;
     }
     
@@ -52,7 +50,7 @@ public class StudentServiceImpl implements IStudentService {
 	@Override
 	public List<Student> getAllStudents() {
 		// TODO Auto-generated method stub
-		return istudentRepository.findAll("getAllStudents");
+		return istudentRepository.findAll();
 	}
 
 	@Override

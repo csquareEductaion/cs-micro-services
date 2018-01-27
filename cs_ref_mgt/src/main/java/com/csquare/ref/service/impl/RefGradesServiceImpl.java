@@ -55,7 +55,7 @@ public class RefGradesServiceImpl implements IRefGradesService {
 	@Override
 	public List<RefGrades> getAllRefGrades() {
 		// TODO Auto-generated method stub
-		return iRefGradeRepository.findAll("getAllRefGread");
+		return iRefGradeRepository.findAll();
 	}
 
 		
