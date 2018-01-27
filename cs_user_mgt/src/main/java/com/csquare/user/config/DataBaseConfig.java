@@ -103,7 +103,9 @@ public class DataBaseConfig {
         Properties properties = new Properties();
         properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "true");
-        // properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
+        properties.put("hibernate.jdbc.batch_size", "25");
+        properties.put("hibernate.order_inserts", "true");
+        properties.put("hibernate.order_updates", "true");
         return properties;
     }
 
