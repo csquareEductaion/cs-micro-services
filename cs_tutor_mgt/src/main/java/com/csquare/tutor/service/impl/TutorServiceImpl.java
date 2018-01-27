@@ -11,8 +11,6 @@ import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
 
 
-
-
 @Service
 public class TutorServiceImpl implements ITutorService {
 
@@ -22,41 +20,43 @@ public class TutorServiceImpl implements ITutorService {
     @Override
     public Tutor addTutor(Tutor tutor) {
 
-    	String pk=UUID.randomUUID().toString();
-    	tutor.setpK(pk);
+        String pk = UUID.randomUUID().toString();
+        tutor.setpK(pk);
         // TODO Auto-generated method stub
-    	itutorRepository.save(tutor); 
+        itutorRepository.save(tutor);
         return tutor;
     }
-    
+
     @Override
     public Tutor updateTutor(Tutor tutor) {
-	
-    	itutorRepository.save(tutor);
+
+        itutorRepository.save(tutor);
         return tutor;
     }
-    
+
     @Override
     public void deleteTutor(String tutorId) {
-	
-    	itutorRepository.delete(tutorId);;
+
+        itutorRepository.delete(tutorId);
+        ;
     }
 
     @Override
     public Tutor getTutorById(String id) {
+
         return itutorRepository.findOne(id);
     }
 
-	@Override
-	public List<Tutor> getAllTutors() {
-		
-		return  itutorRepository.findAll();
-	}
+    @Override
+    public List<Tutor> getAllTutors() {
 
-	@Override
-	public List<Tutor> getAllLeads(int offset, int limit) {
-		return itutorRepository.findAll("getAllTutors", offset, limit);
-	}
-	
+        return itutorRepository.findAll();
+    }
+
+    @Override
+    public List<Tutor> getAllLeads(int offset, int limit) {
+
+        return itutorRepository.findAll(offset, limit);
+    }
 
 }

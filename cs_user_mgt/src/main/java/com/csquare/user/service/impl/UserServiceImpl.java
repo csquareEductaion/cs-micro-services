@@ -20,24 +20,25 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User addUser(User User) {
 
-    	String pk=UUID.randomUUID().toString();
-    	User.setpK(pk);
+        String pk = UUID.randomUUID().toString();
+        User.setpK(pk);
         // TODO Auto-generated method stub
-        iUserRepository.save(User); 
-        return User;
-    }
-    
-    @Override
-    public User updateUser(User User) {
-	
         iUserRepository.save(User);
         return User;
     }
-    
+
+    @Override
+    public User updateUser(User User) {
+
+        iUserRepository.save(User);
+        return User;
+    }
+
     @Override
     public void deleteUser(String UserId) {
-	
-        iUserRepository.delete(UserId);;
+
+        iUserRepository.delete(UserId);
+        ;
     }
 
     @Override
@@ -47,16 +48,18 @@ public class UserServiceImpl implements IUserService {
         return iUserRepository.findOne(id);
     }
 
-	@Override
-	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return iUserRepository.findAll();
-	}
+    @Override
+    public List<User> getAllUsers() {
 
-	@Override
-	public List<User> getAllUsers(int Offset, int limit) {
-		// TODO Auto-generated method stub
-		return iUserRepository.findAll("getAllUsers",Offset,limit);
-	}
+        // TODO Auto-generated method stub
+        return iUserRepository.findAll();
+    }
+
+    @Override
+    public List<User> getAllUsers(int Offset, int limit) {
+
+        // TODO Auto-generated method stub
+        return iUserRepository.findAll(Offset, limit);
+    }
 
 }

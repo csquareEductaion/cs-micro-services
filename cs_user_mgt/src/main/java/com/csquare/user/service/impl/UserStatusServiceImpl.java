@@ -20,24 +20,25 @@ public class UserStatusServiceImpl implements IUserStatusService {
     @Override
     public UserStatus addUserStatus(UserStatus UserStatus) {
 
-    	String pk=UUID.randomUUID().toString();
-    	UserStatus.setPk(pk);
+        String pk = UUID.randomUUID().toString();
+        UserStatus.setPk(pk);
         // TODO Auto-generated method stub
-    	iUserStatusRepository.save(UserStatus); 
+        iUserStatusRepository.save(UserStatus);
         return UserStatus;
     }
-    
+
     @Override
     public UserStatus updateUserStatus(UserStatus UserStatus) {
-	
-    	iUserStatusRepository.save(UserStatus);
+
+        iUserStatusRepository.save(UserStatus);
         return UserStatus;
     }
-    
+
     @Override
     public void deleteUserStatus(String UserId) {
-	
-    	iUserStatusRepository.delete(UserId);;
+
+        iUserStatusRepository.delete(UserId);
+        ;
     }
 
     @Override
@@ -47,16 +48,18 @@ public class UserStatusServiceImpl implements IUserStatusService {
         return iUserStatusRepository.findOne(id);
     }
 
-	@Override
-	public List<UserStatus> getAllUserStatus() {
-		// TODO Auto-generated method stub 
-		return iUserStatusRepository.findAll();
-	}
+    @Override
+    public List<UserStatus> getAllUserStatus() {
 
-	@Override
-	public List<UserStatus> getAllUserStatus(int Offset, int limit) {
-		// TODO Auto-generated method stub
-		return iUserStatusRepository.findAll("getAllUserStatus",Offset,limit);
-	}
+        // TODO Auto-generated method stub
+        return iUserStatusRepository.findAll();
+    }
+
+    @Override
+    public List<UserStatus> getAllUserStatus(int Offset, int limit) {
+
+        // TODO Auto-generated method stub
+        return iUserStatusRepository.findAll(Offset, limit);
+    }
 
 }

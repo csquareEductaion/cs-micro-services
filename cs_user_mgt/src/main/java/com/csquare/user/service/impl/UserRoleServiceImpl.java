@@ -20,24 +20,25 @@ public class UserRoleServiceImpl implements IUserRoleService {
     @Override
     public UserRole addUserRole(UserRole userrole) {
 
-    	String pk=UUID.randomUUID().toString();
-    	userrole.setPk(pk);
+        String pk = UUID.randomUUID().toString();
+        userrole.setPk(pk);
         // TODO Auto-generated method stub
-        iUserRepository.save(userrole); 
-        return userrole;
-    }
-    
-    @Override
-    public UserRole updateUserRole(UserRole userrole) {
-	
         iUserRepository.save(userrole);
         return userrole;
     }
-    
+
+    @Override
+    public UserRole updateUserRole(UserRole userrole) {
+
+        iUserRepository.save(userrole);
+        return userrole;
+    }
+
     @Override
     public void deleteUserRole(String UserId) {
-	
-        iUserRepository.delete(UserId);;
+
+        iUserRepository.delete(UserId);
+        ;
     }
 
     @Override
@@ -47,16 +48,18 @@ public class UserRoleServiceImpl implements IUserRoleService {
         return iUserRepository.findOne(id);
     }
 
-	@Override
-	public List<UserRole> getAllUserRoles() {
-		// TODO Auto-generated method stub
-		return iUserRepository.findAll();
-	}
+    @Override
+    public List<UserRole> getAllUserRoles() {
 
-	@Override
-	public List<UserRole> getAllUserRoles(int Offset, int limit) {
-		// TODO Auto-generated method stub
-		return iUserRepository.findAll("getAllUserRoles", Offset, limit);
-	}
+        // TODO Auto-generated method stub
+        return iUserRepository.findAll();
+    }
+
+    @Override
+    public List<UserRole> getAllUserRoles(int Offset, int limit) {
+
+        // TODO Auto-generated method stub
+        return iUserRepository.findAll(Offset, limit);
+    }
 
 }

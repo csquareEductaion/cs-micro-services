@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.dao.LeadStatusRepository;
-import com.csquare.lead.model.Lead;
 import com.csquare.lead.model.ref.RefLeadStatus;
-import com.csquare.lead.service.ILeadService;
 import com.csquare.lead.service.ILeadStatusService;
 
 
@@ -23,21 +20,21 @@ public class LeadStatusServiceImpl implements ILeadStatusService {
     public RefLeadStatus addLeadStatus(RefLeadStatus leadStatus) {
 
         // TODO Auto-generated method stub
-    	leadStatus = ileadStatusRepository.save(leadStatus);
+        leadStatus = ileadStatusRepository.save(leadStatus);
         return leadStatus;
     }
 
     @Override
     public RefLeadStatus updateLeadStatus(RefLeadStatus leadStatus) {
 
-    	leadStatus = ileadStatusRepository.save(leadStatus);
+        leadStatus = ileadStatusRepository.save(leadStatus);
         return leadStatus;
     }
 
     @Override
     public void deleteLeadStatus(String leadId) {
 
-    	ileadStatusRepository.delete(leadId);
+        ileadStatusRepository.delete(leadId);
     }
 
     @Override
@@ -55,7 +52,7 @@ public class LeadStatusServiceImpl implements ILeadStatusService {
     @Override
     public List<RefLeadStatus> getAllLeadStatus(int offset, int limit) {
 
-        return ileadStatusRepository.findAll("getAllLeadStatus", offset, limit);
+        return ileadStatusRepository.findAll(offset, limit);
     }
 
 }

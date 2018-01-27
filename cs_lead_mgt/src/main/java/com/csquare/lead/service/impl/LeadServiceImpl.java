@@ -52,7 +52,7 @@ public class LeadServiceImpl implements ILeadService {
     @Override
     public List<Lead> getAllLeads(int offset, int limit) {
 
-        return ileadRepository.findAll("getAllLead", offset, limit);
+        return ileadRepository.findAll(offset, limit, "leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
     }
 
 }

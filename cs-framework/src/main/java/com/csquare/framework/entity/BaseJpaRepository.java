@@ -17,7 +17,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 
 
@@ -213,16 +212,9 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll(String... subs) {
+    public List<T> findAll(String... fetchSubItems) {
 
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(this.clazz);
-        Root<T> rootEntry = cq.from(this.clazz);
-        buildFetchCriteria(rootEntry, subs);
-        CriteriaQuery<T> all = cq.select(rootEntry);
-        all.distinct(true);
-        TypedQuery<T> allQuery = entityManager.createQuery(all);
-
+        TypedQuery<T> allQuery = buildQuery(fetchSubItems);
         return find(allQuery, null, true, -1, -1);
     }
 
@@ -233,10 +225,10 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
-    public List<T> findAll(String namedQuery, int offset, int limit) {
+    public List<T> findAll(int offset, int limit, String... fetchSubItems) {
 
-        return findByHQLNamedQuery(namedQuery, null, true, offset, limit);
-
+        TypedQuery<T> allQuery = buildQuery(fetchSubItems);
+        return find(allQuery, null, true, offset, limit);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -372,8 +364,7 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
 
         setQueryArgument(paramsMap, query);
 
-        query.setHint("org.hibernate.cacheable", true);
-        query.setHint("org.hibernate.readOnly", readOnly);
+        setQueryHint(query, readOnly);
 
         resultList = query.getResultList();
         return resultList;
@@ -397,13 +388,35 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         }
     }
 
-    private void buildFetchCriteria(Root<T> rootEntry, String... subs) {
+    private TypedQuery<T> buildQuery(String... fetchSubItems) {
 
-        EntityType<T> entity = entityManager.getMetamodel().entity(this.clazz);
-        entity.getSingularAttributes();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(this.clazz);
+        Root<T> rootEntry = cq.from(this.clazz);
+        buildFetchCriteria(rootEntry, fetchSubItems);
+        CriteriaQuery<T> all = cq.select(rootEntry);
+        all.distinct(true);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        return allQuery;
+    }
 
-        for (String sub : subs) {
-            rootEntry.fetch(sub, JoinType.LEFT);
+    private void buildFetchCriteria(Root<T> rootEntry, String... fetchItems) {
+
+        if (null == fetchItems) {
+            return;
         }
+
+        // EntityType<T> entity = entityManager.getMetamodel().entity(this.clazz);
+        // entity.getSingularAttributes();
+
+        for (String fetchItem : fetchItems) {
+            rootEntry.fetch(fetchItem, JoinType.LEFT);
+        }
+    }
+
+    private void setQueryHint(Query query, boolean readOnly) {
+
+        query.setHint("org.hibernate.cacheable", true);
+        query.setHint("org.hibernate.readOnly", readOnly);
     }
 }
