@@ -4,5 +4,4 @@ public interface NamedQueryConstants {
 
 	String getAllTutors = "SELECT tutor FROM Tutor tutor";
 	
-	String getAllTutorsEdu = "SELECT tutorEdu FROM TutorHigherEdu tutorEdu";
 }

@@ -72,6 +72,9 @@ public class Student {
 
     @Column(name = "student_record_owner")
     private String studentRecordOwner;
+    
+    @Column(name = "grade")
+    private String grade;
 
     @Column(name = "is_parent_doc_submitted")
     private Boolean parentsDocStatus;
@@ -518,5 +521,15 @@ public class Student {
 
         this.studentSubjectList = studentSubjectList;
     }
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+    
+    
 
 }

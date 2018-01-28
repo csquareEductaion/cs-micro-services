@@ -11,11 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.csquare.framework.entity.PKGenerator;
@@ -25,6 +28,7 @@ import com.csquare.framework.entity.PKGenerator;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "tutor", schema = "tutor_mgt")
+@NamedQuery(name = "getAllTutors", query = NamedQueryConstants.getAllTutors)
 public class Tutor {
 
     @Id
@@ -89,14 +93,15 @@ public class Tutor {
 
     @Column(name = "qualification")
     private String qualification;
+    
+   
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    private Set<TutorGrade> tutorGradeList = new LinkedHashSet<TutorGrade>();
 
     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-    private Set<TutorGrade> leadGradeList = new LinkedHashSet<TutorGrade>();
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-    private Set<TutorLocation> leadLocationList = new LinkedHashSet<TutorLocation>();
+    private Set<TutorLocation> tutorLocationList = new LinkedHashSet<TutorLocation>();
 
     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
@@ -105,7 +110,23 @@ public class Tutor {
     @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
     private Set<TutorSyllabus> leadSyllabusList = new LinkedHashSet<TutorSyllabus>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<TutorStudent> tutorStudentList = new LinkedHashSet<TutorStudent>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<TutorHigherEdu> tutorHigerEduList = new LinkedHashSet<TutorHigherEdu>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<TutorSyllabus> tutorSyllabusEduList = new LinkedHashSet<TutorSyllabus>();
 
+   
     public String getpK() {
 
         return pK;
@@ -305,5 +326,63 @@ public class Tutor {
 
         this.qualification = qualification;
     }
+
+	public Set<TutorGrade> getTutorGradeList() {
+		return tutorGradeList;
+	}
+
+	public void setTutorGradeList(Set<TutorGrade> tutorGradeList) {
+		this.tutorGradeList = tutorGradeList;
+	}
+
+	public Set<TutorLocation> getTutorLocationList() {
+		return tutorLocationList;
+	}
+
+	public void setTutorLocationList(Set<TutorLocation> tutorLocationList) {
+		this.tutorLocationList = tutorLocationList;
+	}
+
+	public Set<TutorSubject> getLeadSubjectList() {
+		return leadSubjectList;
+	}
+
+	public void setLeadSubjectList(Set<TutorSubject> leadSubjectList) {
+		this.leadSubjectList = leadSubjectList;
+	}
+
+	public Set<TutorSyllabus> getLeadSyllabusList() {
+		return leadSyllabusList;
+	}
+
+	public void setLeadSyllabusList(Set<TutorSyllabus> leadSyllabusList) {
+		this.leadSyllabusList = leadSyllabusList;
+	}
+
+	public Set<TutorStudent> getTutorStudentList() {
+		return tutorStudentList;
+	}
+
+	public void setTutorStudentList(Set<TutorStudent> tutorStudentList) {
+		this.tutorStudentList = tutorStudentList;
+	}
+
+	public Set<TutorHigherEdu> getTutorHigerEduList() {
+		return tutorHigerEduList;
+	}
+
+	public void setTutorHigerEduList(Set<TutorHigherEdu> tutorHigerEduList) {
+		this.tutorHigerEduList = tutorHigerEduList;
+	}
+
+	public Set<TutorSyllabus> getTutorSyllabusEduList() {
+		return tutorSyllabusEduList;
+	}
+
+	public void setTutorSyllabusEduList(Set<TutorSyllabus> tutorSyllabusEduList) {
+		this.tutorSyllabusEduList = tutorSyllabusEduList;
+	}
+    
+    
 
 }
