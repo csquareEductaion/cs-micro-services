@@ -6,12 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.csquare.framework.entity.PKGenerator;
 
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "student_subject", schema = "student_mgt")
 public class StudentSubject {
 

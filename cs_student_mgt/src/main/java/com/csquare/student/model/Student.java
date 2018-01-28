@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,6 +25,8 @@ import com.csquare.framework.entity.PKGenerator;
 
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "student", schema = "student_mgt")
 @NamedQuery(name = "getAllStudents", query = NamedQueryConstants.getAllStudents)
 public class Student {
