@@ -49,14 +49,14 @@ public class StudentServiceImpl implements IStudentService {
     public List<Student> getAllStudents() {
 
         // TODO Auto-generated method stub
-        return istudentRepository.findAll();
+        return istudentRepository.findAll("studentTutorList", "studentSubjectList");
     }
 
     @Override
     public List<Student> getAllStudents(int offset, int limit) {
 
         // TODO Auto-generated method stub
-        return istudentRepository.findAll(offset, limit);
+        return istudentRepository.findAll(offset, limit, "studentTutorList", "studentSubjectList");
     }
 
 }

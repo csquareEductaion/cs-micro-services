@@ -27,44 +27,6 @@ import com.csquare.framework.entity.PKGenerator;
 @NamedQuery(name = "getAllStudents", query = NamedQueryConstants.getAllStudents)
 public class Student {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "student_id", referencedColumnName = "pk")
-    @Fetch(FetchMode.JOIN)
-    private Set<StudentTutorMapping> studentTutorList = new LinkedHashSet<StudentTutorMapping>();
-
-    /*
-     * @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     * 
-     * @JoinColumn(name = "student_id", referencedColumnName = "pk")
-     * 
-     * @Fetch(FetchMode.JOIN)
-     * private Set<StudentGrades> studentGradeList = new HashSet<StudentGrades>();
-     * 
-     * @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     * 
-     * @JoinColumn(name = "student_id", referencedColumnName = "pk")
-     * 
-     * @Fetch(FetchMode.JOIN)
-     * private Set<studentLocations> studentLocationList = new HashSet<studentLocations>();
-     * 
-     * @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     * 
-     * @JoinColumn(name = "student_id", referencedColumnName = "pk")
-     * 
-     * @Fetch(FetchMode.JOIN)
-     * private Set<StudentSyllabus> studentSyllabusList = new HashSet<StudentSyllabus>();
-     * 
-     */
-
-    /*
-     * @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-     * 
-     * @JoinColumn(name = "student_id", referencedColumnName = "pk")
-     * 
-     * @Fetch(FetchMode.JOIN)
-     * private Set<StudentSubjects> studentSubjectList = new HashSet<StudentSubjects>();
-     */
-
     @Id
     @Column(name = "pk")
     @GeneratedValue(generator = PKGenerator.NAME)
@@ -173,15 +135,15 @@ public class Student {
     @Column(name = "tuition_required_for_months")
     private Float tutionRequiredForMonths;
 
-    public Set<StudentTutorMapping> getStudentTutorList() {
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentTutor> studentTutorList = new LinkedHashSet<StudentTutor>();
 
-        return studentTutorList;
-    }
-
-    public void setStudentTutorList(Set<StudentTutorMapping> studentTutorList) {
-
-        this.studentTutorList = studentTutorList;
-    }
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "student_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
+    private Set<StudentSubject> studentSubjectList = new LinkedHashSet<StudentSubject>();
 
     public String getpK() {
 
@@ -273,6 +235,16 @@ public class Student {
         this.parentName = parentName;
     }
 
+    public Boolean getExistingClient() {
+
+        return existingClient;
+    }
+
+    public void setExistingClient(Boolean existingClient) {
+
+        this.existingClient = existingClient;
+    }
+
     public String getSourceOfLead() {
 
         return sourceOfLead;
@@ -343,6 +315,16 @@ public class Student {
         this.demoRequired = demoRequired;
     }
 
+    public Date getDemoDate() {
+
+        return demoDate;
+    }
+
+    public void setDemoDate(Date demoDate) {
+
+        this.demoDate = demoDate;
+    }
+
     public Boolean getConverted() {
 
         return converted;
@@ -353,6 +335,16 @@ public class Student {
         this.converted = converted;
     }
 
+    public Date getEnrollmentDate() {
+
+        return enrollmentDate;
+    }
+
+    public void setEnrollmentDate(Date enrollmentDate) {
+
+        this.enrollmentDate = enrollmentDate;
+    }
+
     public Boolean getRequiredFollowUp() {
 
         return requiredFollowUp;
@@ -361,6 +353,16 @@ public class Student {
     public void setRequiredFollowUp(Boolean requiredFollowUp) {
 
         this.requiredFollowUp = requiredFollowUp;
+    }
+
+    public Date getFollowUpDate() {
+
+        return followUpDate;
+    }
+
+    public void setFollowUpDate(Date followUpDate) {
+
+        this.followUpDate = followUpDate;
     }
 
     public String getCallPreferredTime() {
@@ -393,6 +395,16 @@ public class Student {
         this.isStopped = isStopped;
     }
 
+    public Date getStoppedDate() {
+
+        return stoppedDate;
+    }
+
+    public void setStoppedDate(Date stoppedDate) {
+
+        this.stoppedDate = stoppedDate;
+    }
+
     public Boolean getParentAgreementStatus() {
 
         return parentAgreementStatus;
@@ -411,66 +423,6 @@ public class Student {
     public void setTutorAgreementStatus(Boolean tutorAgreementStatus) {
 
         this.tutorAgreementStatus = tutorAgreementStatus;
-    }
-
-    public Boolean getIsRegistrationPaid() {
-
-        return isRegistrationPaid;
-    }
-
-    public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
-
-        this.isRegistrationPaid = isRegistrationPaid;
-    }
-
-    public Boolean getExistingClient() {
-
-        return existingClient;
-    }
-
-    public void setExistingClient(Boolean existingClient) {
-
-        this.existingClient = existingClient;
-    }
-
-    public Date getDemoDate() {
-
-        return demoDate;
-    }
-
-    public void setDemoDate(Date demoDate) {
-
-        this.demoDate = demoDate;
-    }
-
-    public Date getEnrollmentDate() {
-
-        return enrollmentDate;
-    }
-
-    public void setEnrollmentDate(Date enrollmentDate) {
-
-        this.enrollmentDate = enrollmentDate;
-    }
-
-    public Date getFollowUpDate() {
-
-        return followUpDate;
-    }
-
-    public void setFollowUpDate(Date followUpDate) {
-
-        this.followUpDate = followUpDate;
-    }
-
-    public Date getStoppedDate() {
-
-        return stoppedDate;
-    }
-
-    public void setStoppedDate(Date stoppedDate) {
-
-        this.stoppedDate = stoppedDate;
     }
 
     public Float getPackageInHrs() {
@@ -503,6 +455,16 @@ public class Student {
         this.registrationFee = registrationFee;
     }
 
+    public Boolean getIsRegistrationPaid() {
+
+        return isRegistrationPaid;
+    }
+
+    public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
+
+        this.isRegistrationPaid = isRegistrationPaid;
+    }
+
     public Float getStudentTotalFee() {
 
         return studentTotalFee;
@@ -531,6 +493,26 @@ public class Student {
     public void setTutionRequiredForMonths(Float tutionRequiredForMonths) {
 
         this.tutionRequiredForMonths = tutionRequiredForMonths;
+    }
+
+    public Set<StudentTutor> getStudentTutorList() {
+
+        return studentTutorList;
+    }
+
+    public void setStudentTutorList(Set<StudentTutor> studentTutorList) {
+
+        this.studentTutorList = studentTutorList;
+    }
+
+    public Set<StudentSubject> getStudentSubjectList() {
+
+        return studentSubjectList;
+    }
+
+    public void setStudentSubjectList(Set<StudentSubject> studentSubjectList) {
+
+        this.studentSubjectList = studentSubjectList;
     }
 
 }
