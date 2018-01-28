@@ -43,8 +43,8 @@ public enum MailUtil {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        smtpUser = "xyz@gmail.com";
-        smtpPassword = "xyz";
+        smtpUser = "sandeshsingh8431@gmail.com";
+        smtpPassword = "Ciber@2012";
 
         // properties.put("mail.smtp.host", PropertyUtil.INSTANCE.getProperty("mail.smtp.host"));
         // properties.put("mail.smtp.port", PropertyUtil.INSTANCE.getProperty("mail.smtp.port"));
