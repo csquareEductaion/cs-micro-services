@@ -55,7 +55,7 @@ public class Student {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "Gender")
+    @Column(name = "gender")
     private String gender;
 
     @Column(name = "parent_name")
@@ -152,375 +152,109 @@ public class Student {
     @Fetch(FetchMode.JOIN)
     private Set<StudentSubject> studentSubjectList = new LinkedHashSet<StudentSubject>();
 
-    public String getpK() {
-
-        return pK;
-    }
-
-    public void setpK(String pK) {
-
-        this.pK = pK;
-    }
-
-    public String getFirstName() {
-
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-
-        return email;
-    }
-
-    public void setEmail(String email) {
-
-        this.email = email;
-    }
-
-    public Float getPhone() {
-
-        return phone;
-    }
-
-    public void setPhone(Float phone) {
-
-        this.phone = phone;
-    }
-
-    public String getCity() {
-
-        return city;
-    }
-
-    public void setCity(String city) {
-
-        this.city = city;
-    }
-
-    public String getComment() {
-
-        return comment;
-    }
-
-    public void setComment(String comment) {
-
-        this.comment = comment;
-    }
-
-    public String getGender() {
-
-        return gender;
-    }
-
-    public void setGender(String gender) {
-
-        this.gender = gender;
-    }
-
-    public String getParentName() {
-
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-
-        this.parentName = parentName;
-    }
-
-    public Boolean getExistingClient() {
-
-        return existingClient;
-    }
-
-    public void setExistingClient(Boolean existingClient) {
-
-        this.existingClient = existingClient;
-    }
-
-    public String getSourceOfLead() {
-
-        return sourceOfLead;
-    }
-
-    public void setSourceOfLead(String sourceOfLead) {
-
-        this.sourceOfLead = sourceOfLead;
-    }
-
-    public Boolean getIsHold() {
-
-        return isHold;
-    }
-
-    public void setIsHold(Boolean isHold) {
-
-        this.isHold = isHold;
-    }
-
-    public String getStudentRecordOwner() {
-
-        return studentRecordOwner;
-    }
-
-    public void setStudentRecordOwner(String studentRecordOwner) {
-
-        this.studentRecordOwner = studentRecordOwner;
-    }
-
-    public Boolean getParentsDocStatus() {
-
-        return parentsDocStatus;
-    }
-
-    public void setParentsDocStatus(Boolean parentsDocStatus) {
-
-        this.parentsDocStatus = parentsDocStatus;
-    }
-
-    public Boolean getInterested() {
-
-        return interested;
-    }
-
-    public void setInterested(Boolean interested) {
-
-        this.interested = interested;
-    }
-
-    public Boolean getNotInterested() {
-
-        return notInterested;
-    }
-
-    public void setNotInterested(Boolean notInterested) {
-
-        this.notInterested = notInterested;
-    }
-
-    public Boolean getDemoRequired() {
-
-        return demoRequired;
-    }
-
-    public void setDemoRequired(Boolean demoRequired) {
-
-        this.demoRequired = demoRequired;
-    }
-
-    public Date getDemoDate() {
-
-        return demoDate;
-    }
-
-    public void setDemoDate(Date demoDate) {
-
-        this.demoDate = demoDate;
-    }
-
-    public Boolean getConverted() {
-
-        return converted;
-    }
-
-    public void setConverted(Boolean converted) {
-
-        this.converted = converted;
-    }
-
-    public Date getEnrollmentDate() {
-
-        return enrollmentDate;
-    }
-
-    public void setEnrollmentDate(Date enrollmentDate) {
-
-        this.enrollmentDate = enrollmentDate;
-    }
-
-    public Boolean getRequiredFollowUp() {
-
-        return requiredFollowUp;
-    }
-
-    public void setRequiredFollowUp(Boolean requiredFollowUp) {
-
-        this.requiredFollowUp = requiredFollowUp;
-    }
-
-    public Date getFollowUpDate() {
-
-        return followUpDate;
-    }
-
-    public void setFollowUpDate(Date followUpDate) {
-
-        this.followUpDate = followUpDate;
-    }
-
-    public String getCallPreferredTime() {
-
-        return callPreferredTime;
-    }
-
-    public void setCallPreferredTime(String callPreferredTime) {
-
-        this.callPreferredTime = callPreferredTime;
-    }
-
-    public Boolean getPendingForConversion() {
-
-        return pendingForConversion;
-    }
-
-    public void setPendingForConversion(Boolean pendingForConversion) {
-
-        this.pendingForConversion = pendingForConversion;
-    }
-
-    public Boolean getIsStopped() {
-
-        return isStopped;
-    }
-
-    public void setIsStopped(Boolean isStopped) {
-
-        this.isStopped = isStopped;
-    }
-
-    public Date getStoppedDate() {
-
-        return stoppedDate;
-    }
-
-    public void setStoppedDate(Date stoppedDate) {
-
-        this.stoppedDate = stoppedDate;
-    }
-
-    public Boolean getParentAgreementStatus() {
-
-        return parentAgreementStatus;
-    }
-
-    public void setParentAgreementStatus(Boolean parentAgreementStatus) {
-
-        this.parentAgreementStatus = parentAgreementStatus;
-    }
-
-    public Boolean getTutorAgreementStatus() {
-
-        return tutorAgreementStatus;
-    }
-
-    public void setTutorAgreementStatus(Boolean tutorAgreementStatus) {
-
-        this.tutorAgreementStatus = tutorAgreementStatus;
-    }
-
-    public Float getPackageInHrs() {
-
-        return packageInHrs;
-    }
-
-    public void setPackageInHrs(Float packageInHrs) {
-
-        this.packageInHrs = packageInHrs;
-    }
-
-    public Float getHourlyRate() {
-
-        return hourlyRate;
-    }
-
-    public void setHourlyRate(Float hourlyRate) {
-
-        this.hourlyRate = hourlyRate;
-    }
-
-    public Float getRegistrationFee() {
-
-        return registrationFee;
-    }
-
-    public void setRegistrationFee(Float registrationFee) {
-
-        this.registrationFee = registrationFee;
-    }
-
-    public Boolean getIsRegistrationPaid() {
-
-        return isRegistrationPaid;
-    }
-
-    public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
-
-        this.isRegistrationPaid = isRegistrationPaid;
-    }
-
-    public Float getStudentTotalFee() {
-
-        return studentTotalFee;
-    }
-
-    public void setStudentTotalFee(Float studentTotalFee) {
-
-        this.studentTotalFee = studentTotalFee;
-    }
-
-    public Float getCsquareIncome() {
-
-        return csquareIncome;
-    }
-
-    public void setCsquareIncome(Float csquareIncome) {
-
-        this.csquareIncome = csquareIncome;
-    }
-
-    public Float getTutionRequiredForMonths() {
-
-        return tutionRequiredForMonths;
-    }
-
-    public void setTutionRequiredForMonths(Float tutionRequiredForMonths) {
-
-        this.tutionRequiredForMonths = tutionRequiredForMonths;
-    }
-
-    public Set<StudentTutor> getStudentTutorList() {
-
-        return studentTutorList;
-    }
-
-    public void setStudentTutorList(Set<StudentTutor> studentTutorList) {
-
-        this.studentTutorList = studentTutorList;
-    }
-
-    public Set<StudentSubject> getStudentSubjectList() {
-
-        return studentSubjectList;
-    }
-
-    public void setStudentSubjectList(Set<StudentSubject> studentSubjectList) {
-
-        this.studentSubjectList = studentSubjectList;
-    }
+	public String getpK() {
+		return pK;
+	}
+
+	public void setpK(String pK) {
+		this.pK = pK;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Float getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Float phone) {
+		this.phone = phone;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public Boolean getExistingClient() {
+		return existingClient;
+	}
+
+	public void setExistingClient(Boolean existingClient) {
+		this.existingClient = existingClient;
+	}
+
+	public String getSourceOfLead() {
+		return sourceOfLead;
+	}
+
+	public void setSourceOfLead(String sourceOfLead) {
+		this.sourceOfLead = sourceOfLead;
+	}
+
+	public Boolean getIsHold() {
+		return isHold;
+	}
+
+	public void setIsHold(Boolean isHold) {
+		this.isHold = isHold;
+	}
+
+	public String getStudentRecordOwner() {
+		return studentRecordOwner;
+	}
+
+	public void setStudentRecordOwner(String studentRecordOwner) {
+		this.studentRecordOwner = studentRecordOwner;
+	}
 
 	public String getGrade() {
 		return grade;
@@ -529,7 +263,199 @@ public class Student {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-    
+
+	public Boolean getParentsDocStatus() {
+		return parentsDocStatus;
+	}
+
+	public void setParentsDocStatus(Boolean parentsDocStatus) {
+		this.parentsDocStatus = parentsDocStatus;
+	}
+
+	public Boolean getInterested() {
+		return interested;
+	}
+
+	public void setInterested(Boolean interested) {
+		this.interested = interested;
+	}
+
+	public Boolean getNotInterested() {
+		return notInterested;
+	}
+
+	public void setNotInterested(Boolean notInterested) {
+		this.notInterested = notInterested;
+	}
+
+	public Boolean getDemoRequired() {
+		return demoRequired;
+	}
+
+	public void setDemoRequired(Boolean demoRequired) {
+		this.demoRequired = demoRequired;
+	}
+
+	public Date getDemoDate() {
+		return demoDate;
+	}
+
+	public void setDemoDate(Date demoDate) {
+		this.demoDate = demoDate;
+	}
+
+	public Boolean getConverted() {
+		return converted;
+	}
+
+	public void setConverted(Boolean converted) {
+		this.converted = converted;
+	}
+
+	public Date getEnrollmentDate() {
+		return enrollmentDate;
+	}
+
+	public void setEnrollmentDate(Date enrollmentDate) {
+		this.enrollmentDate = enrollmentDate;
+	}
+
+	public Boolean getRequiredFollowUp() {
+		return requiredFollowUp;
+	}
+
+	public void setRequiredFollowUp(Boolean requiredFollowUp) {
+		this.requiredFollowUp = requiredFollowUp;
+	}
+
+	public Date getFollowUpDate() {
+		return followUpDate;
+	}
+
+	public void setFollowUpDate(Date followUpDate) {
+		this.followUpDate = followUpDate;
+	}
+
+	public String getCallPreferredTime() {
+		return callPreferredTime;
+	}
+
+	public void setCallPreferredTime(String callPreferredTime) {
+		this.callPreferredTime = callPreferredTime;
+	}
+
+	public Boolean getPendingForConversion() {
+		return pendingForConversion;
+	}
+
+	public void setPendingForConversion(Boolean pendingForConversion) {
+		this.pendingForConversion = pendingForConversion;
+	}
+
+	public Boolean getIsStopped() {
+		return isStopped;
+	}
+
+	public void setIsStopped(Boolean isStopped) {
+		this.isStopped = isStopped;
+	}
+
+	public Date getStoppedDate() {
+		return stoppedDate;
+	}
+
+	public void setStoppedDate(Date stoppedDate) {
+		this.stoppedDate = stoppedDate;
+	}
+
+	public Boolean getParentAgreementStatus() {
+		return parentAgreementStatus;
+	}
+
+	public void setParentAgreementStatus(Boolean parentAgreementStatus) {
+		this.parentAgreementStatus = parentAgreementStatus;
+	}
+
+	public Boolean getTutorAgreementStatus() {
+		return tutorAgreementStatus;
+	}
+
+	public void setTutorAgreementStatus(Boolean tutorAgreementStatus) {
+		this.tutorAgreementStatus = tutorAgreementStatus;
+	}
+
+	public Float getPackageInHrs() {
+		return packageInHrs;
+	}
+
+	public void setPackageInHrs(Float packageInHrs) {
+		this.packageInHrs = packageInHrs;
+	}
+
+	public Float getHourlyRate() {
+		return hourlyRate;
+	}
+
+	public void setHourlyRate(Float hourlyRate) {
+		this.hourlyRate = hourlyRate;
+	}
+
+	public Float getRegistrationFee() {
+		return registrationFee;
+	}
+
+	public void setRegistrationFee(Float registrationFee) {
+		this.registrationFee = registrationFee;
+	}
+
+	public Boolean getIsRegistrationPaid() {
+		return isRegistrationPaid;
+	}
+
+	public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
+		this.isRegistrationPaid = isRegistrationPaid;
+	}
+
+	public Float getStudentTotalFee() {
+		return studentTotalFee;
+	}
+
+	public void setStudentTotalFee(Float studentTotalFee) {
+		this.studentTotalFee = studentTotalFee;
+	}
+
+	public Float getCsquareIncome() {
+		return csquareIncome;
+	}
+
+	public void setCsquareIncome(Float csquareIncome) {
+		this.csquareIncome = csquareIncome;
+	}
+
+	public Float getTutionRequiredForMonths() {
+		return tutionRequiredForMonths;
+	}
+
+	public void setTutionRequiredForMonths(Float tutionRequiredForMonths) {
+		this.tutionRequiredForMonths = tutionRequiredForMonths;
+	}
+
+	public Set<StudentTutor> getStudentTutorList() {
+		return studentTutorList;
+	}
+
+	public void setStudentTutorList(Set<StudentTutor> studentTutorList) {
+		this.studentTutorList = studentTutorList;
+	}
+
+	public Set<StudentSubject> getStudentSubjectList() {
+		return studentSubjectList;
+	}
+
+	public void setStudentSubjectList(Set<StudentSubject> studentSubjectList) {
+		this.studentSubjectList = studentSubjectList;
+	}
+
     
 
 }
