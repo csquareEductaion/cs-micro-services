@@ -1,8 +1,6 @@
 package com.csquare.user.service.impl;
 
 import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +18,15 @@ public class UserStatusServiceImpl implements IUserStatusService {
     @Override
     public UserStatus addUserStatus(UserStatus UserStatus) {
 
-        String pk = UUID.randomUUID().toString();
-        UserStatus.setPk(pk);
         // TODO Auto-generated method stub
-        iUserStatusRepository.save(UserStatus);
+        iUserStatusRepository.create(UserStatus);
         return UserStatus;
     }
 
     @Override
     public UserStatus updateUserStatus(UserStatus UserStatus) {
 
-        iUserStatusRepository.save(UserStatus);
+        iUserStatusRepository.update(UserStatus);
         return UserStatus;
     }
 

@@ -20,17 +20,15 @@ public class UserRoleServiceImpl implements IUserRoleService {
     @Override
     public UserRole addUserRole(UserRole userrole) {
 
-        String pk = UUID.randomUUID().toString();
-        userrole.setPk(pk);
         // TODO Auto-generated method stub
-        iUserRepository.save(userrole);
+        iUserRepository.create(userrole);
         return userrole;
     }
 
     @Override
     public UserRole updateUserRole(UserRole userrole) {
 
-        iUserRepository.save(userrole);
+        iUserRepository.update(userrole);
         return userrole;
     }
 

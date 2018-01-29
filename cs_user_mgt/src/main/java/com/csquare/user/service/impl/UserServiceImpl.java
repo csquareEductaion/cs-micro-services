@@ -19,18 +19,16 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User addUser(User User) {
-
-        String pk = UUID.randomUUID().toString();
-        User.setpK(pk);
+       
         // TODO Auto-generated method stub
-        iUserRepository.save(User);
+        iUserRepository.create(User);
         return User;
     }
 
     @Override
     public User updateUser(User User) {
 
-        iUserRepository.save(User);
+        iUserRepository.update(User);
         return User;
     }
 

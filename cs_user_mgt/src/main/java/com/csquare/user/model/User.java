@@ -2,16 +2,27 @@ package com.csquare.user.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
+import com.csquare.framework.entity.PKGenerator;
+
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "user", schema = "user_mgt")
 public class User {
 
+   
     @Id
     @Column(name = "pk")
+    @GeneratedValue(generator = PKGenerator.NAME)
+    @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pK;
 
     @Column(name = "first_name")
@@ -40,10 +51,11 @@ public class User {
     private String user_role;
     
     @Column(name = "alternate_phone")
-    private String alternate_phone;
+    private Float alternate_phone;
     
     @Column(name = "gender")
     private String gender;
+   
 
 	public String getpK() {
 		return pK;
@@ -117,11 +129,11 @@ public class User {
 		this.user_role = user_role;
 	}
 
-	public String getAlternate_phone() {
+	public Float getAlternate_phone() {
 		return alternate_phone;
 	}
 
-	public void setAlternate_phone(String alternate_phone) {
+	public void setAlternate_phone(Float alternate_phone) {
 		this.alternate_phone = alternate_phone;
 	}
 
