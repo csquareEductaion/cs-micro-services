@@ -28,7 +28,6 @@ import com.csquare.framework.entity.PKGenerator;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "tutor", schema = "tutor_mgt")
-@NamedQuery(name = "getAllTutors", query = NamedQueryConstants.getAllTutors)
 public class Tutor {
 
     @Id
@@ -115,6 +114,7 @@ public class Tutor {
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
     @Fetch(FetchMode.JOIN)
     private Set<TutorStudent> tutorStudentList = new LinkedHashSet<TutorStudent>();
+    
     
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
