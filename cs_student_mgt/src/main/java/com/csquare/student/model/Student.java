@@ -37,6 +37,9 @@ public class Student {
     @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pK;
     
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "syllabus")
     private String syllabus;
 
@@ -465,6 +468,14 @@ public class Student {
 
 	public void setSyllabus(String syllabus) {
 		this.syllabus = syllabus;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
     
