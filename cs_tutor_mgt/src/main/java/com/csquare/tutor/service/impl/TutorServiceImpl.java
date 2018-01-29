@@ -46,13 +46,13 @@ public class TutorServiceImpl implements ITutorService {
     @Override
     public List<Tutor> getAllTutors() {
 
-        return itutorRepository.findAll("tutorGradeList","tutorLocationList","leadSubjectList","leadSyllabusList","tutorStudentList","tutorSyllabusEduList");
+        return itutorRepository.findAll("tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
     }
 
     @Override
     public List<Tutor> getAllLeads(int offset, int limit) {
     	
-    	return itutorRepository.findAll(offset, limit, "tutorGradeList","tutorLocationList","leadSubjectList","leadSyllabusList","tutorStudentList","tutorSyllabusEduList");
+    	return itutorRepository.findAll(offset, limit, "tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
 
     }
 

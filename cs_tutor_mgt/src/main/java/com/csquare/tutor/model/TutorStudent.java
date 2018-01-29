@@ -15,7 +15,7 @@ import com.csquare.framework.entity.PKGenerator;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "tutor", schema = "tutor_mgt")
+@Table(name = "tutor_student", schema = "tutor_mgt")
 public class TutorStudent {
 	
 	@Id

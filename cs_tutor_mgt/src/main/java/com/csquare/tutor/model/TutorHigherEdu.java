@@ -16,7 +16,7 @@ import com.csquare.framework.entity.PKGenerator;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "tutor", schema = "tutor_mgt")
+@Table(name = "tutor_higher_education", schema = "tutor_mgt")
 public class TutorHigherEdu {
 	
 	@Id
@@ -27,6 +27,9 @@ public class TutorHigherEdu {
 
     @Column(name = "higher_education")
     private String higher_education;
+    
+    @Column(name = "tutor_id")
+    private String tutor_id;
 
 	public String getPk() {
 		return pk;
@@ -42,6 +45,14 @@ public class TutorHigherEdu {
 
 	public void setHigher_education(String higher_education) {
 		this.higher_education = higher_education;
+	}
+
+	public String getTutor_id() {
+		return tutor_id;
+	}
+
+	public void setTutor_id(String tutor_id) {
+		this.tutor_id = tutor_id;
 	}
 
     

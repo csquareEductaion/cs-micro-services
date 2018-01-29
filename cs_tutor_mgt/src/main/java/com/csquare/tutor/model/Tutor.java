@@ -94,21 +94,25 @@ public class Tutor {
     private String qualification;
     
    
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<TutorGrade> tutorGradeList = new LinkedHashSet<TutorGrade>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @Fetch(FetchMode.JOIN)
     private Set<TutorLocation> tutorLocationList = new LinkedHashSet<TutorLocation>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-    private Set<TutorSubject> leadSubjectList = new LinkedHashSet<TutorSubject>();
+    @Fetch(FetchMode.JOIN)
+    private Set<TutorSubject> tutorSubjectList = new LinkedHashSet<TutorSubject>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-    private Set<TutorSyllabus> leadSyllabusList = new LinkedHashSet<TutorSyllabus>();
+    @Fetch(FetchMode.JOIN)
+    private Set<TutorSyllabus> tutorSyllabusList = new LinkedHashSet<TutorSyllabus>();
     
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
@@ -121,10 +125,7 @@ public class Tutor {
     @Fetch(FetchMode.JOIN)
     private Set<TutorHigherEdu> tutorHigerEduList = new LinkedHashSet<TutorHigherEdu>();
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
-    @Fetch(FetchMode.JOIN)
-    private Set<TutorSyllabus> tutorSyllabusEduList = new LinkedHashSet<TutorSyllabus>();
+   
 
    
     public String getpK() {
@@ -343,20 +344,20 @@ public class Tutor {
 		this.tutorLocationList = tutorLocationList;
 	}
 
-	public Set<TutorSubject> getLeadSubjectList() {
-		return leadSubjectList;
+	public Set<TutorSubject> getTutorSubjectList() {
+		return tutorSubjectList;
 	}
 
-	public void setLeadSubjectList(Set<TutorSubject> leadSubjectList) {
-		this.leadSubjectList = leadSubjectList;
+	public void setTutorSubjectList(Set<TutorSubject> tutorSubjectList) {
+		this.tutorSubjectList = tutorSubjectList;
 	}
 
-	public Set<TutorSyllabus> getLeadSyllabusList() {
-		return leadSyllabusList;
+	public Set<TutorSyllabus> getTutorSyllabusList() {
+		return tutorSyllabusList;
 	}
 
-	public void setLeadSyllabusList(Set<TutorSyllabus> leadSyllabusList) {
-		this.leadSyllabusList = leadSyllabusList;
+	public void setTutorSyllabusList(Set<TutorSyllabus> tutorSyllabusList) {
+		this.tutorSyllabusList = tutorSyllabusList;
 	}
 
 	public Set<TutorStudent> getTutorStudentList() {
@@ -373,14 +374,6 @@ public class Tutor {
 
 	public void setTutorHigerEduList(Set<TutorHigherEdu> tutorHigerEduList) {
 		this.tutorHigerEduList = tutorHigerEduList;
-	}
-
-	public Set<TutorSyllabus> getTutorSyllabusEduList() {
-		return tutorSyllabusEduList;
-	}
-
-	public void setTutorSyllabusEduList(Set<TutorSyllabus> tutorSyllabusEduList) {
-		this.tutorSyllabusEduList = tutorSyllabusEduList;
 	}
     
     
