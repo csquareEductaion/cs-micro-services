@@ -28,26 +28,29 @@ public class TutorController extends RestExceptionHandler {
 
     @RequestMapping(value = "/addTutor", method = RequestMethod.POST, headers = "Accept=application/json")
     public Tutor addTutor(@RequestBody Tutor tutor) throws ValidationException {
-    	
+    	/*
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))
     			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())){
     		tutor = iTutorService.addTutor(tutor);
             
-    	}
-        
+    	} */
+    	
+    	tutor = iTutorService.addTutor(tutor);        
     	return tutor;
     }
 
     @RequestMapping(value = "/updateTutor", method = RequestMethod.POST, headers = "Accept=application/json")
     public Tutor updateTutor(@RequestBody Tutor tutor) throws ValidationException {
-    	
+    	/*
     	if(tutor !=null 
     			&& CSquareInputDataValidator.validatePhoneNumber(String.valueOf(tutor.getPhone()))
     			&& CSquareInputDataValidator.isValidEmailAddress(tutor.getEmail())){
     		tutor = iTutorService.updateTutor(tutor);
             
     	}
+    	*/
+    	tutor = iTutorService.updateTutor(tutor);
         return tutor;
     }
     
