@@ -46,7 +46,7 @@ public class Tutor {
     private String email;
 
     @Column(name = "phone")
-    private BigDecimal phone;
+    private Float phone;
 
     @Column(name = "city")
     private String city;
@@ -168,12 +168,12 @@ public class Tutor {
         this.email = email;
     }
 
-    public BigDecimal getPhone() {
+    public Float getPhone() {
 
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(Float phone) {
 
         this.phone = phone;
     }
