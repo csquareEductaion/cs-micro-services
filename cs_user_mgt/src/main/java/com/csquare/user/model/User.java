@@ -55,6 +55,12 @@ public class User {
     
     @Column(name = "gender")
     private String gender;
+    
+    @Column(name = "userType")
+    private String userType;
+    
+    @Column(name = "isActive")
+    private String isActive;
    
 
 	public String getpK() {
@@ -143,6 +149,22 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
 	}
     
 	

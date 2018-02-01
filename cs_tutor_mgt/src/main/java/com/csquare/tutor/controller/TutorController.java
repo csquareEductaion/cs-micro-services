@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.framework.validation.CSquareInputDataValidator;
+import com.csquare.framework.message.MailMessage;
+import com.csquare.framework.util.sdk.RestServiceClient;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
 
@@ -36,7 +37,15 @@ public class TutorController extends RestExceptionHandler {
             
     	} */
     	
-    	tutor = iTutorService.addTutor(tutor);        
+    	// TODO Auto-generated method stub
+    	tutor = iTutorService.addTutor(tutor);
+    	
+        MailMessage message = new MailMessage();
+        message.setToAddress(tutor.getEmail());
+        message.setSubject("Subject11111111");
+        message.setBody("lead is created");
+        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
+        
     	return tutor;
     }
 

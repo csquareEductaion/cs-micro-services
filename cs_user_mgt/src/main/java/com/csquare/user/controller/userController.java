@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.message.MailMessage;
+import com.csquare.framework.util.sdk.RestServiceClient;
 import com.csquare.user.model.User;
 import com.csquare.user.service.IUserService;
  
@@ -25,6 +27,12 @@ public class userController extends RestExceptionHandler {
     public User addUser(@RequestBody User user) {
 
         user = iuserService.addUser(user);
+        
+        MailMessage message = new MailMessage();
+        message.setToAddress(user.getEmail());
+        message.setSubject("Subject11111111");
+        message.setBody("lead is created");
+        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
         return user;
     }
 
