@@ -43,6 +43,14 @@ public class userController extends RestExceptionHandler {
         return user;
     }
     
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST, headers = "Accept=application/json")
+    public User saveUser(@RequestBody User user){
+    	
+
+        user = iuserService.saveUser(user);
+        return user;
+    }
+    
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, headers = "Accept=application/json")
     public void updateUser(@RequestBody String userId) {
 

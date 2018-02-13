@@ -1,8 +1,6 @@
 package com.csquare.lead.service.impl;
 
 import java.util.List;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +8,9 @@ import com.csquare.framework.message.MailMessage;
 import com.csquare.framework.util.sdk.RestServiceClient;
 import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.model.Lead;
+import com.csquare.lead.model.intregration.User;
 import com.csquare.lead.service.ILeadService;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
+import com.csquare.lead.model.intregration.Student;
 
 @Service
 public class LeadServiceImpl implements ILeadService {
@@ -28,9 +25,23 @@ public class LeadServiceImpl implements ILeadService {
         lead = ileadRepository.create(lead);
         
         //1. Convert object to JSON string
-        Gson gson = new Gson();
-        String json = gson.toJson(lead);
-        System.out.println(json);
+        User user = new User();
+        user.setPhone(Float.valueOf(String.valueOf(lead.getPhone())));
+        user.setCity(lead.getCity());
+        user.setEmail(lead.getEmail());
+        user.setFirstName(lead.getFirstName());
+        user.setLastName(lead.getLastName());
+        user.setGender(lead.getGender());
+        user.setIsActive(true);
+        user.setUserName(lead.getEmail());
+        user.setAlternate_phone(lead.getAlteratPhone());
+        
+        if(lead.getIsstudent())
+        	user.setUserType("Student");
+        if(lead.getIstutor())
+        	user.setUserType("Tutor");
+        
+        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_user_mgt/saveUser", user, String.class);
         
         MailMessage message = new MailMessage();
         message.setToAddress(lead.getEmail());
@@ -44,8 +55,41 @@ public class LeadServiceImpl implements ILeadService {
 
     @Override
     public Lead updateLead(Lead lead) {
-
-        lead = ileadRepository.update(lead);
+   	    lead = ileadRepository.update(lead);
+        
+   	    //create user
+    	User user = new User();
+    	user.setPhone(Float.valueOf(String.valueOf(lead.getPhone())));
+        user.setCity(lead.getCity());
+        user.setEmail(lead.getEmail());
+        user.setFirstName(lead.getFirstName());
+        user.setLastName(lead.getLastName());
+        user.setGender(lead.getGender());
+        user.setIsActive(true);
+        user.setUserName(lead.getEmail());
+        user.setAlternate_phone(lead.getAlteratPhone());
+        
+        if(lead.getIsstudent())
+        	user.setUserType("Student");
+        if(lead.getIstutor())
+        	user.setUserType("Tutor");
+    	
+        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_user_mgt/saveUser", user, String.class);
+        
+        //create student
+        Student student = new Student();
+        student.setAddress(lead.getAddress());
+        student.setCity(lead.getCity());
+        student.setEmail(lead.getEmail());
+        student.setFirstName(lead.getFirstName());
+        student.setGender(lead.getGender());
+        student.setGrade(lead.getGender());
+        student.setInterested(true);
+        student.setLastName(lead.getLastName());
+        student.setPhone(Float.valueOf(String.valueOf(lead.getPhone())));
+        
+        
+        
         return lead;
     }
 

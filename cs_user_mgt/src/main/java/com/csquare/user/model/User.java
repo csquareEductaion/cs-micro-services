@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -16,6 +17,7 @@ import com.csquare.framework.entity.PKGenerator;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "user", schema = "user_mgt")
+@NamedQuery(name = "getUserByEmail", query = NamedQueryConstants.getUserByEmail)
 public class User {
 
    
@@ -60,8 +62,11 @@ public class User {
     private String userType;
     
     @Column(name = "isActive")
-    private String isActive;
-   
+    private Boolean isActive;
+    
+    @Column(name = "user_name")
+    private String userName;
+      
 
 	public String getpK() {
 		return pK;
@@ -159,12 +164,20 @@ public class User {
 		this.userType = userType;
 	}
 
-	public String getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
     
 	

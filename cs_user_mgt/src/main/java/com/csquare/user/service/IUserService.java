@@ -10,6 +10,8 @@ public interface IUserService {
 
     public User updateUser(User user);
     
+    public User saveUser(User user);
+    
     public void deleteUser(String userId);
     
     public User getUserById(String id);
