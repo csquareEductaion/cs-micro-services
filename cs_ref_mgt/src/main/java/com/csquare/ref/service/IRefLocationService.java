@@ -16,4 +16,6 @@ public interface IRefLocationService {
     public RefLocation getRefLocationById(String id);
     
     public List<RefLocation> getAllRefLocations();
+    
+    public List<RefLocation> getAllRefLocationsByCity(String city);
 }

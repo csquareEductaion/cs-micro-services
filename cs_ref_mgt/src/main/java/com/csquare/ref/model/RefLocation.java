@@ -26,6 +26,12 @@ public class RefLocation {
 	
 	@Column(name = "location_name")
     private String location_name;
+	
+	@Column(name = "city")
+	private String city;
+	
+	@Column(name = "pincode")
+	private String pincode;
 
 	public String getPk() {
 		return pk;
@@ -41,6 +47,22 @@ public class RefLocation {
 
 	public void setLocation_name(String location_name) {
 		this.location_name = location_name;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 	

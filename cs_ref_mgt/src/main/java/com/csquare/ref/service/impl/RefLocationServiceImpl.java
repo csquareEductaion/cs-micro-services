@@ -22,14 +22,14 @@ public class RefLocationServiceImpl implements IRefLocationService {
     public RefLocation addRefLocation(RefLocation location) {
 
     	// TODO Auto-generated method stub
-    	iRefLocationRepository.create(location);
+    	iRefLocationRepository.save(location);
         return location;
     }
     
     @Override
     public RefLocation updateRefLocation(RefLocation location) {
 	
-    	iRefLocationRepository.update(location);
+    	iRefLocationRepository.save(location);
         return location;
     }
     
@@ -52,6 +52,12 @@ public class RefLocationServiceImpl implements IRefLocationService {
 	public List<RefLocation> getAllRefLocations() {
 		// TODO Auto-generated method stub
 		return iRefLocationRepository.findAll();
+	}
+	
+	@Override
+	public List<RefLocation> getAllRefLocationsByCity(String city) {
+		// TODO Auto-generated method stub
+		return iRefLocationRepository.findAllByCity(city);
 	}
 
 	

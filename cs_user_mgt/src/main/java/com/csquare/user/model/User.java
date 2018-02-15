@@ -68,6 +68,15 @@ public class User {
     private String userName;
       
 
+    @Column(name = "address")
+    private String address;
+    
+    @Column(name = "location")
+    private String location;
+    
+    @Column(name = "pincode")
+    private String pincode;
+    
 	public String getpK() {
 		return pK;
 	}
@@ -179,6 +188,32 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
     
+	
+	
 	
 }

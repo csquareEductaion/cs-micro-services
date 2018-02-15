@@ -54,5 +54,10 @@ public class RefLocationController extends RestExceptionHandler {
 
         return ireflocationService.getAllRefLocations();
     }
+    
+    @RequestMapping(value = "/getAllRefLocationsByCity/{city}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<RefLocation> getAllRefLocationsByCity(@PathVariable String city) {
 
+        return ireflocationService.getAllRefLocationsByCity(city);
+    }
 }
