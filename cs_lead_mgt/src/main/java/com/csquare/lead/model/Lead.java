@@ -71,7 +71,7 @@ public class Lead {
     private String address;
     
     @Column(name = "alternate_phone")
-    private Float alteratPhone;
+    private Float alteratePhone;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
@@ -253,12 +253,12 @@ public class Lead {
         this.address = address;
     }
 
-	public Float getAlteratPhone() {
-		return alteratPhone;
+	public Float getAlteratePhone() {
+		return alteratePhone;
 	}
 
-	public void setAlteratPhone(Float alteratPhone) {
-		this.alteratPhone = alteratPhone;
+	public void setAlteratePhone(Float alteratePhone) {
+		this.alteratePhone = alteratePhone;
 	}
     
     

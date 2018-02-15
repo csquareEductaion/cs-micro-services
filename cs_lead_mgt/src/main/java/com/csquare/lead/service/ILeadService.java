@@ -18,5 +18,7 @@ public interface ILeadService {
     public List<Lead> getAllLeads();
 
     public List<Lead> getAllLeads(int offset, int limit);
+    
+    public Lead getLeadByEmail(String email);
 
 }

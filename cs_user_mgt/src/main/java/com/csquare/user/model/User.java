@@ -17,7 +17,7 @@ import com.csquare.framework.entity.PKGenerator;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "user", schema = "user_mgt")
-@NamedQuery(name = "getUserByEmail", query = NamedQueryConstants.getUserByEmail)
+//@NamedQuery(name = "getUserByEmail", query = NamedQueryConstants.getUserByEmail)
 public class User {
 
    

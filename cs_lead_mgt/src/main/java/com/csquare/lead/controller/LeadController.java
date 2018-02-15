@@ -76,4 +76,13 @@ public class LeadController extends RestExceptionHandler {
         List<Lead> leads = iLeadService.getAllLeads(offset, limit);
         return leads;
     }
+    
+    @RequestMapping(value = "/getLeadByEmail/{email}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public Lead getLeadByEmail(@PathVariable String email) {
+
+        Lead lead = null;
+        if (email != null)
+            lead = iLeadService.getLeadByEmail(email);
+        return lead;
+    }
 }
