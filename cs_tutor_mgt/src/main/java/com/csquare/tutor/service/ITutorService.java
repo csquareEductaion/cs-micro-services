@@ -20,5 +20,8 @@ public interface ITutorService {
     public List<Tutor> getAllTutors();
     
     public List<Tutor> getAllLeads(int offset, int limit);
+    
+    
+  // public List<Tutor> getAllTutorsByParams(More Optional arguments  String firstName)
 
 }

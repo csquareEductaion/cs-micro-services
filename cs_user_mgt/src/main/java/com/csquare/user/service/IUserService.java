@@ -19,5 +19,7 @@ public interface IUserService {
     public List<User> getAllUsers();
     
     public List<User> getAllUsers(int Offset, int limit);
+    
+    public User getUserByEmail(String email);
 
 }

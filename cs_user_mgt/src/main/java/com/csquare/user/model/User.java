@@ -42,6 +42,11 @@ public class User {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+    
+    @Column(name = "user_Type")
+    private String userType;
 
     @Column(name = "password")
     private String password;
@@ -58,11 +63,6 @@ public class User {
     @Column(name = "gender")
     private String gender;
     
-    @Column(name = "userType")
-    private String userType;
-    
-    @Column(name = "isActive")
-    private Boolean isActive;
     
     @Column(name = "user_name")
     private String userName;
@@ -165,22 +165,6 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -211,6 +195,22 @@ public class User {
 
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
     
 	

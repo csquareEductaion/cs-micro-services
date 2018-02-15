@@ -76,5 +76,12 @@ public class userController extends RestExceptionHandler {
         return iuserService.getAllUsers(offset, limit);
     }
 
+    @RequestMapping(value = "/getUserByEmail/{email}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public User getLeadByEmail(@PathVariable String email) {
 
+        User lead = null;
+        if (email != null)
+            lead = iuserService.getUserByEmail(email);
+        return lead;
+    }
 }
