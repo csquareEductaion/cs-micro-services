@@ -36,23 +36,20 @@ public class AuthController extends RestExceptionHandler {
 
     	User userFromDB=iuserService.getUserByEmail(user.getEmail());
     	if(null==userFromDB) {
-    		
+    		 
     	}
-    	if(!StringUtil.equals(userFromDB.getPassword(), user.getPassword())) {
-    		
-    	}
-    	
-    	userFromDB.setPassword(null);
     	//get role for user
     	UserSession session=new UserSession();
+    	if(user.getPassword().equals(userFromDB.getPassword())) {
+    		userFromDB.setPassword(null);
+        	session.setUser(userFromDB); 
+        	session.setUserRole(iuserRoleService.getUserRoleById(userFromDB.getUser_role()));
+        	session.setUserId(userFromDB.getEmail());
+        	session.setSessionId(UUID.randomUUID().toString());
+    	} else {
+    		session.setSessionId(null);
+    	}
     	
-    	session.setUser(userFromDB); 
-    	session.setUserRole(iuserRoleService.getUserRoleById(userFromDB.getUser_role()));
-    	session.setUserId(userFromDB.getEmail());
-    	session.setSessionId(UUID.randomUUID().toString());
-    	
-        
-        
 //        MailMessage message = new MailMessage();
 //        message.setToAddress(user.getEmail());
 //        message.setSubject("Subject11111111");
