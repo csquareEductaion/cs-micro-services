@@ -57,6 +57,9 @@ public class Student {
 
     @Column(name = "city")
     private String city;
+    
+    @Column(name = "location")
+    private String location;
 
     @Column(name = "comment")
     private String comment;
@@ -478,6 +481,15 @@ public class Student {
 		this.address = address;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
     
 
 }

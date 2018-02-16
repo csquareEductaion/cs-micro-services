@@ -28,11 +28,11 @@ public class userController extends RestExceptionHandler {
 
         user = iuserService.addUser(user);
         
-        MailMessage message = new MailMessage();
-        message.setToAddress(user.getEmail());
-        message.setSubject("Subject11111111");
-        message.setBody("lead is created");
-        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
+//        MailMessage message = new MailMessage();
+//        message.setToAddress(user.getEmail());
+//        message.setSubject("Subject11111111");
+//        message.setBody("lead is created");
+//        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
         return user;
     }
 

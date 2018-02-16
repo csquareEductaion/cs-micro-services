@@ -80,6 +80,9 @@ public class Tutor {
 
     @Column(name = "gender")
     private String gender;
+    
+    @Column(name = "location")
+    private String location;
 
     @Column(name = "is_phone_dnd")
     private String is_phone_dnd;
@@ -374,6 +377,14 @@ public class Tutor {
 
 	public void setTutorHigerEduList(Set<TutorHigherEdu> tutorHigerEduList) {
 		this.tutorHigerEduList = tutorHigerEduList;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
     
     
