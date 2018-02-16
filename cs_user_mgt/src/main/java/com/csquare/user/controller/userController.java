@@ -51,8 +51,8 @@ public class userController extends RestExceptionHandler {
         return user;
     }
     
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void updateUser(@RequestBody String userId) {
+    @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void updateUser(@PathVariable String userId) {
 
         iuserService.deleteUser(userId);
     }
@@ -76,12 +76,12 @@ public class userController extends RestExceptionHandler {
         return iuserService.getAllUsers(offset, limit);
     }
 
-    @RequestMapping(value = "/getUserByEmail/{email}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public User getLeadByEmail(@PathVariable String email) {
+    @RequestMapping(value = "/getUserByEmail", method = RequestMethod.POST, headers = "Accept=application/json")
+    public User getUserByEmail(@RequestBody User user) {
 
         User lead = null;
-        if (email != null)
-            lead = iuserService.getUserByEmail(email);
+        if (user.getEmail() != null)
+            lead = iuserService.getUserByEmail(user.getEmail());
         return lead;
     }
 }

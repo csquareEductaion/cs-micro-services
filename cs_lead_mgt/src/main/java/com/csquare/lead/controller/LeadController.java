@@ -47,8 +47,8 @@ public class LeadController extends RestExceptionHandler {
         return lead;
     }
 
-    @RequestMapping(value = "/deleteLead", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteLead(@RequestBody String leadId) {
+    @RequestMapping(value = "/deleteLead/{leadId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void deleteLead(@PathVariable String leadId) {
 
         if (leadId != null)
             iLeadService.deleteLead(leadId);

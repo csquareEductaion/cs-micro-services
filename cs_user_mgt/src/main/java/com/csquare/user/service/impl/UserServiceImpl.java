@@ -21,6 +21,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User addUser(User User) {
 
+		User.setUserName(User.getEmail()); 
+		User.setPassword(UUID.randomUUID().toString());
 		iUserRepository.save(User);
 		return User;
 	}

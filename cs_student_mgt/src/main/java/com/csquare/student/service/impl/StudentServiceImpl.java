@@ -23,12 +23,12 @@ public class StudentServiceImpl implements IStudentService {
 
         // TODO Auto-generated method stub
         istudentRepository.create(student);
-         MailMessage message = new MailMessage();
-         message.setToAddress(student.getEmail());
-         message.setSubject("Subject11111111");
-         message.setBody("djhfjshfihtiertgjerkgnjgnjdfngjdfnjdg");
-        
-         RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
+//         MailMessage message = new MailMessage();
+//         message.setToAddress(student.getEmail());
+//         message.setSubject("Subject11111111");
+//         message.setBody("djhfjshfihtiertgjerkgnjgnjdfngjdfnjdg");
+//        
+//         RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
         return student;
     }
 

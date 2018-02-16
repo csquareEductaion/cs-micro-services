@@ -40,12 +40,12 @@ public class TutorController extends RestExceptionHandler {
     	// TODO Auto-generated method stub
     	tutor = iTutorService.addTutor(tutor);
     	
-        MailMessage message = new MailMessage();
-        message.setToAddress(tutor.getEmail());
-        message.setSubject("Subject11111111");
-        message.setBody("lead is created");
-        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
-        
+//        MailMessage message = new MailMessage();
+//        message.setToAddress(tutor.getEmail());
+//        message.setSubject("Subject11111111");
+//        message.setBody("lead is created");
+//        RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
+//        
     	return tutor;
     }
 
@@ -63,8 +63,8 @@ public class TutorController extends RestExceptionHandler {
         return tutor;
     }
     
-    @RequestMapping(value = "/deleteTutor", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteTutor(@RequestBody String tutorId) {
+    @RequestMapping(value = "/deleteTutor/{tutorId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void deleteTutor(@PathVariable String tutorId) {
     	
     	if(tutorId !=null)
     		iTutorService.deleteTutor(tutorId);
