@@ -90,4 +90,19 @@ public class TutorController extends RestExceptionHandler {
 
         return iTutorService.getAllLeads(offset, limit);
     }
+    
+    @RequestMapping(value = "/getAllTutorsByParams", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<Tutor> getAllTutorsByParams(@RequestBody Tutor tutor) {
+    	    	
+    	if(tutor.getEmail() == null && tutor.getCity() ==null && tutor.getLocation() == null && 
+    		tutor.getGender() == null && tutor.getIs_trusted_tutor() == null && tutor.getPhone() == null &&
+    		tutor.getGrade() == null && tutor.getVerified() == null) {
+    		
+//    		List<Object[]> tutorList = iTutorService.getAllTutors();
+		        return null;
+		    }
+    	else {
+    		return iTutorService.getAllTutorsByParams(tutor);
+    	}
+    }
 }
