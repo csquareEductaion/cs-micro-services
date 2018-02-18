@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.csquare.framework.exception.handler.RestExceptionHandler;
 import com.csquare.framework.validation.CSquareInputDataValidator;
 import com.csquare.lead.model.Lead;
+import com.csquare.lead.model.search.SearchCriteria;
 import com.csquare.lead.service.ILeadService;
 
 
@@ -63,26 +64,17 @@ public class LeadController extends RestExceptionHandler {
         return lead;
     }
 
-    @RequestMapping(value = "/getAllLeads", method = RequestMethod.GET, headers = "Accept=application/json")
-    public List<Lead> getAllLeads() {
-
-        List<Lead> leads = iLeadService.getAllLeads();
-        return leads;
-    }
-
     @RequestMapping(value = "/getAllLeads/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<Lead> getAllLeads(@PathVariable Integer offset, @PathVariable Integer limit) {
 
         List<Lead> leads = iLeadService.getAllLeads(offset, limit);
         return leads;
     }
-    
-    @RequestMapping(value = "/getLeadByEmail/{email}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public Lead getLeadByEmail(@PathVariable String email) {
 
-        Lead lead = null;
-        if (email != null)
-            lead = iLeadService.getLeadByEmail(email);
-        return lead;
+    @RequestMapping(value = "/searchLead/{offset}/{limit}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<Lead> searchLead(@RequestBody List<SearchCriteria> searchCriteriaList, @PathVariable Integer offset, @PathVariable Integer limit) {
+
+        List<Lead> leadList = iLeadService.searchLead(searchCriteriaList, offset, limit);
+        return leadList;
     }
 }

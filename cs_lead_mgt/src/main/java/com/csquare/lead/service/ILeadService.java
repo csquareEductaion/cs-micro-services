@@ -3,6 +3,7 @@ package com.csquare.lead.service;
 import java.util.List;
 
 import com.csquare.lead.model.Lead;
+import com.csquare.lead.model.search.SearchCriteria;
 
 
 public interface ILeadService {
@@ -15,10 +16,8 @@ public interface ILeadService {
 
     public Lead getLeadById(String id);
 
-    public List<Lead> getAllLeads();
-
     public List<Lead> getAllLeads(int offset, int limit);
-    
-    public Lead getLeadByEmail(String email);
+
+    public List<Lead> searchLead(List<SearchCriteria> searchCriteriaList, int offset, int limit);
 
 }

@@ -1,12 +1,16 @@
 package com.csquare.lead.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.csquare.framework.util.StringUtil;
 import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.model.Lead;
+import com.csquare.lead.model.NamedQueryConstants;
+import com.csquare.lead.model.search.SearchCriteria;
 import com.csquare.lead.service.ILeadService;
 
 
@@ -14,7 +18,7 @@ import com.csquare.lead.service.ILeadService;
 public class LeadServiceImpl implements ILeadService {
 
     @Autowired
-  private  LeadRepository ileadRepository;
+    private LeadRepository ileadRepository;
 
     @Override
     public Lead addLead(Lead lead) {
@@ -44,31 +48,41 @@ public class LeadServiceImpl implements ILeadService {
     }
 
     @Override
-    public List<Lead> getAllLeads() {
+    public List<Lead> getAllLeads(int offset, int limit) {
 
-      //  return ileadRepository.findAll("leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
-    	return ileadRepository.findAll();
+        return ileadRepository.findAll(offset, limit, "leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
     }
 
-//    @Override
-//    public List<Lead> getAllLeads(int offset, int limit) {
-//
-//        return ileadRepository.findAll(offset, limit, "leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
-//    }
+    @Override
+    public List<Lead> searchLead(List<SearchCriteria> searchCriteriaList, int offset, int limit) {
 
-	@Override
-	public Lead getLeadByEmail(String email) {
-	Lead lead= ileadRepository.findByEmail(email);
-		// TODO Auto-generated method stub
-		return  lead;
-	}
+        HashMap<String, String> paramsMap = new HashMap<String, String>();
+        StringBuilder queryBuilder = new StringBuilder(NamedQueryConstants.searchLead);
+        if (null != searchCriteriaList && !searchCriteriaList.isEmpty()) {
+            StringUtil.append(queryBuilder, " where");
 
-@Override
-public List<Lead> getAllLeads(int offset, int limit) {
-	// TODO Auto-generated method stub
-	return null;
-}
+            for (SearchCriteria sc : searchCriteriaList) {
+                StringUtil.append(queryBuilder, " ");
+                StringUtil.append(queryBuilder, "lead.");
+                StringUtil.append(queryBuilder, sc.getFieldName());
+                StringUtil.append(queryBuilder, "=:");
+                StringUtil.append(queryBuilder, sc.getFieldName());
+                StringUtil.append(queryBuilder, " ");
 
+                paramsMap.put(sc.getFieldName(), sc.getFieldValue());
 
+                StringUtil.append(queryBuilder, "AND");
+
+            }
+
+            int idxAnd = queryBuilder.lastIndexOf("AND");
+            if (idxAnd > 0) {
+                queryBuilder.delete(idxAnd, queryBuilder.length());
+            }
+        }
+
+        List<Lead> leadList = ileadRepository.findByHQL(queryBuilder.toString(), paramsMap, true, offset, limit);
+        return leadList;
+    }
 
 }
