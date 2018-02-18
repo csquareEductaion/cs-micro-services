@@ -62,24 +62,9 @@ public class userController extends RestExceptionHandler {
         return user;
     }
 
-    @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET, headers = "Accept=application/json")
-    public List<User> getAllUsers() {
-
-        return iuserService.getAllUsers();
-    }
-
     @RequestMapping(value = "/getAllUsers/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<User> getAllUsers(@PathVariable Integer offset, @PathVariable Integer limit) {
 
         return iuserService.getAllUsers(offset, limit);
-    }
-
-    @RequestMapping(value = "/getUserByEmail", method = RequestMethod.POST, headers = "Accept=application/json")
-    public User getUserByEmail(@RequestBody User user) {
-
-        User lead = null;
-        if (user.getEmail() != null)
-            lead = iuserService.getUserByEmail(user.getEmail());
-        return lead;
     }
 }
