@@ -1,13 +1,13 @@
 package com.csquare.tutor.service.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csquare.tutor.dao.TutorRepository;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
-
 
 
 @Service
@@ -44,34 +44,10 @@ public class TutorServiceImpl implements ITutorService {
     }
 
     @Override
-    public List<Tutor> getAllTutors() {
+    public List<Tutor> getAllTutors(int offset, int limit) {
 
-        return itutorRepository.findAll();
+        return itutorRepository.findAll(offset, limit, "tutorGradeList", "tutorLocationList", "tutorSubjectList", "tutorSyllabusList",
+            "tutorStudentList");
     }
-
-//    @Override
-//    public List<Tutor> getAllLeads(int offset, int limit) {
-//    	
-//    	return itutorRepository.findAll(offset, limit, "tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
-//
-//    }
-
-	@Override
-	public List<Tutor> getAllTutorsByParams(Tutor tutor) {
-		// TODO Auto-generated method stub
-		//List<Object[]> tutorList= itutorRepository.findByParams(tutor);		
-		
-		return itutorRepository.findByParams(tutor.getEmail().toString(), tutor.getPhone().toString(), 
-				tutor.getCity().toString(), tutor.getLocation().toString(), tutor.getGender().toString(),
-				tutor.getGrade().toString(), tutor.getVerified(), tutor.getIs_trusted_tutor());
-	}
-
-@Override
-public List<Tutor> getAllLeads(int offset, int limit) {
-	// TODO Auto-generated method stub
-	return null;
-}
-    
-
 
 }
