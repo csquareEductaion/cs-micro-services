@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.framework.validation.CSquareInputDataValidator;
 import com.csquare.lead.model.Lead;
-import com.csquare.lead.model.search.SearchCriteria;
 import com.csquare.lead.service.ILeadService;
 
 

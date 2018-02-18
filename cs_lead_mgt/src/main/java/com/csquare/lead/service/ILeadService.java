@@ -2,8 +2,8 @@ package com.csquare.lead.service;
 
 import java.util.List;
 
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.lead.model.Lead;
-import com.csquare.lead.model.search.SearchCriteria;
 
 
 public interface ILeadService {

@@ -1,4 +1,4 @@
-package com.csquare.lead.model.search;
+package com.csquare.framework.search;
 
 public class SearchCriteria {
 

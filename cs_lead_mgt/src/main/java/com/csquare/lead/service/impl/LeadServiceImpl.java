@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.framework.util.StringUtil;
 import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.model.Lead;
 import com.csquare.lead.model.NamedQueryConstants;
-import com.csquare.lead.model.search.SearchCriteria;
 import com.csquare.lead.service.ILeadService;
 
 
