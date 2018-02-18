@@ -71,10 +71,11 @@ public class LeadController extends RestExceptionHandler {
         return leads;
     }
 
-    @RequestMapping(value = "/searchLead/{offset}/{limit}", method = RequestMethod.POST, headers = "Accept=application/json")
-    public List<Lead> searchLead(@RequestBody List<SearchCriteria> searchCriteriaList, @PathVariable Integer offset, @PathVariable Integer limit) {
+    @RequestMapping(value = "/searchLead/{offset}/{limit}/{allMatch}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<Lead> searchLead(@RequestBody List<SearchCriteria> criterias, @PathVariable Integer offset, @PathVariable Integer limit,
+        @PathVariable Boolean allMatch) {
 
-        List<Lead> leadList = iLeadService.searchLead(searchCriteriaList, offset, limit);
+        List<Lead> leadList = iLeadService.searchLead(criterias, offset, limit, allMatch);
         return leadList;
     }
 }

@@ -18,6 +18,6 @@ public interface ILeadService {
 
     public List<Lead> getAllLeads(int offset, int limit);
 
-    public List<Lead> searchLead(List<SearchCriteria> searchCriteriaList, int offset, int limit);
+    public List<Lead> searchLead(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch);
 
 }

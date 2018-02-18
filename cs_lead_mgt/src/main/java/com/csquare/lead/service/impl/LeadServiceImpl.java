@@ -1,16 +1,13 @@
 package com.csquare.lead.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csquare.framework.search.SearchCriteria;
-import com.csquare.framework.util.StringUtil;
 import com.csquare.lead.dao.LeadRepository;
 import com.csquare.lead.model.Lead;
-import com.csquare.lead.model.NamedQueryConstants;
 import com.csquare.lead.service.ILeadService;
 
 
@@ -23,7 +20,6 @@ public class LeadServiceImpl implements ILeadService {
     @Override
     public Lead addLead(Lead lead) {
 
-        // TODO Auto-generated method stub
         lead = ileadRepository.save(lead);
         return lead;
     }
@@ -54,34 +50,10 @@ public class LeadServiceImpl implements ILeadService {
     }
 
     @Override
-    public List<Lead> searchLead(List<SearchCriteria> searchCriteriaList, int offset, int limit) {
+    public List<Lead> searchLead(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch) {
 
-        HashMap<String, String> paramsMap = new HashMap<String, String>();
-        StringBuilder queryBuilder = new StringBuilder(NamedQueryConstants.searchLead);
-        if (null != searchCriteriaList && !searchCriteriaList.isEmpty()) {
-            StringUtil.append(queryBuilder, " where");
-
-            for (SearchCriteria sc : searchCriteriaList) {
-                StringUtil.append(queryBuilder, " ");
-                StringUtil.append(queryBuilder, "lead.");
-                StringUtil.append(queryBuilder, sc.getFieldName());
-                StringUtil.append(queryBuilder, "=:");
-                StringUtil.append(queryBuilder, sc.getFieldName());
-                StringUtil.append(queryBuilder, " ");
-
-                paramsMap.put(sc.getFieldName(), sc.getFieldValue());
-
-                StringUtil.append(queryBuilder, "AND");
-
-            }
-
-            int idxAnd = queryBuilder.lastIndexOf("AND");
-            if (idxAnd > 0) {
-                queryBuilder.delete(idxAnd, queryBuilder.length());
-            }
-        }
-
-        List<Lead> leadList = ileadRepository.findByHQL(queryBuilder.toString(), paramsMap, true, offset, limit);
+        List<Lead> leadList =
+            ileadRepository.search(criterias, offset, limit, allMatch, "leadGradeList", "leadLocationList", "leadSubjectList", "leadSyllabusList");
         return leadList;
     }
 
