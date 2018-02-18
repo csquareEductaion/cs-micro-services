@@ -98,19 +98,19 @@ public class Student {
     private Boolean demoRequired;
 
     @Column(name = "demo_date")
-    private Date demoDate;
+    private String demoDate;
 
     @Column(name = "is_converted")
     private Boolean converted;
 
     @Column(name = "enrollment_date")
-    private Date enrollmentDate;
+    private String enrollmentDate;
 
     @Column(name = "is_followup_required")
     private Boolean requiredFollowUp;
 
     @Column(name = "next_followup_date")
-    private Date followUpDate;
+    private String followUpDate;
 
     @Column(name = "preffered_call_time")
     private String callPreferredTime;
@@ -122,7 +122,7 @@ public class Student {
     private Boolean isStopped;
 
     @Column(name = "class_stop_date")
-    private Date stoppedDate;
+    private String stoppedDate;
 
     @Column(name = "is_agreement_sent_to_parent")
     private Boolean parentAgreementStatus;
@@ -305,11 +305,11 @@ public class Student {
 		this.demoRequired = demoRequired;
 	}
 
-	public Date getDemoDate() {
+	public String getDemoDate() {
 		return demoDate;
 	}
 
-	public void setDemoDate(Date demoDate) {
+	public void setDemoDate(String demoDate) {
 		this.demoDate = demoDate;
 	}
 
@@ -321,11 +321,11 @@ public class Student {
 		this.converted = converted;
 	}
 
-	public Date getEnrollmentDate() {
+	public String getEnrollmentDate() {
 		return enrollmentDate;
 	}
 
-	public void setEnrollmentDate(Date enrollmentDate) {
+	public void setEnrollmentDate(String enrollmentDate) {
 		this.enrollmentDate = enrollmentDate;
 	}
 
@@ -337,11 +337,11 @@ public class Student {
 		this.requiredFollowUp = requiredFollowUp;
 	}
 
-	public Date getFollowUpDate() {
+	public String getFollowUpDate() {
 		return followUpDate;
 	}
 
-	public void setFollowUpDate(Date followUpDate) {
+	public void setFollowUpDate(String followUpDate) {
 		this.followUpDate = followUpDate;
 	}
 
@@ -369,11 +369,11 @@ public class Student {
 		this.isStopped = isStopped;
 	}
 
-	public Date getStoppedDate() {
+	public String getStoppedDate() {
 		return stoppedDate;
 	}
 
-	public void setStoppedDate(Date stoppedDate) {
+	public void setStoppedDate(String stoppedDate) {
 		this.stoppedDate = stoppedDate;
 	}
 

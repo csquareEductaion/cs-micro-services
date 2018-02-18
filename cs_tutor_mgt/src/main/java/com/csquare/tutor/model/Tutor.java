@@ -31,7 +31,7 @@ import com.csquare.framework.entity.PKGenerator;
 public class Tutor {
 
     @Id
-    @Column(name = "pk")
+    @Column(name = "tutor_id")
     @GeneratedValue(generator = PKGenerator.NAME)
     @GenericGenerator(name = PKGenerator.NAME, strategy = PKGenerator.CLASS)
     private String pK;
@@ -46,7 +46,7 @@ public class Tutor {
     private String email;
 
     @Column(name = "phone")
-    private Float phone;
+    private String phone;
 
     @Column(name = "city")
     private String city;
@@ -61,7 +61,7 @@ public class Tutor {
     private String experience_in_years;
 
     @Column(name = "alternate_phone")
-    private Float alternate_phone;
+    private String alternate_phone;
 
     @Column(name = "verified")
     private Boolean verified;
@@ -88,43 +88,67 @@ public class Tutor {
     private String is_phone_dnd;
 
     @Column(name = "is_trusted_tutor")
-    private String is_trusted_tutor;
+    private Boolean is_trusted_tutor;
 
     @Column(name = "is_interested_for_home_tuition")
-    private String is_interested_for_home_tuition;
+    private Boolean is_interested_for_home_tuition;
 
     @Column(name = "qualification")
     private String qualification;
     
+    @Column(name = "follo_up_required")
+    private Boolean followUpRequired;
+    
+    @Column(name = "interview_date")
+    private String interviewDate;
+    
+    @Column(name = "interview_time")
+    private String interviewTime;
+    
+    @Column(name = "category")
+    private String category;
+    
+    @Column(name = "round_cleared")
+    private String roundCleared;
+    
+    @Column(name = "preffered_timing")
+    private String prefferedTiming;
+    
+    @Column(name = "preffered_days")
+    private String prefferedDays;
+    
+    @Column(name = "grade")
+    private String grade;
+    
    
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorGrade> tutorGradeList = new LinkedHashSet<TutorGrade>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorLocation> tutorLocationList = new LinkedHashSet<TutorLocation>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorSubject> tutorSubjectList = new LinkedHashSet<TutorSubject>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorSyllabus> tutorSyllabusList = new LinkedHashSet<TutorSyllabus>();
     
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorStudent> tutorStudentList = new LinkedHashSet<TutorStudent>();
     
     
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "pk")
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     @Fetch(FetchMode.JOIN)
     private Set<TutorHigherEdu> tutorHigerEduList = new LinkedHashSet<TutorHigherEdu>();
     
@@ -171,16 +195,6 @@ public class Tutor {
         this.email = email;
     }
 
-    public Float getPhone() {
-
-        return phone;
-    }
-
-    public void setPhone(Float phone) {
-
-        this.phone = phone;
-    }
-
     public String getCity() {
 
         return city;
@@ -219,16 +233,6 @@ public class Tutor {
     public void setExperience_in_years(String experience_in_years) {
 
         this.experience_in_years = experience_in_years;
-    }
-
-    public Float getAlternate_phone() {
-
-        return alternate_phone;
-    }
-
-    public void setAlternate_phone(Float alternate_phone) {
-
-        this.alternate_phone = alternate_phone;
     }
 
     public Boolean getVerified() {
@@ -301,27 +305,23 @@ public class Tutor {
         this.is_phone_dnd = is_phone_dnd;
     }
 
-    public String getIs_trusted_tutor() {
+    public Boolean getIs_trusted_tutor() {
+		return is_trusted_tutor;
+	}
 
-        return is_trusted_tutor;
-    }
+	public void setIs_trusted_tutor(Boolean is_trusted_tutor) {
+		this.is_trusted_tutor = is_trusted_tutor;
+	}
 
-    public void setIs_trusted_tutor(String is_trusted_tutor) {
+	public Boolean getIs_interested_for_home_tuition() {
+		return is_interested_for_home_tuition;
+	}
 
-        this.is_trusted_tutor = is_trusted_tutor;
-    }
+	public void setIs_interested_for_home_tuition(Boolean is_interested_for_home_tuition) {
+		this.is_interested_for_home_tuition = is_interested_for_home_tuition;
+	}
 
-    public String getIs_interested_for_home_tuition() {
-
-        return is_interested_for_home_tuition;
-    }
-
-    public void setIs_interested_for_home_tuition(String is_interested_for_home_tuition) {
-
-        this.is_interested_for_home_tuition = is_interested_for_home_tuition;
-    }
-
-    public String getQualification() {
+	public String getQualification() {
 
         return qualification;
     }
@@ -385,6 +385,86 @@ public class Tutor {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public Boolean getFollowUpRequired() {
+		return followUpRequired;
+	}
+
+	public void setFollowUpRequired(Boolean followUpRequired) {
+		this.followUpRequired = followUpRequired;
+	}
+
+	public String getInterviewDate() {
+		return interviewDate;
+	}
+
+	public void setInterviewDate(String interviewDate) {
+		this.interviewDate = interviewDate;
+	}
+
+	public String getInterviewTime() {
+		return interviewTime;
+	}
+
+	public void setInterviewTime(String interviewTime) {
+		this.interviewTime = interviewTime;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getRoundCleared() {
+		return roundCleared;
+	}
+
+	public void setRoundCleared(String roundCleared) {
+		this.roundCleared = roundCleared;
+	}
+
+	public String getPrefferedTiming() {
+		return prefferedTiming;
+	}
+
+	public void setPrefferedTiming(String prefferedTiming) {
+		this.prefferedTiming = prefferedTiming;
+	}
+
+	public String getPrefferedDays() {
+		return prefferedDays;
+	}
+
+	public void setPrefferedDays(String prefferedDays) {
+		this.prefferedDays = prefferedDays;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAlternate_phone() {
+		return alternate_phone;
+	}
+
+	public void setAlternate_phone(String alternate_phone) {
+		this.alternate_phone = alternate_phone;
 	}
     
     

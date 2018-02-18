@@ -20,14 +20,14 @@ public class TutorServiceImpl implements ITutorService {
     public Tutor addTutor(Tutor tutor) {
 
         // TODO Auto-generated method stub
-        itutorRepository.create(tutor);
+        itutorRepository.save(tutor);
         return tutor;
     }
 
     @Override
     public Tutor updateTutor(Tutor tutor) {
 
-        itutorRepository.update(tutor);
+        itutorRepository.save(tutor);
         return tutor;
     }
 
@@ -46,14 +46,32 @@ public class TutorServiceImpl implements ITutorService {
     @Override
     public List<Tutor> getAllTutors() {
 
-        return itutorRepository.findAll("tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
+        return itutorRepository.findAll();
     }
 
-    @Override
-    public List<Tutor> getAllLeads(int offset, int limit) {
-    	
-    	return itutorRepository.findAll(offset, limit, "tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
+//    @Override
+//    public List<Tutor> getAllLeads(int offset, int limit) {
+//    	
+//    	return itutorRepository.findAll(offset, limit, "tutorGradeList","tutorLocationList","tutorSubjectList","tutorSyllabusList","tutorStudentList");
+//
+//    }
 
-    }
+	@Override
+	public List<Tutor> getAllTutorsByParams(Tutor tutor) {
+		// TODO Auto-generated method stub
+		//List<Object[]> tutorList= itutorRepository.findByParams(tutor);		
+		
+		return itutorRepository.findByParams(tutor.getEmail().toString(), tutor.getPhone().toString(), 
+				tutor.getCity().toString(), tutor.getLocation().toString(), tutor.getGender().toString(),
+				tutor.getGrade().toString(), tutor.getVerified(), tutor.getIs_trusted_tutor());
+	}
+
+@Override
+public List<Tutor> getAllLeads(int offset, int limit) {
+	// TODO Auto-generated method stub
+	return null;
+}
+    
+
 
 }
