@@ -16,8 +16,11 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+
+import com.csquare.framework.search.SearchCriteria;
 
 
 //Hibernate comes with n+1 problems by default, which causes multiple queries to be fired for its children.
@@ -231,6 +234,18 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         return find(allQuery, null, true, offset, limit);
     }
 
+    /**
+     * Finds an Entity by Id
+     *
+     * @param clazz - The Entity Class
+     * @param id - The String
+     * @return entity - The Entity Object
+     */
+    public List<T> search(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch, String... fetchSubItems) {
+
+        TypedQuery<T> allQuery = buildQuery(criterias, allMatch, fetchSubItems);
+        return find(allQuery, null, true, offset, limit);
+    }
     // -----------------------------------------------------------------------------------------------------
 
     /**
@@ -400,14 +415,54 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         return allQuery;
     }
 
+    private TypedQuery<T> buildQuery(List<SearchCriteria> criteriaList, boolean allMatch, String... fetchSubItems) {
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<T> cq = cb.createQuery(this.clazz);
+        Root<T> rootEntry = cq.from(this.clazz);
+
+        buildFetchCriteria(rootEntry, fetchSubItems);
+        buildSearchCriteria(rootEntry, cb, cq, criteriaList, allMatch);
+        CriteriaQuery<T> all = cq.select(rootEntry);
+
+        all.distinct(true);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        return allQuery;
+    }
+
+    private void buildSearchCriteria(Root<T> rootEntry, CriteriaBuilder cb, CriteriaQuery<T> cq, List<SearchCriteria> criteriaList,
+        boolean allMatch) {
+
+        if (null == criteriaList || criteriaList.isEmpty()) {
+            return;
+        }
+
+        Predicate[] predicates = new Predicate[criteriaList.size()];
+        int i = 0;
+        for (SearchCriteria sc : criteriaList) {
+            Predicate p = cb.equal(rootEntry.get(sc.getFieldName()), sc.getFieldValue());
+            predicates[i] = p;
+            i++;
+        }
+
+        Predicate pFinal;
+        if (allMatch) {
+            pFinal = cb.and(predicates);
+        } else {
+            pFinal = cb.or(predicates);
+        }
+
+        if (null != pFinal) {
+            cq.where(pFinal);
+        }
+    }
+
     private void buildFetchCriteria(Root<T> rootEntry, String... fetchItems) {
 
         if (null == fetchItems) {
             return;
         }
-
-        // EntityType<T> entity = entityManager.getMetamodel().entity(this.clazz);
-        // entity.getSingularAttributes();
 
         for (String fetchItem : fetchItems) {
             rootEntry.fetch(fetchItem, JoinType.LEFT);
