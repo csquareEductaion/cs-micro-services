@@ -25,39 +25,34 @@ public class RefLocationController extends RestExceptionHandler {
     @RequestMapping(value = "/addRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
     public RefLocation addRefLocation(@RequestBody RefLocation reflocation) {
 
-    	reflocation = ireflocationService.addRefLocation(reflocation);
+        reflocation = ireflocationService.addRefLocation(reflocation);
         return reflocation;
     }
 
     @RequestMapping(value = "/updateRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
     public RefLocation updateRefLocation(@RequestBody RefLocation reflocation) {
 
-    	reflocation = ireflocationService.updateRefLocation(reflocation);
+        reflocation = ireflocationService.updateRefLocation(reflocation);
         return reflocation;
     }
-    
+
     @RequestMapping(value = "/deleteRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
     public void deleteRefLocation(@RequestBody String reflocationId) {
 
-    	ireflocationService.deleteRefLocation(reflocationId);
+        ireflocationService.deleteRefLocation(reflocationId);
     }
-    
+
     @RequestMapping(value = "/getRefLocationById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     public RefLocation getRefLocationById(@PathVariable String id) {
 
-    	RefLocation reflocation = ireflocationService.getRefLocationById(id);
+        RefLocation reflocation = ireflocationService.getRefLocationById(id);
         return reflocation;
     }
-    
+
     @RequestMapping(value = "/getAllRefLocations", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<RefLocation> getAllRefLocations() {
 
         return ireflocationService.getAllRefLocations();
     }
-    
-    @RequestMapping(value = "/getAllRefLocationsByCity/{city}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public List<RefLocation> getAllRefLocationsByCity(@PathVariable String city) {
 
-        return ireflocationService.getAllRefLocationsByCity(city);
-    }
 }
