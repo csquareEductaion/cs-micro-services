@@ -37,7 +37,7 @@ public class User {
     private String email;
 
     @Column(name = "phone")
-    private Float phone;
+    private String phone;
     
     @Column(name = "city")
     private String city;
@@ -58,7 +58,7 @@ public class User {
     private String user_role;
     
     @Column(name = "alternate_phone")
-    private Float alternate_phone;
+    private String alternate_phone;
     
     @Column(name = "gender")
     private String gender;
@@ -109,11 +109,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Float getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Float phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -149,11 +149,11 @@ public class User {
 		this.user_role = user_role;
 	}
 
-	public Float getAlternate_phone() {
+	public String getAlternate_phone() {
 		return alternate_phone;
 	}
 
-	public void setAlternate_phone(Float alternate_phone) {
+	public void setAlternate_phone(String alternate_phone) {
 		this.alternate_phone = alternate_phone;
 	}
 

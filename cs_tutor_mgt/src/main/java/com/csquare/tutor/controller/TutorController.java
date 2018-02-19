@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
 
@@ -82,5 +83,13 @@ public class TutorController extends RestExceptionHandler {
     public List<Tutor> getAllTutors(@PathVariable Integer offset, @PathVariable Integer limit) {
 
         return iTutorService.getAllTutors(offset, limit);
+    }
+    
+    @RequestMapping(value = "/searchTutor/{offset}/{limit}/{allMatch}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<Tutor> searchUser(@RequestBody List<SearchCriteria> criterias, @PathVariable Integer offset, @PathVariable Integer limit,
+        @PathVariable Boolean allMatch) {
+
+        List<Tutor> leadList = iTutorService.searchTutor(criterias, offset, limit, allMatch);
+        return leadList;
     }
 }

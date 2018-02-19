@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.user.model.User;
 import com.csquare.user.service.IUserService;
 
@@ -66,5 +67,13 @@ public class userController extends RestExceptionHandler {
     public List<User> getAllUsers(@PathVariable Integer offset, @PathVariable Integer limit) {
 
         return iuserService.getAllUsers(offset, limit);
+    }
+    
+    @RequestMapping(value = "/searchUser/{offset}/{limit}/{allMatch}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<User> searchUser(@RequestBody List<SearchCriteria> criterias, @PathVariable Integer offset, @PathVariable Integer limit,
+        @PathVariable Boolean allMatch) {
+
+        List<User> leadList = iuserService.searchUser(criterias, offset, limit, allMatch);
+        return leadList;
     }
 }

@@ -217,7 +217,7 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     public List<T> findAll(String... fetchSubItems) {
 
-        TypedQuery<T> allQuery = buildQuery(null, true, fetchSubItems);
+        TypedQuery<T> allQuery = buildQueryList(null, true, fetchSubItems);
         return find(allQuery, null, true, -1, -1);
     }
 
@@ -230,7 +230,7 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      */
     public List<T> findAll(int offset, int limit, String... fetchSubItems) {
 
-        TypedQuery<T> allQuery = buildQuery(null, true, fetchSubItems);
+        TypedQuery<T> allQuery = buildQueryList(null, true, fetchSubItems);
         return find(allQuery, null, true, offset, limit);
     }
 
@@ -241,9 +241,22 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
      * @param id - The String
      * @return entity - The Entity Object
      */
+    public List<T> search(SearchCriteria criteria, int offset, int limit, boolean allMatch, String... fetchSubItems) {
+
+        TypedQuery<T> allQuery = buildQuery(criteria, allMatch, fetchSubItems);
+        return find(allQuery, null, true, offset, limit);
+    }
+    
+    /**
+     * Finds an Entity by Id
+     *
+     * @param clazz - The Entity Class
+     * @param id - The String
+     * @return entity - The Entity Object
+     */
     public List<T> search(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch, String... fetchSubItems) {
 
-        TypedQuery<T> allQuery = buildQuery(criterias, allMatch, fetchSubItems);
+        TypedQuery<T> allQuery = buildQueryList(criterias, allMatch, fetchSubItems);
         return find(allQuery, null, true, offset, limit);
     }
     // -----------------------------------------------------------------------------------------------------
@@ -403,7 +416,7 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         }
     }
 
-    private TypedQuery<T> buildQuery(List<SearchCriteria> criteriaList, boolean allMatch, String... fetchSubItems) {
+    private TypedQuery<T> buildQueryList(List<SearchCriteria> criteriaList, boolean allMatch, String... fetchSubItems) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
@@ -419,6 +432,26 @@ public abstract class BaseJpaRepository<T, ID extends Serializable> {
         return allQuery;
     }
 
+
+    private TypedQuery<T> buildQuery(SearchCriteria criteria, boolean allMatch, String... fetchSubItems) {
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<T> cq = cb.createQuery(this.clazz);
+        Root<T> rootEntry = cq.from(this.clazz);
+
+        buildFetchCriteria(rootEntry, fetchSubItems);
+        List<SearchCriteria> criteriaList=new ArrayList<SearchCriteria>();
+        criteriaList.add(criteria);
+        buildSearchCriteria(rootEntry, cb, cq, criteriaList, allMatch);
+        CriteriaQuery<T> all = cq.select(rootEntry);
+
+        all.distinct(true);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        return allQuery;
+    }
+
+    
     private void buildSearchCriteria(Root<T> rootEntry, CriteriaBuilder cb, CriteriaQuery<T> cq, List<SearchCriteria> criteriaList,
         boolean allMatch) {
 

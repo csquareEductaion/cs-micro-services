@@ -13,5 +13,5 @@ public interface NamedQueryConstants {
     String getAllRefSyllabus = "SELECT syllabus FROM RefSyllabus syllabus ";
 
     String searchRefGread = "SELECT city FROM RefCity city";
-
+    
 }

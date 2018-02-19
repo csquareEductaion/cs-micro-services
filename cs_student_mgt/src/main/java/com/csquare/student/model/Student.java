@@ -53,7 +53,7 @@ public class Student {
     private String email;
 
     @Column(name = "phone")
-    private Float phone;
+    private String phone;
 
     @Column(name = "city")
     private String city;
@@ -131,25 +131,25 @@ public class Student {
     private Boolean tutorAgreementStatus;
 
     @Column(name = "package_in_hrs")
-    private Float packageInHrs;
+    private String packageInHrs;
 
     @Column(name = "hourly_rate")
-    private Float hourlyRate;
+    private String hourlyRate;
 
     @Column(name = "registration_fee_amount")
-    private Float registrationFee;
+    private String registrationFee;
 
     @Column(name = "is_registration_paid")
     private Boolean isRegistrationPaid;
 
     @Column(name = "total_tuition_fee")
-    private Float studentTotalFee;
+    private String studentTotalFee;
 
     @Column(name = "csquare_income")
-    private Float csquareIncome;
+    private String csquareIncome;
 
     @Column(name = "tuition_required_for_months")
-    private Float tutionRequiredForMonths;
+    private String tutionRequiredForMonths;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "student_id", referencedColumnName = "pk")
@@ -191,14 +191,6 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Float getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Float phone) {
-		this.phone = phone;
 	}
 
 	public String getCity() {
@@ -393,60 +385,12 @@ public class Student {
 		this.tutorAgreementStatus = tutorAgreementStatus;
 	}
 
-	public Float getPackageInHrs() {
-		return packageInHrs;
-	}
-
-	public void setPackageInHrs(Float packageInHrs) {
-		this.packageInHrs = packageInHrs;
-	}
-
-	public Float getHourlyRate() {
-		return hourlyRate;
-	}
-
-	public void setHourlyRate(Float hourlyRate) {
-		this.hourlyRate = hourlyRate;
-	}
-
-	public Float getRegistrationFee() {
-		return registrationFee;
-	}
-
-	public void setRegistrationFee(Float registrationFee) {
-		this.registrationFee = registrationFee;
-	}
-
 	public Boolean getIsRegistrationPaid() {
 		return isRegistrationPaid;
 	}
 
 	public void setIsRegistrationPaid(Boolean isRegistrationPaid) {
 		this.isRegistrationPaid = isRegistrationPaid;
-	}
-
-	public Float getStudentTotalFee() {
-		return studentTotalFee;
-	}
-
-	public void setStudentTotalFee(Float studentTotalFee) {
-		this.studentTotalFee = studentTotalFee;
-	}
-
-	public Float getCsquareIncome() {
-		return csquareIncome;
-	}
-
-	public void setCsquareIncome(Float csquareIncome) {
-		this.csquareIncome = csquareIncome;
-	}
-
-	public Float getTutionRequiredForMonths() {
-		return tutionRequiredForMonths;
-	}
-
-	public void setTutionRequiredForMonths(Float tutionRequiredForMonths) {
-		this.tutionRequiredForMonths = tutionRequiredForMonths;
 	}
 
 	public Set<StudentTutor> getStudentTutorList() {
@@ -489,6 +433,63 @@ public class Student {
 		this.location = location;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPackageInHrs() {
+		return packageInHrs;
+	}
+
+	public void setPackageInHrs(String packageInHrs) {
+		this.packageInHrs = packageInHrs;
+	}
+
+	public String getHourlyRate() {
+		return hourlyRate;
+	}
+
+	public void setHourlyRate(String hourlyRate) {
+		this.hourlyRate = hourlyRate;
+	}
+
+	public String getRegistrationFee() {
+		return registrationFee;
+	}
+
+	public void setRegistrationFee(String registrationFee) {
+		this.registrationFee = registrationFee;
+	}
+
+	public String getStudentTotalFee() {
+		return studentTotalFee;
+	}
+
+	public void setStudentTotalFee(String studentTotalFee) {
+		this.studentTotalFee = studentTotalFee;
+	}
+
+	public String getCsquareIncome() {
+		return csquareIncome;
+	}
+
+	public void setCsquareIncome(String csquareIncome) {
+		this.csquareIncome = csquareIncome;
+	}
+
+	public String getTutionRequiredForMonths() {
+		return tutionRequiredForMonths;
+	}
+
+	public void setTutionRequiredForMonths(String tutionRequiredForMonths) {
+		this.tutionRequiredForMonths = tutionRequiredForMonths;
+	}
+
+	
 	
     
 

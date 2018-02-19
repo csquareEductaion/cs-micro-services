@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.ref.model.RefLocation;
 import com.csquare.ref.service.IRefLocationService;
 
@@ -55,4 +56,10 @@ public class RefLocationController extends RestExceptionHandler {
         return ireflocationService.getAllRefLocations();
     }
 
+    @RequestMapping(value = "/searchLocationByCity/{city}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<RefLocation> searchLocationByCity(@PathVariable String city) {
+
+        List<RefLocation> locationList = ireflocationService.searchLocationByCity(city);
+        return locationList;
+    }
 }

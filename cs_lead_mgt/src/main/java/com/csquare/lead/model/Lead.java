@@ -47,7 +47,7 @@ public class Lead {
     private String email;
 
     @Column(name = "phone")
-    private BigDecimal phone;
+    private String phone;
 
     @Column(name = "city")
     private String city;
@@ -71,7 +71,7 @@ public class Lead {
     private String address;
     
     @Column(name = "alternate_phone")
-    private Float alteratePhone;
+    private String alteratePhone;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
@@ -133,12 +133,12 @@ public class Lead {
         this.email = email;
     }
 
-    public BigDecimal getPhone() {
+    public String getPhone() {
 
         return phone;
     }
 
-    public void setPhone(BigDecimal phone) {
+    public void setPhone(String phone) {
 
         this.phone = phone;
     }
@@ -253,11 +253,11 @@ public class Lead {
         this.address = address;
     }
 
-	public Float getAlteratePhone() {
+	public String getAlteratePhone() {
 		return alteratePhone;
 	}
 
-	public void setAlteratePhone(Float alteratePhone) {
+	public void setAlteratePhone(String alteratePhone) {
 		this.alteratePhone = alteratePhone;
 	}
     

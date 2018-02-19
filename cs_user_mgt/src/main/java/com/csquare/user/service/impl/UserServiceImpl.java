@@ -23,14 +23,14 @@ public class UserServiceImpl implements IUserService {
 
         User.setUserName(User.getEmail());
         User.setPassword(UUID.randomUUID().toString());
-        iUserRepository.save(User);
+        iUserRepository.create(User);
         return User;
     }
 
     @Override
     public User updateUser(User User) {
 
-        iUserRepository.save(User);
+        iUserRepository.update(User);
         return User;
     }
 
