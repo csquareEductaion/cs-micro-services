@@ -42,7 +42,7 @@
         </dependency>              
         <dependency>
           <groupId>com.csquare.framework</groupId>
-          <artifactId>cs-framework</artifactId>
+          <artifactId>cs-web-util</artifactId>
           <version>1.0-SNAPSHOT</version>
           <scope>compile</scope>
         </dependency>          
