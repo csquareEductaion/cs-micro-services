@@ -3,8 +3,16 @@ package com.csquare.framework.search;
 public class SearchCriteria {
 
     private String fieldName;
-    private String fieldType;
     private String fieldValue;
+
+    public SearchCriteria() {
+
+    }
+
+    public SearchCriteria(String fieldName, String fieldValue) {
+        this.fieldName = fieldName;
+        this.fieldValue = fieldValue;
+    }
 
     public String getFieldName() {
 
@@ -14,16 +22,6 @@ public class SearchCriteria {
     public void setFieldName(String fieldName) {
 
         this.fieldName = fieldName;
-    }
-
-    public String getFieldType() {
-
-        return fieldType;
-    }
-
-    public void setFieldType(String fieldType) {
-
-        this.fieldType = fieldType;
     }
 
     public String getFieldValue() {
