@@ -94,9 +94,10 @@ public class DataBaseConfig {
      */
     private Properties hibProperties() {
 
+        PropertyUtil TUTOR_MGT = PropertyUtil.TUTOR_MGT;
         Properties properties = new Properties();
-        properties.put(DataBase.HIBERNATE_DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(DataBase.HIBERNATE_SHOW_SQL, "true");
+        properties.put("hibernate.dialect", TUTOR_MGT.getString(DataBase.HIBERNATE_DIALECT));
+        properties.put("hibernate.show_sql", TUTOR_MGT.getString(DataBase.HIBERNATE_SHOW_SQL));
         properties.put("hibernate.jdbc.batch_size", "25");
         properties.put("hibernate.order_inserts", "true");
         properties.put("hibernate.order_updates", "true");
