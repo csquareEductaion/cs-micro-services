@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.csquare.framework.constant.DataBase;
 import com.csquare.framework.util.PropertyUtil;
 
 
@@ -31,17 +32,6 @@ import com.csquare.framework.util.PropertyUtil;
 public class DataBaseConfig {
 
     private static final Logger LOGGER = Logger.getLogger(DataBaseConfig.class);
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
-    private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
-    private static final String PROPERTY_NAME_DATABASE_INITIALSIZE = "db.initialsize";
-    private static final String PROPERTY_NAME_DATABASE_MAXIDLE = "db.maxidle";
-    private static final String PROPERTY_NAME_DATABASE_MAXACTIVE = "db.maxactive";
-    private static final String PROPERTY_NAME_DATABASE_MAXWAIT = "db.maxwait";
-
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 
     /**
      * DataSource - the class
@@ -51,16 +41,18 @@ public class DataBaseConfig {
     @Bean
     public DataSource dataSource() {
 
+        PropertyUtil LEAD_MGT = PropertyUtil.LEAD_MGT;
+
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_DRIVER));
-        dataSource.setUrl(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_URL));
-        dataSource.setUsername(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_USERNAME));
-        dataSource.setPassword(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_PASSWORD));
-        dataSource.setInitialSize(5);
-        dataSource.setMaxIdle(5);
-        dataSource.setMaxActive(15);
-        dataSource.setMaxWait(20000);
+        dataSource.setDriverClassName(LEAD_MGT.getString(DataBase.DATABASE_DRIVER));
+        dataSource.setUrl(LEAD_MGT.getString(DataBase.DATABASE_URL));
+        dataSource.setUsername(LEAD_MGT.getString(DataBase.DATABASE_USERNAME));
+        dataSource.setPassword(LEAD_MGT.getString(DataBase.DATABASE_PASSWORD));
+        dataSource.setInitialSize(LEAD_MGT.getInteger(DataBase.DATABASE_INITIALSIZE));
+        dataSource.setMaxIdle(LEAD_MGT.getInteger(DataBase.DATABASE_MAXIDLE));
+        dataSource.setMaxActive(LEAD_MGT.getInteger(DataBase.DATABASE_MAXACTIVE));
+        dataSource.setMaxWait(LEAD_MGT.getInteger(DataBase.DATABASE_MAXWAIT));
         dataSource.setDefaultTransactionIsolation(TransactionDefinition.ISOLATION_READ_COMMITTED);
         return dataSource;
     }
@@ -104,8 +96,8 @@ public class DataBaseConfig {
     private Properties hibProperties() {
 
         Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "true");
+        properties.put(DataBase.HIBERNATE_DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
+        properties.put(DataBase.HIBERNATE_SHOW_SQL, "true");
         properties.put("hibernate.jdbc.batch_size", "25");
         properties.put("hibernate.order_inserts", "true");
         properties.put("hibernate.order_updates", "true");
