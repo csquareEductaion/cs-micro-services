@@ -6,7 +6,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -31,7 +32,7 @@ import com.csquare.framework.util.PropertyUtil;
 @EnableTransactionManagement
 public class DataBaseConfig {
 
-    private static final Logger LOGGER = Logger.getLogger(DataBaseConfig.class);
+    private static final Logger LOGGER = LogManager.getLogger(DataBaseConfig.class);
 
     /**
      * DataSource - the class

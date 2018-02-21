@@ -1,6 +1,7 @@
 package com.csquare.lead;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -13,12 +14,13 @@ import com.csquare.lead.config.AppInitializer;
 @SpringBootApplication
 public class CSquareApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOGGER = Logger.getLogger(CSquareApplication.class);
+    private static final Logger LOGGER = LogManager.getLogger(CSquareApplication.class);
 
     public static void main(String[] args) {
 
         LOGGER.info("Starting CSquareApplication.main");
         SystemUtil.setProperty("CONTAINER", "SELF");
+        SystemUtil.setEnv(SystemUtil.SystemKey.CS_APPCONFIG_PATH, "D:/Csquare/cs-app-config");
 
         SpringApplicationBuilder application = new SpringApplicationBuilder();
         application.logStartupInfo(false);
