@@ -1,15 +1,12 @@
 package com.csquare.tutor.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csquare.framework.search.SearchCriteria;
-import com.csquare.framework.util.StringUtil;
 import com.csquare.tutor.dao.TutorRepository;
-import com.csquare.tutor.model.NamedQueryConstants;
 import com.csquare.tutor.model.Tutor;
 import com.csquare.tutor.service.ITutorService;
 
@@ -54,13 +51,12 @@ public class TutorServiceImpl implements ITutorService {
             "tutorStudentList");
     }
 
-	@Override
-	public List<Tutor> searchTutor(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch) {
-		// TODO Auto-generated method stub
+    @Override
+    public List<Tutor> searchTutor(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch) {
+        // TODO Auto-generated method stub
 
         List<Tutor> leadList = itutorRepository.search(criterias, offset, limit, allMatch);
         return leadList;
-	}
-
+    }
 
 }

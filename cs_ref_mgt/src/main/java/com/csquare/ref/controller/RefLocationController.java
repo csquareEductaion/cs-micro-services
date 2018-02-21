@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.framework.search.SearchCriteria;
 import com.csquare.ref.model.RefLocation;
 import com.csquare.ref.service.IRefLocationService;
 

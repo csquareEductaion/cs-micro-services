@@ -1,7 +1,6 @@
 package com.csquare.ref.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.csquare.ref.dao.RefSyllabusRepository;
 import com.csquare.ref.model.RefSyllabus;
 import com.csquare.ref.service.IRefSyllabusService;
-
 
 
 @Service
@@ -22,18 +20,16 @@ public class RefSyllabusServiceImpl implements IRefSyllabusService {
     public RefSyllabus addRefSyllabus(RefSyllabus refsyllabus) {
 
         // TODO Auto-generated method stub
-    	iRefLocationRepository.create(refsyllabus);
+        iRefLocationRepository.create(refsyllabus);
         return refsyllabus;
     }
-    
+
     @Override
     public RefSyllabus updateRefSyllabus(RefSyllabus refsyllabus) {
-	
-    	iRefLocationRepository.update(refsyllabus);
+
+        iRefLocationRepository.update(refsyllabus);
         return refsyllabus;
     }
-    
-   
 
     @Override
     public RefSyllabus getRefSyllabusById(String id) {
@@ -42,18 +38,18 @@ public class RefSyllabusServiceImpl implements IRefSyllabusService {
         return iRefLocationRepository.findOne(id);
     }
 
-	@Override
-	public void deleteRefSyllabus(String refsubId) {
-		iRefLocationRepository.delete(refsubId);
-		
-	}
+    @Override
+    public void deleteRefSyllabus(String refsubId) {
 
-	@Override
-	public List<RefSyllabus> getAllRefSyllabus() {
-		// TODO Auto-generated method stub
-		return iRefLocationRepository.findAll();
-	}
+        iRefLocationRepository.delete(refsubId);
 
-	
-	
+    }
+
+    @Override
+    public List<RefSyllabus> getAllRefSyllabus() {
+
+        // TODO Auto-generated method stub
+        return iRefLocationRepository.findAll();
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.csquare.lead.model;
 
-import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -69,7 +68,7 @@ public class Lead {
 
     @Column(name = "address")
     private String address;
-    
+
     @Column(name = "alternate_phone")
     private String alteratePhone;
 
@@ -253,14 +252,14 @@ public class Lead {
         this.address = address;
     }
 
-	public String getAlteratePhone() {
-		return alteratePhone;
-	}
+    public String getAlteratePhone() {
 
-	public void setAlteratePhone(String alteratePhone) {
-		this.alteratePhone = alteratePhone;
-	}
-    
-    
+        return alteratePhone;
+    }
+
+    public void setAlteratePhone(String alteratePhone) {
+
+        this.alteratePhone = alteratePhone;
+    }
 
 }
