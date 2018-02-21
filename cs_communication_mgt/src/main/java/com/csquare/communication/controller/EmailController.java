@@ -22,7 +22,8 @@ public class EmailController extends RestExceptionHandler {
     @RequestMapping(value = "/sendEmail", method = RequestMethod.POST, headers = "Accept=application/json")
     public String sendEmail(@RequestBody MailMessage message) {
 
-        return iEmailService.sendEmail(message);
+        iEmailService.sendEmail(message);
+        return "OK";
     }
 
 }

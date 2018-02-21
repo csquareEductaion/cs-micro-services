@@ -17,9 +17,9 @@ public class EmailServiceImpl implements IEmailService {
 
     @Override
     @Async
-    public String sendEmail(MailMessage message) {
+    public void sendEmail(MailMessage message) {
 
-        return sendMail(message);
+        sendMail(message);
     }
 
     private String sendMail(MailMessage message) {
