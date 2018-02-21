@@ -35,6 +35,10 @@ public class DataBaseConfig {
     private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
+    private static final String PROPERTY_NAME_DATABASE_INITIALSIZE = "db.initialsize";
+    private static final String PROPERTY_NAME_DATABASE_MAXIDLE = "db.maxidle";
+    private static final String PROPERTY_NAME_DATABASE_MAXACTIVE = "db.maxactive";
+    private static final String PROPERTY_NAME_DATABASE_MAXWAIT = "db.maxwait";
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
