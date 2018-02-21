@@ -16,6 +16,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.csquare.framework.util.PropertyUtil;
+
 
 /**
  * Custom class for DataBaseConfig
@@ -50,10 +52,10 @@ public class DataBaseConfig {
 
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://csquaredbmumbai.c6vepbb3vtpo.ap-south-1.rds.amazonaws.com:5432/csquareDBMumbai");
-        dataSource.setUsername("csquare");
-        dataSource.setPassword("Csquare123");
+        dataSource.setDriverClassName(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_DRIVER));
+        dataSource.setUrl(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_URL));
+        dataSource.setUsername(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_USERNAME));
+        dataSource.setPassword(PropertyUtil.LEAD_MGT.getProperty(PROPERTY_NAME_DATABASE_PASSWORD));
         dataSource.setInitialSize(5);
         dataSource.setMaxIdle(5);
         dataSource.setMaxActive(15);
@@ -110,46 +112,4 @@ public class DataBaseConfig {
         // properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
         return properties;
     }
-
-    /**
-     * Method to provide region on which application is hosted.
-     * Every system must set CodeXRegion as parameter with value like eu-west-1.amazonaws.com
-     *
-     * @param key - The String
-     * @return value - The String
-     */
-    // public String getProperty(String key) {
-    //
-    // if (!propertyInitialized) {
-    // loadProperty();
-    // }
-    //
-    // String value = prop.getProperty(key);
-    // return value;
-    // }
-
-    // /**
-    // * loadProperty - the method
-    // *
-    // * @throws RuntimeException - the RuntimeException
-    // */
-    // private void loadProperty() throws RuntimeException {
-    //
-    // propertyInitialized = true;
-    // InputStream input = null;
-    // try {
-    // String env = SystemUtil.getDeploymentEnv();
-    // String appConfigContainer = SystemUtil.getEnv(SystemKey.CODEX_APPCONFIG_CONTAINER);
-    // if (StringUtil.equals("PROD", env) || StringUtil.equals("UAT", env)) {
-    // input = AzureStorageUtil.INSTANCE.getObject(appConfigContainer, "codex-projectmgt-app.properties");
-    // } else {
-    // input = new FileInputStream("/codex-app-config/codex-projectmgt-app.properties");
-    // }
-    // prop.load(input);
-    // } catch (IOException e) {
-    // throw new RuntimeException(e);
-    // } finally {
-    // CommonUtil.close(input);
-    // }
-    // }
 }
