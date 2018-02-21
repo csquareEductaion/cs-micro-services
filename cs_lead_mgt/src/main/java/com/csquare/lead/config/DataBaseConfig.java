@@ -43,9 +43,6 @@ public class DataBaseConfig {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 
-    private final Properties prop = new Properties();
-    private boolean propertyInitialized = false;
-
     /**
      * DataSource - the class
      *

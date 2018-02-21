@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import com.csquare.framework.util.PropertyUtil;
 import com.csquare.framework.util.StringUtil;
 import com.csquare.framework.util.SystemUtil;
 
@@ -30,6 +31,7 @@ public class AppInitializer implements ServletContextInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
+        PropertyUtil.TUTOR_MGT.init();
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.setServletContext(servletContext);
         ContextProvider.setApplicationContext(ctx);
