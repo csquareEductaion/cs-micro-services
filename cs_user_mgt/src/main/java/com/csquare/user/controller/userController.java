@@ -51,7 +51,7 @@ public class userController extends RestExceptionHandler {
     }
 
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void updateUser(@PathVariable String userId) {
+    public void deleteUser(@PathVariable String userId) {
 
         iuserService.deleteUser(userId);
     }

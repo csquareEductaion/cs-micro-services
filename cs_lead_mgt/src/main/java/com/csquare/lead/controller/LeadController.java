@@ -29,12 +29,12 @@ public class LeadController extends RestExceptionHandler {
     @RequestMapping(value = "/addLead", method = RequestMethod.POST, headers = "Accept=application/json")
     public Lead addLead(@RequestBody Lead lead) throws ValidationException {
 
-        if (lead != null && CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
-            && CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())) {
-            lead = iLeadService.addLead(lead);
-
-        }
-        return lead;
+//        if (lead != null && CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
+//            && CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())) {
+//            lead = iLeadService.addLead(lead);
+//
+//        }
+        return iLeadService.addLead(lead);
     }
 
     @RequestMapping(value = "/updateLead", method = RequestMethod.POST, headers = "Accept=application/json")

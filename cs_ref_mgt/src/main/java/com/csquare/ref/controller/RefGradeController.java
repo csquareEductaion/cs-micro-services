@@ -17,7 +17,7 @@ import com.csquare.ref.service.IRefGradesService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class RefGradessController extends RestExceptionHandler {
+public class RefGradeController extends RestExceptionHandler {
 
     @Autowired
     IRefGradesService iRefGradesService;
@@ -36,8 +36,8 @@ public class RefGradessController extends RestExceptionHandler {
         return student;
     }
     
-    @RequestMapping(value = "/deleteRefGrades", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void delteRefGrades(@RequestBody String RefGradesId) {
+    @RequestMapping(value = "/deleteRefGrades/{RefGradesId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void delteRefGrades(@PathVariable String RefGradesId) {
 
     	iRefGradesService.deleteRefGrades(RefGradesId);
     }

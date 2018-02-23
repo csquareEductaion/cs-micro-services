@@ -23,23 +23,23 @@ public class RefLocationController extends RestExceptionHandler {
     IRefLocationService ireflocationService;
 
     @RequestMapping(value = "/addRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
-    public RefLocation addRefLocation(@RequestBody RefLocation reflocation) {
+    public RefLocation addRefLocation(@RequestBody RefLocation refLocation) {
 
-        reflocation = ireflocationService.addRefLocation(reflocation);
-        return reflocation;
+    	refLocation = ireflocationService.addRefLocation(refLocation);
+        return refLocation;
     }
 
     @RequestMapping(value = "/updateRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
-    public RefLocation updateRefLocation(@RequestBody RefLocation reflocation) {
+    public RefLocation updateRefLocation(@RequestBody RefLocation refLocation) {
 
-        reflocation = ireflocationService.updateRefLocation(reflocation);
-        return reflocation;
+    	refLocation = ireflocationService.updateRefLocation(refLocation);
+        return refLocation;
     }
 
-    @RequestMapping(value = "/deleteRefLocation", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteRefLocation(@RequestBody String reflocationId) {
+    @RequestMapping(value = "/deleteRefLocation/{refLocationId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void deleteRefLocation(@PathVariable String refLocationId) {
 
-        ireflocationService.deleteRefLocation(reflocationId);
+        ireflocationService.deleteRefLocation(refLocationId);
     }
 
     @RequestMapping(value = "/getRefLocationById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")

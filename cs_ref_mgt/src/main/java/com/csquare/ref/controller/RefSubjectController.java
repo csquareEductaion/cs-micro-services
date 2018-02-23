@@ -22,23 +22,23 @@ public class RefSubjectController extends RestExceptionHandler {
     IRefSubjectService irefsubjectService;
 
     @RequestMapping(value = "/addRefSubject", method = RequestMethod.POST, headers = "Accept=application/json")
-    public RefSubject addRefSubject(@RequestBody RefSubject refsubject) {
+    public RefSubject addRefSubject(@RequestBody RefSubject refSubject) {
 
-    	refsubject = irefsubjectService.addRefSubject(refsubject);
-        return refsubject;
+    	refSubject = irefsubjectService.addRefSubject(refSubject);
+        return refSubject;
     }
 
     @RequestMapping(value = "/updateRefSubject", method = RequestMethod.POST, headers = "Accept=application/json")
-    public RefSubject updateRefSubject(@RequestBody RefSubject refsubject) {
+    public RefSubject updateRefSubject(@RequestBody RefSubject refSubject) {
 
-    	refsubject = irefsubjectService.updateRefSubject(refsubject);
-        return refsubject;
+    	refSubject = irefsubjectService.updateRefSubject(refSubject);
+        return refSubject;
     }
     
-    @RequestMapping(value = "/deleteRefSubject", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteRefSubject(@RequestBody String reflocationId) {
+    @RequestMapping(value = "/deleteRefSubject/{refSubjectId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void deleteRefSubject(@PathVariable String refSubjectId) {
 
-    	irefsubjectService.deleteRefSubject(reflocationId);
+    	irefsubjectService.deleteRefSubject(refSubjectId);
     }
     
     @RequestMapping(value = "/getRefSubjectById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")

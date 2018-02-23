@@ -22,10 +22,10 @@ public class RefSyllabusController extends RestExceptionHandler {
     IRefSyllabusService irefsubjectService;
 
     @RequestMapping(value = "/addRefSyllabus", method = RequestMethod.POST, headers = "Accept=application/json")
-    public RefSyllabus addRefSyllabus(@RequestBody RefSyllabus refsubject) {
+    public RefSyllabus addRefSyllabus(@RequestBody RefSyllabus refSyllabus) {
 
-    	refsubject = irefsubjectService.addRefSyllabus(refsubject);
-        return refsubject;
+    	refSyllabus = irefsubjectService.addRefSyllabus(refSyllabus);
+        return refSyllabus;
     }
 
     @RequestMapping(value = "/updateRefSyllabus", method = RequestMethod.POST, headers = "Accept=application/json")
@@ -36,9 +36,9 @@ public class RefSyllabusController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/deleteRefSyllabus", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteRefSyllabus(@RequestBody String reflocationId) {
+    public void deleteRefSyllabus(@RequestBody String refSyllabusId) {
 
-    	irefsubjectService.deleteRefSyllabus(reflocationId);
+    	irefsubjectService.deleteRefSyllabus(refSyllabusId);
     }
     
     @RequestMapping(value = "/getRefSyllabusById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")

@@ -37,7 +37,7 @@ public class studentController extends RestExceptionHandler {
     }
     
     @RequestMapping(value = "/deleteStudent/{studentId}", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void updateStudent(@PathVariable String studentId) {
+    public void deleteStudent(@PathVariable String studentId) {
 
         istudentService.deleteStudent(studentId);
     }

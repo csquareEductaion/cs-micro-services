@@ -44,10 +44,10 @@ public class RefCityController extends RestExceptionHandler {
         return city;
     }
 
-    @RequestMapping(value = "/deleteRefCity", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void deleteRefCity(@RequestBody String refcityId) {
+    @RequestMapping(value = "/deleteRefCity/{id}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public void deleteRefCity(@PathVariable String id) {
 
-        irefcityService.deleteRefCity(refcityId);
+        irefcityService.deleteRefCity(id);
     }
 
     @RequestMapping(value = "/getRefCityById/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
