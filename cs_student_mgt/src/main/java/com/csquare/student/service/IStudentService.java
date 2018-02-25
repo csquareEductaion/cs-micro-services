@@ -17,5 +17,7 @@ public interface IStudentService {
     public List<Student> getAllStudents();
     
     public List<Student> getAllStudents(int offset, int limit);
+    
+    public void deleteStudentTutor(String StudentId);
 
 }

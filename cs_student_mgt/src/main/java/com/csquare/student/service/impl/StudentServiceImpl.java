@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csquare.student.dao.StudentRepository;
+import com.csquare.student.dao.StudentTutorRepository;
 import com.csquare.student.model.Student;
 import com.csquare.student.service.IStudentService;
 
@@ -15,6 +16,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Autowired
     StudentRepository istudentRepository;
+    
+    @Autowired
+    StudentTutorRepository istudentTutorRepository;
 
     @Override
     public Student addStudent(Student student) {
@@ -63,6 +67,13 @@ public class StudentServiceImpl implements IStudentService {
 
         // TODO Auto-generated method stub
         return istudentRepository.findAll(offset, limit, "studentTutorList", "studentSubjectList");
+    }
+    
+    @Override
+    public void deleteStudentTutor(String studentId) {
+
+    	istudentTutorRepository.delete(studentId);
+        ;
     }
 
 }
