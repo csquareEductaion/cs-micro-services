@@ -41,6 +41,9 @@ public class Lead {
 
     @Column(name = "last_name")
     private String lastName;
+    
+    @Column(name = "location")
+    private String location;
 
     @Column(name = "email")
     private String email;
@@ -262,4 +265,14 @@ public class Lead {
         this.alteratePhone = alteratePhone;
     }
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+    
+    
 }
