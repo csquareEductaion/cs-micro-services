@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
-import com.csquare.framework.search.SearchCriteria;
-import com.csquare.user.model.User;
 import com.csquare.user.model.UserSession;
-import com.csquare.user.service.IUserRoleService;
-import com.csquare.user.service.IUserService;
+import com.csquare.user.model.User;
+import com.csquare.user.service.IUserSessionService;
+import com.csquare.framework.search.SearchCriteria;
 
 
 @RestController
@@ -25,42 +25,38 @@ import com.csquare.user.service.IUserService;
 public class AuthController extends RestExceptionHandler {
 
     @Autowired
-    IUserService iuserService;
+    IUserSessionService iuserSessionService;
+    
 
-    @Autowired
-    IUserRoleService iuserRoleService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, headers = "Accept=application/json")
     public UserSession login(@RequestBody User user) {
 
-        SearchCriteria sc = new SearchCriteria();
-        sc.setFieldName("email");
+    	SearchCriteria sc = new SearchCriteria();
+        sc.setFieldName("userEmail");
         sc.setFieldValue(user.getEmail());
         List<SearchCriteria> scList = new ArrayList<SearchCriteria>();
         scList.add(sc);
-        List<User> userFromDBList = iuserService.searchUser(scList, -1, -1, true);
-        if (null == userFromDBList) {
-            return null;
-        }
-
-        User userFromDB = userFromDBList.get(0);
-        // get role for user
-        UserSession session = new UserSession();
-        if (user.getPassword().equals(userFromDB.getPassword())) {
-            userFromDB.setPassword(null);
-            session.setUser(userFromDB);
-            session.setUserRole(iuserRoleService.getUserRoleById(userFromDB.getUser_role()));
-            session.setUserId(userFromDB.getEmail());
-            session.setSessionId(UUID.randomUUID().toString());
+        List<UserSession> userFromDBList = iuserSessionService.searchUserSession(scList, -1, -1, true);
+        UserSession userFromDB = new UserSession();
+        if(userFromDBList.isEmpty()) {
+        	
         } else {
-            session.setSessionId(null);
+        	  userFromDB = userFromDBList.get(0);
         }
-
-        // MailMessage message = new MailMessage();
-        // message.setToAddress(user.getEmail());
-        // message.setSubject("Subject11111111");
-        // message.setBody("lead is created");
-        // RestServiceClient.INSTANCE.postForObject("http://localhost:8084/cs_communication_mgt/sendEmail", message, String.class);
+        
+        UserSession session = new UserSession();
+       if(userFromDB.getUserEmail() != null) {
+    	   if (userFromDB.getUserEmail().equals(user.getEmail())) { 
+           	return userFromDB;
+           } else {
+           	 session = iuserSessionService.login(user);
+           }   
+       } else {
+    	     session = iuserSessionService.login(user);
+       }
+    	
+    	
         return session;
     }
 
@@ -68,6 +64,21 @@ public class AuthController extends RestExceptionHandler {
     public void logout(@RequestHeader String sessionId, @RequestHeader String userId) {
 
         return;
+    }
+    
+    @RequestMapping(value = "/searchUserSession/{offset}/{limit}/{allMatch}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public List<UserSession> searchUserSession(@RequestBody List<SearchCriteria> criterias, @PathVariable Integer offset, @PathVariable Integer limit,
+        @PathVariable Boolean allMatch) {
+
+    	List<UserSession> user = iuserSessionService.searchUserSession(criterias, offset, limit, allMatch);
+        return user;
+    }
+    
+    @RequestMapping(value = "/getUserBySessionId/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public UserSession getUserBySessionId(@PathVariable String id) {
+
+        UserSession user = iuserSessionService.getUserBySessionId(id);
+        return user;
     }
 
 }
