@@ -10,7 +10,7 @@ public interface IUserSessionService {
 	
 	 	public UserSession login(User User);
 
-	    public UserSession logout(UserSession userrole);
+	    public String logout(String sessionId);
 
 	    public List<UserSession> searchUserSession(List<SearchCriteria> criterias, int offset, int limit, boolean allMatch);
 	    

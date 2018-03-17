@@ -60,10 +60,15 @@ public class AuthController extends RestExceptionHandler {
         return session;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST, headers = "Accept=application/json")
-    public void logout(@RequestHeader String sessionId, @RequestHeader String userId) {
-
-        return;
+    @RequestMapping(value = "/logout/{sessionId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public String logout(@PathVariable String sessionId) {
+    	String message;
+    	if(sessionId != null) {
+    		 message = iuserSessionService.logout(sessionId);
+    	} else {
+    		message = "User Not Found";
+    	}
+        return message;
     }
     
     @RequestMapping(value = "/searchUserSession/{offset}/{limit}/{allMatch}", method = RequestMethod.POST, headers = "Accept=application/json")

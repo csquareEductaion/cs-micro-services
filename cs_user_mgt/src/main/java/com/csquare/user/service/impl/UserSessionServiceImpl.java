@@ -56,9 +56,10 @@ public class UserSessionServiceImpl implements IUserSessionService {
 	}
 
 	@Override
-	public UserSession logout(UserSession userrole) {
+	public String logout(String sessionId) {
 		// TODO Auto-generated method stub
-		return null;
+		iUserSessionRepository.delete(sessionId);
+		return "Logged Out Successfully";
 	}
 	
 	@Override

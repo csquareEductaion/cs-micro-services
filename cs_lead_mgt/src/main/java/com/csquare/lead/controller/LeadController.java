@@ -1,5 +1,6 @@
 package com.csquare.lead.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.ValidationException;
@@ -29,12 +30,29 @@ public class LeadController extends RestExceptionHandler {
     @RequestMapping(value = "/addLead", method = RequestMethod.POST, headers = "Accept=application/json")
     public Lead addLead(@RequestBody Lead lead) throws ValidationException {
 
-//        if (lead != null && CSquareInputDataValidator.validatePhoneNumber(String.valueOf(lead.getPhone()))
-//            && CSquareInputDataValidator.isValidEmailAddress(lead.getEmail())) {
-//            lead = iLeadService.addLead(lead);
-//
-//        }
-        return iLeadService.addLead(lead);
+    	SearchCriteria sc = new SearchCriteria();
+    	sc.setFieldName("email");
+    	sc.setFieldValue(lead.getEmail());
+    	List<SearchCriteria> scList = new ArrayList<SearchCriteria>();
+        scList.add(sc);
+    	
+    	List<Lead> leadList = iLeadService.searchLead(scList, -1, -1, true);
+    	
+    	Lead leadFromDb = new Lead();
+    	if(leadList.isEmpty()) {
+    		
+    	} else {
+    		leadFromDb = leadList.get(0);
+    	}
+    	System.out.println("Lead From DB: " +leadFromDb.getEmail().toString());
+    	System.out.println("Lead From DB: " +lead.getEmail().toString());
+    	if(leadFromDb.getEmail().equals(lead.getEmail())) {
+    		return leadFromDb;
+    	} else {
+    		leadFromDb = iLeadService.addLead(lead);
+    	}
+    	
+        return leadFromDb;
     }
 
     @RequestMapping(value = "/updateLead", method = RequestMethod.POST, headers = "Accept=application/json")
