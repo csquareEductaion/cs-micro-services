@@ -39,17 +39,17 @@ public class LeadController extends RestExceptionHandler {
     	List<Lead> leadList = iLeadService.searchLead(scList, -1, -1, true);
     	
     	Lead leadFromDb = new Lead();
-    	if(leadList.isEmpty()) {
-    		
+    	if(leadList.size() == 0) {
+    		leadFromDb.setEmail(null);
+    		System.out.println(leadFromDb.getEmail());
     	} else {
     		leadFromDb = leadList.get(0);
     	}
-    	System.out.println("Lead From DB: " +leadFromDb.getEmail().toString());
-    	System.out.println("Lead From DB: " +lead.getEmail().toString());
-    	if(leadFromDb.getEmail().equals(lead.getEmail())) {
-    		return leadFromDb;
-    	} else {
+    	if(leadFromDb.getEmail() == null) {
     		leadFromDb = iLeadService.addLead(lead);
+    	} else {
+    		leadFromDb.setFirstName("Present" +"-" +leadFromDb.getFirstName());
+    		return leadFromDb;
     	}
     	
         return leadFromDb;
