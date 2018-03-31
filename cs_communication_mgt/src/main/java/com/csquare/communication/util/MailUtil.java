@@ -2,6 +2,7 @@ package com.csquare.communication.util;
 
 import java.io.BufferedInputStream;
 import java.io.Closeable;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -20,6 +21,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
 import com.csquare.framework.message.MailMessage;
+import com.csquare.framework.util.FileUtil;
 import com.csquare.framework.util.StringUtil;
 
 
@@ -43,8 +45,8 @@ public enum MailUtil {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        smtpUser = "sandeshsingh8431@gmail.com";
-        smtpPassword = "Ciber@2012";
+        smtpUser = "csquarebangalore@gmail.com";
+        smtpPassword = "Misthi321$";
 
         // properties.put("mail.smtp.host", PropertyUtil.INSTANCE.getProperty("mail.smtp.host"));
         // properties.put("mail.smtp.port", PropertyUtil.INSTANCE.getProperty("mail.smtp.port"));
@@ -80,6 +82,7 @@ public enum MailUtil {
         String remoteFileName = message.getRemoteFileName();
         String fileNameDisplay = message.getFileNameDisplay();
 
+        
         Multipart multipart = new MimeMultipart();
 
         addBody(body, multipart);
