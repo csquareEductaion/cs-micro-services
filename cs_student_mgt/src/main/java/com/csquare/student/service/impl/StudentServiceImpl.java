@@ -1,13 +1,16 @@
 package com.csquare.student.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.csquare.framework.search.SearchCriteria;
 import com.csquare.student.dao.StudentRepository;
 import com.csquare.student.dao.StudentTutorRepository;
 import com.csquare.student.model.Student;
+import com.csquare.student.model.StudentTutor;
 import com.csquare.student.service.IStudentService;
 
 
@@ -75,5 +78,18 @@ public class StudentServiceImpl implements IStudentService {
     	istudentTutorRepository.delete(studentId);
         ;
     }
+
+	@Override
+	public List<StudentTutor> getStudentByTutorId(String tutorId) {
+		// TODO Auto-generated method stub
+		SearchCriteria sc = new SearchCriteria();
+		sc.setFieldName("tutorId");
+		sc.setFieldValue(tutorId);
+		
+		List<SearchCriteria> scList = new ArrayList<SearchCriteria>();
+		scList.add(sc);
+		
+		return istudentTutorRepository.search(scList,-1,-1,true);
+	}
 
 }

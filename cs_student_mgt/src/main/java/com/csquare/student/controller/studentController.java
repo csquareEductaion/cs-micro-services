@@ -1,5 +1,6 @@
 package com.csquare.student.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.csquare.framework.exception.handler.RestExceptionHandler;
 import com.csquare.student.model.Student;
+import com.csquare.student.model.StudentTutor;
 import com.csquare.student.service.IStudentService;
 
  
@@ -65,6 +67,22 @@ public class studentController extends RestExceptionHandler {
     public void deleteStudentTutor(@PathVariable String studentId) {
 
         istudentService.deleteStudentTutor(studentId);
+    }
+    
+    @RequestMapping(value = "/getStudentByTutorId/{tutorId}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public List<Student> getStudentByTutorId(@PathVariable String tutorId) {
+
+    	List<StudentTutor> studentList = new ArrayList<StudentTutor>();
+    	studentList = istudentService.getStudentByTutorId(tutorId);
+    	int len = studentList.size();
+    	List<Student> student = new ArrayList<Student>(); 
+    	for(int i = 0; i< len; i++) {
+    		StudentTutor stud = studentList.get(i);
+    		System.out.println(istudentService.getStudentById(stud.getStudentId()));
+    		student.add(i, istudentService.getStudentById(stud.getStudentId()));
+    	}
+    	
+        return student;
     }
     
 }
