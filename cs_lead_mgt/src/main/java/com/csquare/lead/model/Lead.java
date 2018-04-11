@@ -74,6 +74,9 @@ public class Lead {
 
     @Column(name = "alternate_phone")
     private String alteratePhone;
+    
+    @Column(name = "qualification")
+    private String qualification;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
     @JoinColumn(name = "lead_id", referencedColumnName = "pk")
@@ -271,6 +274,14 @@ public class Lead {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
 	}
 
     

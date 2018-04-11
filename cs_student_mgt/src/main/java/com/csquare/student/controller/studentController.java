@@ -51,12 +51,6 @@ public class studentController extends RestExceptionHandler {
         return student;
     }
 
-    @RequestMapping(value = "/getAllStudents", method = RequestMethod.GET, headers = "Accept=application/json")
-    public List<Student> getAllStudents() {
-
-        return istudentService.getAllStudents();
-    }
-
     @RequestMapping(value = "/getAllStudents/{offset}/{limit}", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<Student> getAllStudents(@PathVariable Integer offset, @PathVariable Integer limit) {
 

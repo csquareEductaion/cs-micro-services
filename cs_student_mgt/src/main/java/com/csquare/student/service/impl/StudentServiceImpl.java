@@ -59,13 +59,6 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-
-        // TODO Auto-generated method stub
-        return istudentRepository.findAll("studentTutorList", "studentSubjectList");
-    }
-
-    @Override
     public List<Student> getAllStudents(int offset, int limit) {
 
         // TODO Auto-generated method stub
