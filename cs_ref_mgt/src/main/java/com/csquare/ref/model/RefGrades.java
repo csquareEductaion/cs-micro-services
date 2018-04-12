@@ -27,7 +27,7 @@ public class RefGrades {
     private String grade;
 	
 	@Column(name = "sortorder")
-    private String sortorder;
+    private int sortorder;
 	
 	public String getPk() {
 		return pk;
@@ -45,11 +45,11 @@ public class RefGrades {
 		this.grade = grade;
 	}
 
-	public String getSortorder() {
+	public int getSortorder() {
 		return sortorder;
 	}
 
-	public void setSortorder(String sortorder) {
+	public void setSortorder(int sortorder) {
 		this.sortorder = sortorder;
 	}
 

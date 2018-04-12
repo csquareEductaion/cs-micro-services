@@ -25,6 +25,9 @@ public class RefSubject {
 
     @Column(name = "subject")
     private String subject;
+    
+    @Column(name = "sortorder")
+    private String sortorder;
 
     public String getPk() {
 
@@ -45,5 +48,15 @@ public class RefSubject {
 
         this.subject = subject;
     }
+
+	public String getSortorder() {
+		return sortorder;
+	}
+
+	public void setSortorder(String sortorder) {
+		this.sortorder = sortorder;
+	}
+    
+    
 
 }
